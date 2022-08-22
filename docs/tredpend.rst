@@ -1,4 +1,4 @@
-.. _tredpend:
+.. _double_sph_pend:
 
 ======================
 The N-fold 3D pendulum

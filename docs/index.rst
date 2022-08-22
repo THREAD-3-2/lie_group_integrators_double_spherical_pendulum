@@ -12,7 +12,7 @@ Contents
 .. toctree::
    installation
    two_classes_lie_groups
-   tredpend
+   double_sph_pend
    matlab
    :maxdepth: 2
 
