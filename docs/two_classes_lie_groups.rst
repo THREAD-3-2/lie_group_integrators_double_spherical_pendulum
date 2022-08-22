@@ -11,7 +11,7 @@ We consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKM
 Runge-Kutta-Munthe-Kaas (RKMK) methods
 --------------------------------------
 
-For RKMK methods the underlying idea is to transform the problem from the manifold :math:`\M` to the Lie algebra :math:`\g`, take a time step, and map the result back to :math:`\M`. The transformation we use is
+For RKMK methods the underlying idea is to transform the problem from the manifold :math:`\mathcal{M}` to the Lie algebra :math:`\mathfrak{g}`, take a time step, and map the result back to :math:`\mathcal{M}`. The transformation we use is
 
 .. math::
     :name: eq:1
@@ -23,17 +23,17 @@ For RKMK methods the underlying idea is to transform the problem from the manifo
 The transformed differential equation for :math:`\sigma(t)` makes use of the derivative of the exponential mapping, the reader should consult
 \cite{munthe-kaas99hor} for details about the derivation, we give the final result
 \begin{equation}\label{dexpinveq}
-\dot{\sigma}(t) = \dexp_{\sigma(t)}^{-1} (f(\exp(\sigma(t))\cdot y_0))
+\dot{\sigma}(t) = \textrm{dexp}_{\sigma(t)}^{-1} (f(\exp(\sigma(t))\cdot y_0))
 \end{equation}
-The map :math:`v\mapsto\dexp_u(v)` is linear and invertible when :math:`u` belongs to some sufficiently small neighborhood of :math:`0\in\g`. 
-It has an expansion in nested Lie brackets \cite{hausdorff06dse}. Using the operator :math:`\ad_u(v)=[u,v]` and its powers
-:math:`\ad_u^2 v=[u,[u,v]]` etc, one can write
+The map :math:`v\mapsto\textrm{dexp}_u(v)` is linear and invertible when :math:`u` belongs to some sufficiently small neighborhood of :math:`0\in\mathfrak{g}`. 
+It has an expansion in nested Lie brackets \cite{hausdorff06dse}. Using the operator :math:`\textrm{ad}_u(v)=[u,v]` and its powers
+:math:`\textrm{ad}_u^2 v=[u,[u,v]]` etc, one can write
 
 .. math::
     :name: eq:1
     
     \begin{align}
-        \dexp_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\ad_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
+        \textrm{dexp}_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\textrm{ad}_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
     \end{align}
     
 and the inverse is
@@ -42,11 +42,11 @@ and the inverse is
     :name: eq:1
     
     \begin{align}
-        \dexp_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\ad_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
+        \textrm{dexp}_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\textrm{ad}_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
     \end{align}
 
-The RKMK methods are now obtained simply by applying some standard Runge--Kutta method to the transformed equation \eqref{dexpinveq} with a time step :math:`h`, using initial value :math:`\sigma(0)=0`. This leads to an output :math:`\sigma_1\in\g` and one simply sets :math:`y_1=\exp(\sigma_1)\cdot y_0`. Then one repeats the procedure replacing :math:`y_0` by :math:`y_1` in the next step etc. While solving \eqref{dexpinveq} one needs to evaluate :math:`\dexp_u^{-1}(v)` as a part of the process. This can be done by truncating the series \eqref{dexpinvseries} since :math:`\sigma(0)=0` implies that we always evaluate :math:`\dexp_u^{-1}` with :math:`u=\mathcal{O}(h)`, and thus, the :math:`k-th` iterated commutator :math:`\ad_u^k=\mathcal{O}(h^k)`.
-For a given Runge--Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\dexp_u^{-1}v`, see \cite{casas03cel, munthe-kaas99cia}. We give here one concrete example of an RKMK method proposed in \cite{casas03cel}
+The RKMK methods are now obtained simply by applying some standard Runge--Kutta method to the transformed equation \eqref{dexpinveq} with a time step :math:`h`, using initial value :math:`\sigma(0)=0`. This leads to an output :math:`\sigma_1\in\mathfrak{g}` and one simply sets :math:`y_1=\exp(\sigma_1)\cdot y_0`. Then one repeats the procedure replacing :math:`y_0` by :math:`y_1` in the next step etc. While solving \eqref{dexpinveq} one needs to evaluate :math:`\textrm{dexp}_u^{-1}(v)` as a part of the process. This can be done by truncating the series \eqref{dexpinvseries} since :math:`\sigma(0)=0` implies that we always evaluate :math:`\textrm{dexp}_u^{-1}` with :math:`u=\mathcal{O}(h)`, and thus, the :math:`k-th` iterated commutator :math:`\textrm{ad}_u^k=\mathcal{O}(h^k)`.
+For a given Runge--Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\textrm{dexp}_u^{-1}v`, see \cite{casas03cel, munthe-kaas99cia}. We give here one concrete example of an RKMK method proposed in \cite{casas03cel}
 
 %\colorbox{BurntOrange}{Include method of order 4 here}
 
@@ -63,16 +63,16 @@ For a given Runge--Kutta method, there are some clever tricks that can be done t
 
 
 
-The other option is to compute the exact expression for :math:`\dexp_u^{-1}(v)` for the particular Lie algebra we use. For instance, it was shown in \cite{celledoni03lgm} that for the Lie algebra :math:`\so(3)` one has
+The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{-1}(v)` for the particular Lie algebra we use. For instance, it was shown in \cite{celledoni03lgm} that for the Lie algebra :math:`\mathfrak{so}(3)` one has
 
 .. math::
     :name: eq:1
     
     \begin{align}
-        \dexp_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
+        \textrm{dexp}_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
     \end{align}
     
-We will present the corresponding formula for :math:`\se(3)` in Section~\ref{dexpinvse3}.
+We will present the corresponding formula for :math:`\mathfrak{se}(3)` in Section~\ref{dexpinvse3}.
 
 
 .. _CFmethods:
