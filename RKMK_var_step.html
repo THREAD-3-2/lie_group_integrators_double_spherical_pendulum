@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
+    <title>Two classes of Lie group integrators &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,28 +35,76 @@
 
           <div class="body" role="main">
             
-  <section id="runge-kutta-munthe-kaas-rkmk-methods-with-variable-step-size">
-<span id="rkmk-var-step"></span><h1>Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size<a class="headerlink" href="#runge-kutta-munthe-kaas-rkmk-methods-with-variable-step-size" title="Permalink to this heading">¶</a></h1>
-<p>The underlying idea of RKMK methods is to express a vector field <span class="math notranslate nohighlight">\(F\in\mathfrak{X}(\mathcal{M})\)</span> as <span class="math notranslate nohighlight">\(F\vert_m = \Psi_*(f(m))\vert_m\)</span> , where <span class="math notranslate nohighlight">\(\Psi_*\)</span> is the infinitesimal generator of <span class="math notranslate nohighlight">\(\Psi\)</span>, a transitive action on <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and <span class="math notranslate nohighlight">\(f:\mathcal{M}\rightarrow\mathfrak{g}\)</span>. This allows us to transform the problem from the manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{g}\)</span>, on which we can perform a time step integration. We then map the result back to <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and repeat this up to the final integration time.  More explicitly, let <span class="math notranslate nohighlight">\(h_n\)</span> be the size of the <span class="math notranslate nohighlight">\(n-th\)</span> time step, we then update <span class="math notranslate nohighlight">\(y_n\in\mathcal{M}\)</span> to <span class="math notranslate nohighlight">\(y_{n+1}\)</span> by</p>
+  <section id="two-classes-of-lie-group-integrators">
+<span id="rkmk-var-step"></span><h1>Two classes of Lie group integrators<a class="headerlink" href="#two-classes-of-lie-group-integrators" title="Permalink to this heading">¶</a></h1>
+<p>The simplest numerical integrator for linear spaces is the explicit Euler method. Given an initial value problem <span class="math notranslate nohighlight">\(\dot{y}=F(y)\)</span>, <span class="math notranslate nohighlight">\(y(0)=y_0\)</span> the method is defined as <span class="math notranslate nohighlight">\(y_{n+1}=y_n + hF(y_n)\)</span> for some stepsize <span class="math notranslate nohighlight">\(h\)</span>. In the spirit of the previous section, one could think of
+the Euler method as the <span class="math notranslate nohighlight">\(h\)</span>-flow of the constant vector field <span class="math notranslate nohighlight">\(F_{y_n}(y)=F(y_n)\)</span>, that is</p>
 <div class="math notranslate nohighlight" id="eq-1">
-<span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
-    \begin{cases}
-    \sigma(0) = 0\in\mathfrak{g},\\
-    \dot{\sigma}(t) = \textrm{dexp}_{\sigma(t)}^{-1}\circ f\circ \Psi (\exp(\sigma(t)),y_n)\in T_{\sigma(t)}\mathfrak{g}, \\
-    y_{n+1} = \Psi(\exp(\sigma_1),y_n)\in \mathcal{M},
-    \end{cases}
-\end{align}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\sigma_1\approx \sigma(h_n)\in\mathfrak{g}\)</span> is computed with a Runge-Kutta method.</p>
-<p>One approach for varying the step size is based on embedded Runge–Kutta pairs for vector spaces. This approach consists of a principal method of order <span class="math notranslate nohighlight">\(p\)</span>, used to propagate the numerical solution, together with some auxiliary method, of order <span class="math notranslate nohighlight">\(\tilde{p}&lt;p\)</span>, that is only used to obtain an estimate of the local error. This local error estimate is in turn used to derive a step size adjustment formula that attempts to keep the local error estimate approximately equal to some user-defined tolerance <span class="math notranslate nohighlight">\(\textrm{tol}\)</span> in every step.
-Both methods are applied to solve the ODE for <span class="math notranslate nohighlight">\(\sigma(t)\)</span> in <a class="reference internal" href="tredpend.html#eq-1"><span class="std std-ref">(1)</span></a>, yielding two approximations <span class="math notranslate nohighlight">\(\sigma_1\)</span> and <span class="math notranslate nohighlight">\(\tilde{\sigma}_1\)</span> respectively, using the same step size <span class="math notranslate nohighlight">\(h_n\)</span>. Now, some distance measure between <span class="math notranslate nohighlight">\(\sigma_1\)</span> and  <span class="math notranslate nohighlight">\(\tilde{\sigma}_1\)</span> provides an estimate <span class="math notranslate nohighlight">\(e_{n+1}\)</span> for the size of the local truncation error. Thus,
-<span class="math notranslate nohighlight">\(e_{n+1}=C
-h_{n+1}^{\tilde{p}+1}+\mathcal{O}(h^{\tilde{p}+2})\)</span>. Aiming at <span class="math notranslate nohighlight">\(e_{n+1}\approx\textrm{tol}\)</span> in every step, one may use a formula of the type</p>
-<div class="math notranslate nohighlight" id="eq-2">
-<span id="equation-eq-2"></span><span class="eqno">(2)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    h_{n+1} = \theta\left(\frac{\textrm{tol}}{e_{n+1}}\right)^{\tfrac{1}{\tilde{p}+1}}\, h_n
+<span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    y_{n+1} = \exp(hF_{y_n})\,y_n
 \end{align}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is typically chosen between <span class="math notranslate nohighlight">\(0.8\)</span> and <span class="math notranslate nohighlight">\(0.9\)</span>.
-If <span class="math notranslate nohighlight">\(e_n&gt;\textrm{tol}\)</span>, the step is rejected. Hence, we can redo the step with the step size obtained by the same formula.</p>
+<p>This definition of the Euler method makes sense also when <span class="math notranslate nohighlight">\(F\)</span> is replaced by a vector field on some manifold. In this general situation it is known as the Lie–Euler method.</p>
+<p>We shall here consider the two classes of methods known as
+Runge–Kutta–Munthe–Kaas (RKMK) methods and Commutator-free Lie group methods.</p>
+<p>For RKMK methods the underlying idea is to transform the problem from the manifold <span class="math notranslate nohighlight">\(\M\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\g\)</span>, take a time step, and map the result back to <span class="math notranslate nohighlight">\(\M\)</span>. The transformation we use is</p>
+<div class="math notranslate nohighlight" id="id1">
+<span id="equation-eq-1"></span><span class="eqno">(2)<a class="headerlink" href="#id1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    y(t) = \exp(\sigma(t))\cdot y_0,\quad\sigma(0)=0.
+\end{align}\]</div>
+<p>The transformed differential equation for <span class="math notranslate nohighlight">\(\sigma(t)\)</span> makes use of the derivative of the exponential mapping, the reader should consult
+cite{munthe-kaas99hor} for details about the derivation, we give the final result
+begin{equation}label{dexpinveq}
+dot{sigma}(t) = dexp_{sigma(t)}^{-1} (f(exp(sigma(t))cdot y_0))
+end{equation}
+The map <span class="math notranslate nohighlight">\(v\mapsto\dexp_u(v)\)</span> is linear and invertible when <span class="math notranslate nohighlight">\(u\)</span> belongs to some sufficiently small neighborhood of <span class="math notranslate nohighlight">\(0\in\g\)</span>.
+It has an expansion in nested Lie brackets cite{hausdorff06dse}. Using the operator <span class="math notranslate nohighlight">\(\ad_u(v)=[u,v]\)</span> and its powers
+<span class="math notranslate nohighlight">\(\ad_u^2 v=[u,[u,v]]\)</span> etc, one can write</p>
+<div class="math notranslate nohighlight" id="id2">
+<span id="equation-eq-1"></span><span class="eqno">(3)<a class="headerlink" href="#id2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dexp_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\ad_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
+\end{align}\]</div>
+<p>and the inverse is</p>
+<div class="math notranslate nohighlight" id="id3">
+<span id="equation-eq-1"></span><span class="eqno">(4)<a class="headerlink" href="#id3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dexp_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\ad_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
+\end{align}\]</div>
+<p>The RKMK methods are now obtained simply by applying some standard Runge–Kutta method to the transformed equation eqref{dexpinveq} with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\g\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving eqref{dexpinveq} one needs to evaluate <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series eqref{dexpinvseries} since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\dexp_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\ad_u^k=\mathcal{O}(h^k)\)</span>.
+For a given Runge–Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\dexp_u^{-1}v\)</span>, see cite{casas03cel, munthe-kaas99cia}. We give here one concrete example of an RKMK method proposed in cite{casas03cel}</p>
+<p>%colorbox{BurntOrange}{Include method of order 4 here}</p>
+<div class="math notranslate nohighlight" id="id4">
+<span id="equation-eq-1"></span><span class="eqno">(5)<a class="headerlink" href="#id4" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+   f_{n,1} &amp;= h f(y_n),\\
+   f_{n,2} &amp;= h f(\exp(\tfrac{1}{2}f_{n,1}) \cdot y_n), \\
+   f_{n,3} &amp;= h f(\exp(\tfrac{1}{2}f_{n,2}-\tfrac{1}{8}[f_{n,1},f_{n,2}])\cdot y_n), \\
+   f_{n,4} &amp;= h f(\exp(f_{n,3})\cdot y_n), &amp;  \\
+   y_{n+1} &amp;= \exp(\tfrac{1}{6}(f_{n,1}+2f_{n,2}+2f_{n,3}+f_{n,4}-\tfrac12[f_{n,1},f_{n,4}]))\cdot y_n.
+\end{align}\end{split}\]</div>
+<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> for the particular Lie algebra we use. For instance, it was shown in cite{celledoni03lgm} that for the Lie algebra <span class="math notranslate nohighlight">\(\so(3)\)</span> one has</p>
+<div class="math notranslate nohighlight" id="id5">
+<span id="equation-eq-1"></span><span class="eqno">(6)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dexp_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
+\end{align}\]</div>
+<p>We will present the corresponding formula for <span class="math notranslate nohighlight">\(\se(3)\)</span> in Section~ref{dexpinvse3}.</p>
+<p>The second class of Lie group integrators to be considered here are the commutator-free methods, named this way in cite{celledoni03cfl} to emphasize the contrast to RKMK schemes which usually include commutators in the method format. These schemes include the Crouch-Grossman methods cite{crouch93nio} and they have the format</p>
+<div class="math notranslate nohighlight" id="id6">
+<span id="equation-eq-1"></span><span class="eqno">(7)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    Y_{n,r} &amp;= \exp\left(h\sum_{k}\alpha_{r,J}^k f_{n,k}\right)\cdots \exp\left(h\sum_{k}\alpha_{r,1}^k f_{n,k}\right)\cdot y_n \\
+    f_{n,r} &amp;= f(Y_{n,r}) \\[1mm]
+    y_{n+1} &amp;= \exp\left(h\sum_k \beta_J^k f_{n,k}\right)\cdots \exp\left(h\sum_k \beta_1^k f_{n,k}\right)\cdot y_n
+\end{align}\end{split}\]</div>
+<p>Here the Runge–Kutta coefficients <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are related to a classical Runge–Kutta scheme with coefficients <span class="math notranslate nohighlight">\(a_r^k\)</span>, <span class="math notranslate nohighlight">\(b_r\)</span> in that <span class="math notranslate nohighlight">\(a_r^k=\sum_j \alpha_{r,j}^k\)</span> and <span class="math notranslate nohighlight">\(b_r=\sum_j \beta_{j}^r\)</span>. The <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials <span class="math notranslate nohighlight">\(J\)</span> in each stage as low as possible, and possibly also the number of stages <span class="math notranslate nohighlight">\(s\)</span>. A trick proposed in cite{celledoni03cfl} was to select coefficients RE{that make it possible to reuse exponentials} from one stage to another. This is perhaps best illustrated through the following example from cite{celledoni03cfl}, a generalisation of the classical 4th order Runge–Kutta method.</p>
+<div class="math notranslate nohighlight" id="id7">
+<span id="equation-eq-1"></span><span class="eqno">(8)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{split} \label{cf4}
+    Y_{n,1} &amp;= y_n \\
+    Y_{n,2} &amp;=\exp(\tfrac12 hf_{n,1}) \cdot y_n \\
+    Y_{n,3} &amp;= \exp(\tfrac12 hf_{n,2}) \cdot y_n \\
+    Y_{n,4} &amp;= \exp(h f_{n,3}-\tfrac12 h f_{n,1}) \cdot Y_{n,2} \\
+    y_{n+\frac12} &amp;=\exp(\tfrac{1}{12}h(3f_{n,1}+2f_{n,2}+2f_{n,3}-f_{n,4})) \cdot y_n \\
+    y_{n+1} &amp;=\exp(\tfrac{1}{12}h(-f_{n,1}+2f_{n,2}+2f_{n,3}+ 3f_{n,4})) \cdot y_{n+\frac12}
+    \end{split}
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{n,i}=f(Y_{n,i})\)</span>. Here, we see that one exponential is saved in computing <span class="math notranslate nohighlight">\(Y_{n,4}\)</span> by making use of <span class="math notranslate nohighlight">\(Y_{n,2}\)</span>.</p>
 </section>
 
 
@@ -78,7 +126,7 @@ If <span class="math notranslate nohighlight">\(e_n&gt;\textrm{tol}\)</span>, th
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Two classes of Lie group integrators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tredpend.html">The N-fold 3D pendulum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB code</a></li>
 </ul>
