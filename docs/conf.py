@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'variable_stepsize_lie_group_integrator'
+project = 'lie_group_integrator_double_spherical_pendulum'
 copyright = '2022, Ergys Çokaj, Andrea Leone, Davide Murari'
 author = 'Ergys Çokaj, Andrea Leone, Davide Murari'
 
