@@ -49,48 +49,6 @@ using the <a class="reference external" href="https://github.com/sphinx-contrib/
 </section>
 <section id="src-integrators">
 <h2>src/integrators<a class="headerlink" href="#src-integrators" title="Permalink to this heading">¶</a></h2>
-<dl class="mat function">
-<dt class="sig sig-object mat" id="src.integrators.RKMK5">
-<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">exponentialSE3N</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">sigma0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK5" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 5</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
-<li><p><strong>exponentialSE3N</strong> – exponential map from se(3)^N to SE(3)^N</p></li>
-<li><p><strong>action</strong> – Lie group action</p></li>
-<li><p><strong>p</strong> – solution at time t_n</p></li>
-<li><p><strong>h</strong> – time step size</p></li>
-<li><p><strong>sigma0</strong> – initial value of the curve sigma on se(3)^N</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>solution at time t_(n+1)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="mat function">
-<dt class="sig sig-object mat" id="src.integrators.RKMK45">
-<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK45</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">exponentialSE3N</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">sigma0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK45" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runge-Kutta-Munthe-Kaas pair (5,4) based on the Dormand-Prince method DOPRI5(4)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
-<li><p><strong>exponentialSE3N</strong> – exponential map from se(3)^N to SE(3)^N</p></li>
-<li><p><strong>action</strong> – Lie group action</p></li>
-<li><p><strong>p</strong> – solution at time t_n</p></li>
-<li><p><strong>h</strong> – time step size</p></li>
-<li><p><strong>sigma0</strong> – initial value of the curve sigma on se(3)^N</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>solution at time t_(n+1) and local error</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="src-lie-group-functions">
 <h2>src/Lie_group_functions<a class="headerlink" href="#src-lie-group-functions" title="Permalink to this heading">¶</a></h2>
@@ -363,6 +321,62 @@ with u and v 3x1 column vectors</p>
 <dd class="field-even"><p>initial positions for q and w of the N-fold pendulum</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.initializeSE3N">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">N</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeSE3N" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method randomly picks a point in (TS^2)^N.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.checkConvergenceRate">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkConvergenceRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkConvergenceRate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.checkTangency">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkTangency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkTangency" title="Permalink to this definition">¶</a></dt>
+<dd><p>As an input z we get the matrix with the solutions, each column is a
+set [q1,w1,…,qN,wN] at a specific time t_j, where j is the column of
+v where this solution is stored.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.tangentBehaviour">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">tangentBehaviour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.tangentBehaviour" title="Permalink to this definition">¶</a></dt>
+<dd><p>In this method we solve the equation and compute the tangentiality
+conditions for the solutions obtained with the various schemes. The
+output value N is just the number of time instants considered.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.compareNorms">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">compareNorms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.compareNorms" title="Permalink to this definition">¶</a></dt>
+<dd><p>It solves the ODE in time with various numerical schemes and then
+computes the 2-norms of the qis, which are extracted and stored in v. The
+output value N is just the number of time instants considered.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.getNorms">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getNorms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getNorms" title="Permalink to this definition">¶</a></dt>
+<dd><p>It just computes the norms of the qs, so the output is going to be a
+matrix v where in each row we have the norm, at any time instant, of a
+a certain qi.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.potential">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.potential" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.reorder">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">reorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.reorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method turns the vector z = [q1,q2,..,qN,w1,w2,…,wN] into
+vec = [q1,w1,q2,w2,…,qN,wN] which is the format used in the Lie
+group integrators setting.</p>
 </dd></dl>
 
 </section>
