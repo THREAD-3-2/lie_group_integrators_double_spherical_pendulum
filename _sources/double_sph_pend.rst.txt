@@ -108,7 +108,7 @@ More precisely, we consider the group :math:`G=(SE(3))^2` and by direct product 
         \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2), \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
     \end{align}
     
-    denoted with :math:`*` the semidirect product of :math:`SE(3)`, we define the product :math:`\circ` on :math:`G` as
+denoted with :math:`*` the semidirect product of :math:`SE(3)`, we define the product :math:`\circ` on :math:`G` as
 
 .. math::
     :name: eq: 
