@@ -11,7 +11,7 @@ Contents
 
 .. toctree::
    installation
-   RKMK_var_step
+   two_classes_lie_groups
    tredpend
    matlab
    :maxdepth: 2
