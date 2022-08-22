@@ -17,6 +17,8 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MATLAB code" href="matlab.html" />
+    <link rel="prev" title="Two classes of Lie group integrators" href="two_classes_lie_groups.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,6 +37,111 @@
             
   <section id="the-double-spherical-pendulum">
 <span id="double-sph-pend"></span><h1>The double spherical pendulum<a class="headerlink" href="#the-double-spherical-pendulum" title="Permalink to this heading">¶</a></h1>
+<p>In the paper <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we discuss in detail the N-fold 3D pendulum.
+We consider here the special case of the double spherical pendulum,  <span class="math notranslate nohighlight">\(N = 2\)</span>.
+We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold <span class="math notranslate nohighlight">\(S^2\)</span> and the configuration space <span class="math notranslate nohighlight">\(T_{q_{i}t}S^2\)</span>.</p>
+<p>The equations of motion write:</p>
+<div class="math notranslate nohighlight" id="eq">
+<span id="equation-eq"></span><span class="eqno">(1)<a class="headerlink" href="#eq" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dot{q}_1 = \hat{\omega}_1q_1,\quad \dot{q}_2 = \hat{\omega}_2q_2,
+\end{align}\]</div>
+<div class="math notranslate nohighlight" id="id1">
+<span id="equation-eq"></span><span class="eqno">(2)<a class="headerlink" href="#id1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    R(q)\begin{bmatrix}
+    \dot{\omega}_1 \\ \dot{\omega}_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+    (-m_2L_1L_2|\omega_2|^2\hat{q}_2 + (m_1+m_2)gL_1\hat{e}_3)q_1 \\
+    (-m_2L_1L_2|\omega_1|^2\hat{q}_1 + m_2gL_2\hat{e}_3)q_2
+    \end{bmatrix},
+\end{align}\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="id2">
+<span id="equation-eq"></span><span class="eqno">(3)<a class="headerlink" href="#id2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    R(q) = \begin{bmatrix}
+    (m_1+m_2)L_1^2I_3 &amp; m_2L_1L_2\hat{q}_1^T\hat{q}_2 \\
+    m_2L_1L_2\hat{q}_2^T\hat{q}_1 &amp; m_2L_2^2I_3
+    \end{bmatrix}.
+\end{align}\end{split}\]</div>
+<p>As presented above, the matrix <span class="math notranslate nohighlight">\(R(q)\)</span> defines a linear invertible map of the space <span class="math notranslate nohighlight">\(T_{q_1}S^2\times T_{q_2}S^2\)</span> onto itself:</p>
+<div class="math notranslate nohighlight" id="id3">
+<span id="equation-eq"></span><span class="eqno">(4)<a class="headerlink" href="#id3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    A_{(q_1,q_2)}:T_{q_1}S^2\times T_{q_2}S^2\rightarrow T_{q_1}S^2\times T_{q_2}S^2,\;[\omega_1,\omega_2]^T\rightarrow R(q)[\omega_1,\omega_2]^T.
+\end{align}\]</div>
+<p>We can easily see that it is well defined since</p>
+<div class="math notranslate nohighlight" id="id4">
+<span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id4" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    R(q)\begin{bmatrix}
+    \omega_1 \\ \omega_2
+    \end{bmatrix} = \begin{bmatrix}
+    (m_1+m_2)L_1^2I_3 &amp; m_2L_1L_2\hat{q}_1^T\hat{q}_2 \\
+    m_2L_1L_2\hat{q}_2^T\hat{q}_1 &amp; m_2L_2^2I_3
+    \end{bmatrix}\begin{bmatrix}
+    \hat{v}_1q_1 \\ \hat{v}_2q_2
+    \end{bmatrix} = \begin{bmatrix}
+    \hat{r}_1q_1\\ \hat{r}_2q_2
+    \end{bmatrix}\in (TS^2)^2
+\end{align}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight" id="id5">
+<span id="equation-eq"></span><span class="eqno">(6)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    r_1(q,\omega):=(m_1+m_2)L_1^2v_1+m_2L_1L_2\hat{q}_2\hat{v}_2q_2,
+\end{align}\]</div>
+<div class="math notranslate nohighlight" id="id6">
+<span id="equation-eq"></span><span class="eqno">(7)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    r_2(q,\omega):=m_2L_1L_2\hat{q}_1\hat{v}_1q_1+m_2L_2^2v_2.
+\end{align}\]</div>
+<p>This map guarantees that if we rewrite the pair of equations for the angular velocities in (ref{eq:double}) as</p>
+<div class="math notranslate nohighlight" id="id7">
+<span id="equation-eq"></span><span class="eqno">(8)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{split}
+    \dot{\omega}&amp;= R^{-1}(q)\begin{bmatrix}
+    (-m_2L_1L_2|\omega_2|^2\hat{q}_2 + (m_1+m_2)gL_1\hat{e}_3)q_1 \\
+    (-m_2L_1L_2|\omega_1|^2\hat{q}_1 + m_2gL_2\hat{e}_3)q_2
+    \end{bmatrix}=R^{-1}(q)b=\\
+    &amp;=A_{(q_1,q_2)}^{-1}(b)=\begin{bmatrix}
+    h_1 \\ h_2
+    \end{bmatrix}\in T_{q_1}S^2\times T_{q_2}S^2,
+    \end{split}
+\end{align}\end{split}\]</div>
+<p>then we are assured RE{that there exists a pair of functions} :math:<a href="#id8"><span class="problematic" id="id9">`</span></a>a_1,a_2:TS^2times TS^2rightarrowmathbb{R}^3$ such that</p>
+<div class="math notranslate nohighlight" id="id10">
+<span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \dot{\omega} = \begin{bmatrix}
+    a_1(q,\omega)\times q_1 \\ a_2(q,\omega)\times q_2
+    \end{bmatrix} = \begin{bmatrix}
+    h_1(q) \\ h_2(q)
+    \end{bmatrix}.
+\end{align}\end{split}\]</div>
+<p>Since we want :math:<a href="#id11"><span class="problematic" id="id12">`</span></a>a_itimes q_i = h_i$, we just impose :math:<a href="#id13"><span class="problematic" id="id14">`</span></a>a_i=q_itimes h_i$ and hence the whole vector field can be rewritten as</p>
+<div class="math notranslate nohighlight" id="id15">
+<span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id15" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{bmatrix}
+    \dot{q}_1 \\ \dot{\omega}_1 \\ \dot{q}_2 \\ \dot{\omega}_2
+    \end{bmatrix} = \begin{bmatrix}
+    \omega_1 \times q_1 \\ (q_1\times h_1)\times q_1 \\ \omega_2\times q_2 \\ (q_2\times h_2)\times q_2
+    \end{bmatrix} = F\vert_{(q,\omega)},
+\end{align}\end{split}\]</div>
+<p>with :math:<a href="#id16"><span class="problematic" id="id17">`</span></a>h_i=h_i(q,omega)$ and</p>
+<div class="math notranslate nohighlight" id="id18">
+<span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id18" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{bmatrix}
+    h_1(q,\omega) \\ h_2(q,\omega)
+    \end{bmatrix} = R^{-1}(q)\begin{bmatrix}
+    (-m_2L_1L_2|\omega_2|^2\hat{q}_2 + (m_1+m_2)gL_1\hat{e}_3)q_1 \\
+    (-m_2L_1L_2|\omega_1|^2\hat{q}_1 + m_2gL_2\hat{e}_3)q_2
+    \end{bmatrix}.
+\end{align}\end{split}\]</div>
+<p>Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of :math:<a href="#id19"><span class="problematic" id="id20">`</span></a>SE(3)times SE(3)$ as</p>
+<div class="math notranslate nohighlight" id="id21">
+<span id="equation-eq"></span><span class="eqno">(12)<a class="headerlink" href="#id21" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \infgen(f(q,\omega))\vert_{(q,\omega)}=F\vert_{(q,\omega)}
+\end{align}\]</div>
+<p>through the function</p>
+<div class="math notranslate nohighlight" id="id22">
+<span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id22" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    f : TS^2\times TS^2\rightarrow \mathfrak{se}(3)\times\mathfrak{se}(3)\simeq \mathbb{R}^{12},\;\;(q,\omega)\rightarrow (\omega_1, q_1\times h_1, \omega_2,q_2\times h_2).
+\end{align}\]</div>
 <p>We describe here the specific problem of a chain of <span class="math notranslate nohighlight">\(N\)</span> connected 3D pendulums, whose dynamics evolves on <span class="math notranslate nohighlight">\((TS^2)^N\)</span>.
 The dynamics of this mechanical system is described in terms of a Lie group <span class="math notranslate nohighlight">\(G\)</span> acting transitively on the phase space <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.
 The equations of motion are presented in terms of the infinitesimal generator of the transitive action.</p>
@@ -43,12 +150,12 @@ The equations of motion are presented in terms of the infinitesimal generator of
 <p>Let us consider a  chain of <span class="math notranslate nohighlight">\(N\)</span> pendulums subject to constant gravity <span class="math notranslate nohighlight">\(g\)</span>. The system is modeled by <span class="math notranslate nohighlight">\(N\)</span> rigid, massless links serially connected by spherical joints, with the first link connected to a fixed point placed at the origin of the ambient space <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>. We neglect friction and interactions among the pendulums.</p>
 <p>The modeling part comes from <a class="reference external" href="https://doi.org/10.1007/978-3-319-56953-6">(Lee, Leok and McClamroch, (2018))</a> and we omit details. We denote by <span class="math notranslate nohighlight">\(q_i\in S^2\)</span> the configuration vector of the <span class="math notranslate nohighlight">\(i-th\)</span> mass, <span class="math notranslate nohighlight">\(m_i\)</span>, of the chain. Following <a class="reference external" href="https://doi.org/10.1007/978-3-319-56953-6">(Lee, Leok and McClamroch, (2018))</a>, we express the Euler–Lagrange equations for our system in terms of the configuration variables <span class="math notranslate nohighlight">\((q_1,\dots,q_N)\in (S^2)^N\subset\mathbb{R}^{3N}\)</span>, and their angular velocities <span class="math notranslate nohighlight">\((\omega_1,...,\omega_N)\in T_{q_1}S^2\times ... \times T_{q_N}S^2\subset\mathbb{R}^{3N}\)</span>, defined be the following kinematic equations:</p>
 <div class="math notranslate nohighlight" id="eq-1">
-<span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<span id="equation-eq-1"></span><span class="eqno">(14)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \dot{q}_i = \omega_i\times q_i, \quad i=1,\dots,N.
 \end{align}\]</div>
 <p>The Euler–Lagrange equations of the system can be written as</p>
 <div class="math notranslate nohighlight" id="eq-2">
-<span id="equation-eq-2"></span><span class="eqno">(2)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<span id="equation-eq-2"></span><span class="eqno">(15)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     R(q)\dot{\omega} = \left[\sum_{\substack{j=1\\ j\neq i}}^N M_{ij}|\omega_j|^2\hat{q}_i q_j - \Big(\sum_{j=i}^N m_j\Big)gL_i \hat{q}_i e_3 \right]_{i=1,...,N} = \begin{bmatrix}r_1\\ \vdots \\ r_N \end{bmatrix}\in\mathbb{R}^{3N},
 \end{align}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R(q)\in\mathbb{R}^{3N\times 3N}\)</span> is a symmetric block matrix defined as</p>
@@ -77,7 +184,7 @@ The equations of motion are presented in terms of the infinitesimal generator of
 \end{align}\]</div>
 <p>we can rewrite the ODEs for the angular velocities as follows:</p>
 <div class="math notranslate nohighlight" id="eq-3">
-<span id="equation-eq-3"></span><span class="eqno">(3)<a class="headerlink" href="#eq-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<span id="equation-eq-3"></span><span class="eqno">(16)<a class="headerlink" href="#eq-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \dot{\omega}= A_{q}^{-1}\left(\begin{bmatrix}r_1\\ \vdots \\ r_N \end{bmatrix}\right) =\begin{bmatrix} h_1(q,\omega) \\ \vdots \\ h_N(q,\omega)\end{bmatrix} = \begin{bmatrix} a_1(q,\omega)\times q_1 \\ \vdots \\ a_N(q,\omega)\times q_N \end{bmatrix}.
 \end{align}\end{split}\]</div>
 <p>In equation <a class="reference internal" href="two_classes_lie_groups.html#eq-3"><span class="std std-ref">(3)</span></a> the <span class="math notranslate nohighlight">\(r_i-s\)</span> are defined as in <a class="reference internal" href="two_classes_lie_groups.html#eq-2"><span class="std std-ref">(2)</span></a> ,
@@ -109,10 +216,13 @@ and <span class="math notranslate nohighlight">\(a_1,...,a_N:(TS^2)^N\rightarrow
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="two_classes_lie_groups.html">Two classes of Lie group integrators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_sph_pend.html">The double spherical pendulum</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The double spherical pendulum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#equations-of-motion">Equations of motion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB code</a></li>
 </ul>
 
@@ -120,6 +230,8 @@ and <span class="math notranslate nohighlight">\(a_1,...,a_N:(TS^2)^N\rightarrow
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="two_classes_lie_groups.html" title="previous chapter">Two classes of Lie group integrators</a></li>
+      <li>Next: <a href="matlab.html" title="next chapter">MATLAB code</a></li>
   </ul></li>
 </ul>
 </div>
@@ -153,7 +265,7 @@ and <span class="math notranslate nohighlight">\(a_1,...,a_N:(TS^2)^N\rightarrow
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/tredpend.rst.txt"
+      <a href="_sources/double_sph_pend.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

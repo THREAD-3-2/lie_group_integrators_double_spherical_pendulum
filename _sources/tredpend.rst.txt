@@ -1,8 +1,8 @@
 .. _double_sph_pend:
 
-======================
-The N-fold 3D pendulum
-======================
+=============================
+The double spherical pendulum
+=============================
 
 We describe here the specific problem of a chain of :math:`N` connected 3D pendulums, whose dynamics evolves on :math:`(TS^2)^N`.
 The dynamics of this mechanical system is described in terms of a Lie group :math:`G` acting transitively on the phase space :math:`\mathcal{M}`. 
