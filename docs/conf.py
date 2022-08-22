@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'lie_group_integrator_double_spherical_pendulum'
-copyright = '2022, Ergys Çokaj, Andrea Leone, Davide Murari'
-author = 'Ergys Çokaj, Andrea Leone, Davide Murari'
+copyright = '2022, Elena Celledoni, Ergys Çokaj, Andrea Leone, Davide Murari, Brynjulf Owren'
+author = 'Elena Celledoni, Ergys Çokaj, Andrea Leone, Davide Murari, Brynjulf Owren'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
