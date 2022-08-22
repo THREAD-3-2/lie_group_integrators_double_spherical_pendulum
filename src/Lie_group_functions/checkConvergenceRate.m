@@ -89,88 +89,88 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
     xlabel('Timestep')
     ylabel('Global error')
     title("Lie Euler",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
 
     %% Convergence rate of Euler Heun
-    ord1 = (dts/dts(1)).^(1)*errorEH1(1); 
-    ord2 = (dts/dts(1)).^(2)*errorEH1(1);
-    ord3 = (dts/dts(1)).^(3)*errorEH1(1);
-    ord4 = (dts/dts(1)).^(4)*errorEH1(1);
+    ord1 = (dts/dts(1)).^(1) * errorEH1(1); 
+    ord2 = (dts/dts(1)).^(2) * errorEH1(1);
+    ord3 = (dts/dts(1)).^(3) * errorEH1(1);
+    ord4 = (dts/dts(1)).^(4) * errorEH1(1);
 
     subplot(2, 3, 2)
-    loglog(dts,errorEH1,'k-*',dts,ord1,'r--',dts,ord2,'c--',dts,ord3,'m--',dts,ord4,'g--','LineWidth',2)
+    loglog(dts, errorEH1, 'k-*', dts, ord1, 'r--', dts, ord2, 'c--', dts, ord3, 'm--', dts, ord4, 'g--', 'LineWidth', 2)
     xlabel('Timestep')
     ylabel('Global error')
     title("Euler Heun",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
 
 
     %% Convergence rate of RKMK4
-    ord1 = (dts/dts(1)).^(1)*errorRK41(1);
-    ord2 = (dts/dts(1)).^(2)*errorRK41(1);
-    ord3 = (dts/dts(1)).^(3)*errorRK41(1);
-    ord4 = (dts/dts(1)).^(4)*errorRK41(1);
+    ord1 = (dts/dts(1)).^(1) * errorRK41(1);
+    ord2 = (dts/dts(1)).^(2) * errorRK41(1);
+    ord3 = (dts/dts(1)).^(3) * errorRK41(1);
+    ord4 = (dts/dts(1)).^(4) * errorRK41(1);
 
     subplot(2,3, 3)
-    loglog(dts,errorRK41,'k-*',dts,ord1,'r--',dts,ord2,'c--',dts,ord3,'m--',dts,ord4,'g--','LineWidth',2)
+    loglog(dts, errorRK41, 'k-*', dts, ord1, 'r--', dts, ord2, 'c--', dts, ord3, 'm--', dts, ord4, 'g--', 'LineWidth', 2)
     xlabel('Timestep')
     ylabel('Global error')
     title("RKMK4",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
 
      %% Convergence rate of RKMK4 commutator Free
-    ord1 = (dts/dts(1)).^(1)*errorRK4FR1(1);
-    ord2 = (dts/dts(1)).^(2)*errorRK4FR1(1);
-    ord3 = (dts/dts(1)).^(3)*errorRK4FR1(1);
-    ord4 = (dts/dts(1)).^(4)*errorRK4FR1(1);
+    ord1 = (dts/dts(1)).^(1) * errorRK4FR1(1);
+    ord2 = (dts/dts(1)).^(2) * errorRK4FR1(1);
+    ord3 = (dts/dts(1)).^(3) * errorRK4FR1(1);
+    ord4 = (dts/dts(1)).^(4) * errorRK4FR1(1);
 
     subplot(2,3, 4)
-    loglog(dts,errorRK4FR1,'k-*',dts,ord1,'r--',dts,ord2,'c--',dts,ord3,'m--',dts,ord4,'g--','LineWidth',2)
+    loglog(dts, errorRK4FR1, 'k-*', dts, ord1, 'r--', dts, ord2, 'c--', dts, ord3, 'm--', dts, ord4, 'g--', 'LineWidth', 2)
     xlabel('Timestep')
     ylabel('Global error')
     title("RKMK4 Commutator FREE",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
 
     %% Convergence rate of RKMK4 2 commutators
-    ord1 = (dts/dts(1)).^(1)*errorRK4_2Comm1(1);
-    ord2 = (dts/dts(1)).^(2)*errorRK4_2Comm1(1);
-    ord3 = (dts/dts(1)).^(3)*errorRK4_2Comm1(1);
-    ord4 = (dts/dts(1)).^(4)*errorRK4_2Comm1(1);
+    ord1 = (dts/dts(1)).^(1) * errorRK4_2Comm1(1);
+    ord2 = (dts/dts(1)).^(2) * errorRK4_2Comm1(1);
+    ord3 = (dts/dts(1)).^(3) * errorRK4_2Comm1(1);
+    ord4 = (dts/dts(1)).^(4) * errorRK4_2Comm1(1);
 
     subplot(2, 3, 5)
-    loglog(dts,errorRK4_2Comm1,'k-*',dts,ord1,'r--',dts,ord2,'c--',dts,ord3,'m--',dts,ord4,'g--','LineWidth',2)
+    loglog(dts, errorRK4_2Comm1, 'k-*', dts, ord1, 'r--', dts, ord2, 'c--', dts, ord3, 'm--', dts, ord4, 'g--', 'LineWidth', 2)
     xlabel('Timestep')
     ylabel('Global error')
     title("RKMK4 with 2 Commutators",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
 
     %% Convergence rate of RKMK3 
-    ord1 = (dts/dts(1)).^(1)*errorRK31(1);
-    ord2 = (dts/dts(1)).^(2)*errorRK31(1);
-    ord3 = (dts/dts(1)).^(3)*errorRK31(1);
-    ord4 = (dts/dts(1)).^(4)*errorRK31(1);
+    ord1 = (dts/dts(1)).^(1) * errorRK31(1);
+    ord2 = (dts/dts(1)).^(2) * errorRK31(1);
+    ord3 = (dts/dts(1)).^(3) * errorRK31(1);
+    ord4 = (dts/dts(1)).^(4) * errorRK31(1);
 
     subplot(2, 3, 6)
-    loglog(dts,errorRK31,'k-*',dts,ord1,'r--',dts,ord2,'c--',dts,ord3,'m--',dts,ord4,'g--','LineWidth',2)
+    loglog(dts, errorRK31, 'k-*', dts, ord1, 'r--', dts, ord2, 'c--', dts, ord3, 'm--', dts, ord4, 'g--', 'LineWidth', 2)
     xlabel('Timestep')
     ylabel('Global error')
     title("RKMK3",'FontSize', 14)
-    legend('Global error','ord1','ord2','ord3','ord4','FontSize',14,'Location', 'Best');
+    legend('Global error', 'ord1', 'ord2', 'ord3', 'ord4', 'FontSize', 14, 'Location', 'Best');
     ax = gca;
     ax.XAxis.FontSize = 15;
     ax.YAxis.FontSize = 15;
