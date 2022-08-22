@@ -77,8 +77,8 @@ The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{
 
 .. _dexpinvse3:
 
-An exact expression for :math:`\textrm{dexp}_u^{-1}(v)` in :math:`\mathfrak{se}(3)`
------------------------------------------------------------------------------------
+An exact expression for dexpinv in se(3)
+----------------------------------------
 
 As an alternative to using a truncated version of the infinite series for :math:`\textrm{dexp}_u^{-1}` :ref:`(3) <eq:3>`, one can consider exact expressions obtained for certain Lie algebras. Since :math:`\mathfrak{se}(3)` is particularly important in applications to mechanics, we give here its exact expression. For this, we represent elements of :math:`\mathfrak{se}(3)` as a
 pair :math:`(A,a)\in\mathbb{R}^3\times\mathbb{R}^3\cong\mathbb{R}^6`, the first component corresponding to a skew-symmetric matrix :math:`\hat{A}`
