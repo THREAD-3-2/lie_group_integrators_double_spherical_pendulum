@@ -104,27 +104,27 @@ We then test our Lie group integrators on this particular case, showing the rate
     \end{bmatrix}\in T_{q_1}S^2\times T_{q_2}S^2,
     \end{split}
 \end{align}\end{split}\]</div>
-<p>then we are assured RE{that there exists a pair of functions} :math:<a href="#id7"><span class="problematic" id="id8">`</span></a>a_1,a_2:TS^2times TS^2rightarrowmathbb{R}^3$ such that</p>
-<div class="math notranslate nohighlight" id="id9">
-<span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<p>then we are assured that there exists a pair of functions <span class="math notranslate nohighlight">\(a_1,a_2:TS^2\times TS^2\rightarrow\mathbb{R}^3\)</span> such that</p>
+<div class="math notranslate nohighlight" id="id7">
+<span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \dot{\omega} = \begin{bmatrix}
     a_1(q,\omega)\times q_1 \\ a_2(q,\omega)\times q_2
     \end{bmatrix} = \begin{bmatrix}
     h_1(q) \\ h_2(q)
     \end{bmatrix}.
 \end{align}\end{split}\]</div>
-<p>Since we want :math:<a href="#id10"><span class="problematic" id="id11">`</span></a>a_itimes q_i = h_i$, we just impose :math:<a href="#id12"><span class="problematic" id="id13">`</span></a>a_i=q_itimes h_i$ and hence the whole vector field can be rewritten as</p>
-<div class="math notranslate nohighlight" id="id14">
-<span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id14" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<p>Since we want <span class="math notranslate nohighlight">\(a_i\times q_i = h_i\)</span>, we just impose <span class="math notranslate nohighlight">\(a_i=q_i\times h_i\)</span> and hence the whole vector field can be rewritten as</p>
+<div class="math notranslate nohighlight" id="id8">
+<span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id8" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{bmatrix}
     \dot{q}_1 \\ \dot{\omega}_1 \\ \dot{q}_2 \\ \dot{\omega}_2
     \end{bmatrix} = \begin{bmatrix}
     \omega_1 \times q_1 \\ (q_1\times h_1)\times q_1 \\ \omega_2\times q_2 \\ (q_2\times h_2)\times q_2
     \end{bmatrix} = F\vert_{(q,\omega)},
 \end{align}\end{split}\]</div>
-<p>with :math:<a href="#id15"><span class="problematic" id="id16">`</span></a>h_i=h_i(q,omega)$ and</p>
-<div class="math notranslate nohighlight" id="id17">
-<span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id17" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<p>with <span class="math notranslate nohighlight">\(h_i=h_i(q,\omega)\)</span> and</p>
+<div class="math notranslate nohighlight" id="id9">
+<span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{bmatrix}
     h_1(q,\omega) \\ h_2(q,\omega)
     \end{bmatrix} = R^{-1}(q)\begin{bmatrix}
@@ -132,14 +132,14 @@ We then test our Lie group integrators on this particular case, showing the rate
     (-m_2L_1L_2|\omega_1|^2\hat{q}_1 + m_2gL_2\hat{e}_3)q_2
     \end{bmatrix}.
 \end{align}\end{split}\]</div>
-<p>Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of :math:<a href="#id18"><span class="problematic" id="id19">`</span></a>SE(3)times SE(3)$ as</p>
-<div class="math notranslate nohighlight" id="id20">
-<span id="equation-eq"></span><span class="eqno">(12)<a class="headerlink" href="#id20" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<p>Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of <span class="math notranslate nohighlight">\(SE(3)\times SE(3)\)</span> as</p>
+<div class="math notranslate nohighlight" id="id10">
+<span id="equation-eq"></span><span class="eqno">(12)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \infgen(f(q,\omega))\vert_{(q,\omega)}=F\vert_{(q,\omega)}
 \end{align}\]</div>
 <p>through the function</p>
-<div class="math notranslate nohighlight" id="id21">
-<span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id21" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id11">
+<span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id11" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f : TS^2\times TS^2\rightarrow \mathfrak{se}(3)\times\mathfrak{se}(3)\simeq \mathbb{R}^{12},\;\;(q,\omega)\rightarrow (\omega_1, q_1\times h_1, \omega_2,q_2\times h_2).
 \end{align}\]</div>
 <p>We describe here the specific problem of a chain of <span class="math notranslate nohighlight">\(N\)</span> connected 3D pendulums, whose dynamics evolves on <span class="math notranslate nohighlight">\((TS^2)^N\)</span>.

@@ -103,7 +103,7 @@ This map guarantees that if we rewrite the pair of equations for the angular vel
         \end{split}
     \end{align}
 
-then we are assured \RE{that there exists a pair of functions} :math:`a_1,a_2:TS^2\times TS^2\rightarrow\mathbb{R}^3$ such that
+then we are assured that there exists a pair of functions :math:`a_1,a_2:TS^2\times TS^2\rightarrow\mathbb{R}^3` such that
 
 .. math::
     :name: eq: 
@@ -116,7 +116,7 @@ then we are assured \RE{that there exists a pair of functions} :math:`a_1,a_2:TS
         \end{bmatrix}.
     \end{align}
 
-Since we want :math:`a_i\times q_i = h_i$, we just impose :math:`a_i=q_i\times h_i$ and hence the whole vector field can be rewritten as
+Since we want :math:`a_i\times q_i = h_i`, we just impose :math:`a_i=q_i\times h_i` and hence the whole vector field can be rewritten as
 
 .. math::
     :name: eq: 
@@ -129,7 +129,7 @@ Since we want :math:`a_i\times q_i = h_i$, we just impose :math:`a_i=q_i\times h
         \end{bmatrix} = F\vert_{(q,\omega)},
     \end{align}
 
-with :math:`h_i=h_i(q,\omega)$ and
+with :math:`h_i=h_i(q,\omega)` and
 
 .. math::
     :name: eq: 
@@ -143,7 +143,7 @@ with :math:`h_i=h_i(q,\omega)$ and
         \end{bmatrix}.
     \end{align}
 
-Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of :math:`SE(3)\times SE(3)$ as
+Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of :math:`SE(3)\times SE(3)` as
 
 .. math::
     :name: eq: 
