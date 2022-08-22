@@ -294,7 +294,7 @@ with
         r_2(q,\omega):=m_2L_1L_2\hat{q}_1\hat{v}_1q_1+m_2L_2^2v_2. 
     \end{align}
 
-This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(2) <eq:rq>` as
+This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(23) <eq:rq>` as
 
 .. math::
     :name: eq: 
