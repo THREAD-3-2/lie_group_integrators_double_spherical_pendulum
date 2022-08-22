@@ -49,7 +49,7 @@ and the inverse is
     \end{align}
 
 The RKMK methods are now obtained simply by applying some standard Runge--Kutta method to the transformed equation :ref:`(1) <eq:1>` with a time step :math:`h`, using initial value :math:`\sigma(0)=0`. This leads to an output :math:`\sigma_1\in\mathfrak{g}` and one simply sets :math:`y_1=\exp(\sigma_1)\cdot y_0`. Then one repeats the procedure replacing :math:`y_0` by :math:`y_1` in the next step etc. While solving :ref:`(1) <eq:1>` one needs to evaluate :math:`\textrm{dexp}_u^{-1}(v)` as a part of the process. This can be done by truncating the series :ref:`(2) <eq:2>` since :math:`\sigma(0)=0` implies that we always evaluate :math:`\textrm{dexp}_u^{-1}` with :math:`u=\mathcal{O}(h)`, and thus, the :math:`k-th` iterated commutator :math:`\textrm{ad}_u^k=\mathcal{O}(h^k)`.
-For a given Runge--Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\textrm{dexp}_u^{-1}v`. We give here one concrete example of an RKMK method:
+For a given Runge--Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\textrm{dexp}_u^{-1}v`. Aconcrete example of an RKMK method is:
 
 
 
@@ -65,7 +65,7 @@ For a given Runge--Kutta method, there are some clever tricks that can be done t
 
 
 
-The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{-1}(v)` for the particular Lie algebra we use. For instance, it was shown in \cite{celledoni03lgm} that for the Lie algebra :math:`\mathfrak{so}(3)` one has
+The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{-1}(v)` for the particular Lie algebra we use. For instance, for the Lie algebra :math:`\mathfrak{so}(3)` one has
 
 .. math::
     
@@ -73,7 +73,62 @@ The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{
         \textrm{dexp}_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
     \end{align}
     
-We will present the corresponding formula for :math:`\mathfrak{se}(3)` in Section~\ref{dexpinvse3}.
+
+    
+.. _dexpinvse3:
+
+An exact expression for :math:`\dexp_u^{-1}(v)` in :math:`\mathfrak{se}(3)`
+----------------------------------------------------------------
+
+As an alternative to using a truncated version of the infinite series for :math:`\dexp_u^{-1}` \eqref{dexpinvseries}, one can consider exact expressions obtained for certain Lie algebras. Since :math:`\mathfrak{se}(3)` is particularly important in applications to mechanics, we give here its exact expression. For this, we represent elements of :math:`\mathfrak{se}(3)` as a
+pair :math:`(A,a)\in\mathbb{R}^3\times\mathbb{R}^3\cong\mathbb{R}^6`, the first component corresponding to a skew-symmetric matrix :math:`\hat{A}`
+via \eqref{hatmap} and :math:`a` is the translational part. Now, let :math:`\varphi(z)` be a real analytic function at :math:`z=0`. We define
+
+.. math::
+    
+    \begin{align}
+        \varphi_+(z) = \frac{\varphi(iz)+\varphi(-iz)}{2},\qquad \varphi_-(z) = \frac{\varphi(iz)-\varphi(-iz)}{2i}
+    \end{align}
+We next define the four functions
+
+.. math::
+    
+    \begin{align}
+        g_1(z) = \frac{\varphi_-(z)}{z},\ \tilde{g}_1(z) = \frac{g_1'(z)}{z},\quad 
+        g_2(z) = \frac{\varphi(0)-\varphi_+(z)}{z^2},\ \tilde{g}_2(z)=\frac{g_2'(z)}{z} 
+    \end{align}
+and the two scalars :math:`\rho=A^Ta`, :math:`\alpha=\|A\|_2`. One can show that for any :math:`(A,a)` and :math:`(B,b)` in :math:`\mathfrak{se}(3)`, it holds that
+
+.. math::
+    
+    \begin{align}
+        \varphi(\ad_{(A,a)})(B,b) = (C,c)
+    \end{align}
+where
+
+.. math::
+    
+    \begin{align}
+        C&=\varphi(0)B + g_1(\alpha) A\times B + g_2(\alpha)\, A\times (A\times B)\\
+        c&=\varphi(0)b + g_1(\alpha)\, (a\times B+A\times b)
+        +\rho\tilde{g}_1(\alpha)\,A\times B  + \rho\tilde{g}_2(\alpha)\, A\times (A\times B)\\
+        &+ g_2(\alpha)\, (a\times (A\times B)+A\times (a\times B) + A\times (A\times b))
+    \end{align}
+
+Considering for instance \eqref{dexpinvseries}, we may now use :math:`\varphi(z)=\frac{z}{e^z-1}` to calculate
+
+.. math::
+    
+    \begin{align}
+        g_1(z) = -\frac12,\ \tilde{g}_1(z)=0,\ g_2(z) = \frac{1-\tfrac{z}{2}\cot\tfrac{z}{2}}{z^2},\ 
+        \tilde{g}_2(z)=\frac1z\frac{d}{dz}g_2(z),\ \varphi(0)=1.
+    \end{align}
+
+and thereby obtain an expression for :math:`\dexp_{(A,a)}^{-1}(B,b)` with the formula above.
+
+Similar types of formulas are known for computing the matrix exponential as well as functions of the :math:`\ad` -operator for several other Lie groups of small and medium dimension. For instance in \cite{mueller17cmf} a variety of coordinate mappings for rigid body motions are discussed.
+For Lie algebras of larger dimension, both the exponential mapping and  
+:math:`\dexp_u^{-1}` may become computationally infeasible. For these cases, one may benefit from replacing the exponential by some other coordinate map for the Lie group :math:`\phi:\g\rightarrow G`. One option is to use canonical coordinates of the second kind \cite{owren00imb}. Then for some Lie groups such as the orthogonal, unitary and symplectic groups, there exist other maps that can be used and which are computationally less expensive. A popular choice is the Cayley transformation \cite{diele98tct}.
 
 
 .. _CFmethods:
