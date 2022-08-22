@@ -1,24 +1,15 @@
-.. _RKMK_var_step:
+.. _two_classes_lie_groups:
 
 ====================================
 Two classes of Lie group integrators
 ====================================
 
-The simplest numerical integrator for linear spaces is the explicit Euler method. Given an initial value problem :math:`\dot{y}=F(y)`, :math:`y(0)=y_0` the method is defined as :math:`y_{n+1}=y_n + hF(y_n)` for some stepsize :math:`h`. In the spirit of the previous section, one could think of
-the Euler method as the :math:`h`-flow of the constant vector field :math:`F_{y_n}(y)=F(y_n)`, that is
+We consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. 
 
-.. math::
-    :name: eq:1
-    
-    \begin{align}
-        y_{n+1} = \exp(hF_{y_n})\,y_n
-    \end{align}
-    
-This definition of the Euler method makes sense also when :math:`F` is replaced by a vector field on some manifold. In this general situation it is known as the Lie--Euler method.
+.. _RKMK:
 
-We shall here consider the two classes of methods known as
-Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. 
-
+Runge-Kutta-Munthe-Kaas (RKMK) methods
+--------------------------------------
 
 For RKMK methods the underlying idea is to transform the problem from the manifold :math:`\M` to the Lie algebra :math:`\g`, take a time step, and map the result back to :math:`\M`. The transformation we use is
 
@@ -82,6 +73,12 @@ The other option is to compute the exact expression for :math:`\dexp_u^{-1}(v)` 
     \end{align}
     
 We will present the corresponding formula for :math:`\se(3)` in Section~\ref{dexpinvse3}.
+
+
+.. _CFmethods:
+
+Commutator-free methods
+-----------------------
 
 The second class of Lie group integrators to be considered here are the commutator-free methods, named this way in \cite{celledoni03cfl} to emphasize the contrast to RKMK schemes which usually include commutators in the method format. These schemes include the Crouch-Grossman methods \cite{crouch93nio} and they have the format
 
