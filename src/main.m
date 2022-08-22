@@ -1,179 +1,322 @@
-% main function
-%
-%This code contains the numerical experiments with the step adaptive RKMK method based on Dormand-Prince pair (5,4)
-%
-% Ref.: E. Celledoni, E. Çokaj, A. Leone, D. Murari, B. Owren.
-% "Dynamics of the N-fold Pendulum in the framework of Lie Group Integrators", arXiv.
-%
-% Ref.: E. Celledoni, E. Çokaj, A. Leone, D. Murari, B. Owren.
-% "Lie group integrators for mechanical systems",
-% International Journal of Computer Mathematics, 99:1, 58-88.
-
-
 clc;
 clear all;
 close all;
 
-%% Setting the parameters 
+prompt = 'How many 3D pendulums do you want to connect?\n\n';
+P = input(prompt);
 
-Prange = 2 : 2 : 20;    %number of connected pendulums
-accVar = zeros(length(Prange), 1);
-accConst = accVar;
-index = 1;
-tol = 1e - 6;
-Lref = 5;               % length of the entire chain of pendulum
-steps = zeros(length(Prange), 1);
+L = rand(P,1); 
+m = rand(P,1);
 
-for P = Prange
-    
-    L = rand(P, 1) + 0.5; % Set random lengths
-    m = rand(P, 1) + 0.5; % Set random masses
-    L = 0 * L + Lref / P; % size of each pendulum
-    m = 0 * m + 1;        % mass of the pendulum
- 
-    [q0, w0, z0] = initializeStat(P);  % initial positions and angular velocities of the N-fold pendulum
+L = 0*L + 1; 
+m = 10*m + 1;
 
-    t0 = 0;         % initial time
-    T = 3;          % final time
-    N = 1000;       % number of time steps
-    time = linspace(t0, T, N); 
-    dt = time(2) - time(1);   % stepsize
+[q0,w0,z0] = initializeSE3N(P);
+% [q0,w0,z0] = initializeSE3N_smallVariation(P);
+% [q0,w0,z0] = initializeSE3N_largeVariation(P);
 
-    getq = @(v) extractq(v);
-    getw = @(v) extractw(v);
+Energy = @(q,w) 0.5*w'*assembleR(q,L,m)*w + potential(q,L,m);
 
-    f = @(v) fManiToAlgebra(getq(v), getw(v), L, m); 
-    action = @(B, input) actionSE3N(B, input); 
-    vecField = @(sigma, p) dexpinvSE3N(sigma, f(action(exponentialSE3N(sigma), p)));
+disp("Energy of this initial condition: "+num2str(Energy(q0,w0)));
 
-    z = z0;
-    qC = zeros(3 * P,N);
-    pC = qC;
+t0 = 0;
+T = 5; 
+N = 1000; 
+time = linspace(t0,T,N); 
+dt = time(2)-time(1);
 
-    Len = zeros(3 * P, 1);
-    for i = 1 : P
-        Len(3 * i - 2 : 3 * i) = L(i) * ones(3, 1);
+getq = @(v) extractq(v);
+getw = @(v) extractw(v);
+
+f = @(v) fManiToAlgebra(getq(v),getw(v),L,m); 
+action = @(B,input) actionSE3N(B,input); 
+vecField = @(sigma,p) dexpinvSE3N(sigma,f(action(exponentialSE3N(sigma),p)));
+
+
+z = z0;
+qC = zeros(3*P,N);
+pC = qC;
+
+Len = zeros(3*P,1);
+for i = 1:P
+    Len(3*i-2:3*i) = L(i)*ones(3,1);
+end
+Mat = diag(Len);
+if P>1
+    for i = 3:3:3*(P-1)
+        Mat = Mat + diag(Len(1:3*P-i),-i);
     end
- 
-    Mat = diag(Len);
-    if P > 1
-        for i = 3 : 3 : 3 * (P - 1)
-            Mat = Mat + diag(Len(1 : 3 * P - i), -i);
-        end
-    end
-    qC(:, 1) = q0;
-    pC(:, 1) = Mat * q0;
+end
+qC(:,1) = q0;
+pC(:,1) = Mat*q0;
 
 
-    %% COMPARISON BETWEEN RKMK45 AND RKMK5, i.e. VARIABLE STEPSIZE AGAINST CONSTANT ONE
+%% CONVERGENCE RATE OF THE METHODS
 
-    chunk = 400;
-    Z = zeros(length(z0), chunk);
-    TT = zeros(1, chunk);
-    Y = Z;
-    Y(:, 1) = z0;
-
-    a = 1/4;
-    theta = 0.85;
-    i = 1;
-    h = T / 100;
-    rejected = 0;
-    ctr = 0;
-    
-    while TT(i) < T - 5 * eps
-        err = tol + 1;
-        while err > tol 
-            [z, err] = variableRKMK45(vecField, action, Y(:, i), h);
-            accepted = (err < tol);
-            if accepted
-                i = i + 1;
-                Y(:, i) = z;
-                TT(i) = TT(i - 1) + h;
-
-                if ctr == 0
-                    ctr = 1;
-                    varStrict = z;
-                end            
-            else
-                rejected = rejected + 1;
-            end
-            h = min(theta * (tol / err) ^ a * h, T - TT(i));
-        end
-        if mod(i, chunk) == 0
-            Y = [Y, Z];
-            TT = [TT zeros(1, chunk)];
-        end
-    end
-    Y = Y(:, 1 : i);
-    TT = TT(:, 1 : i);
-
-    Nsteps = i - 1;
-    tt = linspace(0, T, Nsteps + 1);
-    dt = tt(2) - tt(1);
-    zRK45 = zeros(length(z0), Nsteps);
-    zRK45(:, 1) = z0;
-    count = 1;
-    ts = 0;
-
-    for k = 1 : Nsteps
-        zRK45(:, k + 1) = RKMK5(vecField, action, zRK45(:, k), dt);
-        ts = ts + dt;
-    end
-     
-    % Solve with ODE45
-
-    z0Ref = [q0; w0];
-    odeFunc = @(t, z) [FuncQ(z); FuncW(z, L, m)];
-    options = odeset('AbsTol', 1e - 12, 'RelTol',1e - 6);
-    [timeSol, zC] = ode45(odeFunc, [0 T], z0Ref, options);
-    zC = zC';
-    zC = reorder(zC);
-    zRef = zC(:, end);
-
-    accVar(index) = norm(zRef - Y(:, end), 2);
-    accConst(index) = norm(zRef - zRK45(:, end), 2);
-    steps(index) = Nsteps;
-    index = index + 1;
+prompt = 'Do you want to see the convergence rate of the implemented methods? Write 1 for yes, 0 for no\n\n';
+C = input(prompt);
+if C==1
+    checkConvergenceRate(f,action,vecField,z0,L,m); 
 end
 
-figure;
-yyaxis left
-semilogy(Prange, accConst, 'r-o', 'linewidth', 3, 'Markersize', 10);
-hold on;
-semilogy(Prange, accVar, 'k-*', 'linewidth', 3, 'Markersize', 10);
-xlabel('Number of connected pendulums', 'FontSize', 30);
-ylabel('Accuracy at T = 3', 'FontSize', 30);
-hold on;
-ax = gca;
-set(ax, 'xcolor', 'k')
-set(ax, 'ycolor', 'k')
-yyaxis right
-ax = gca;
-plot(Prange, steps, 'b-s', 'linewidth', 3, 'Markersize', 10);
-set(ax, 'ycolor', 'b')
-ax.FontSize = 20;
-ylabel('Number of time steps', 'FontSize', 30);
-legend('Accuracy RKMK5', 'Accuracy RKMK(5, 4)', 'Number of time steps', 'FontSize', 30);
 
-%% Comparison with step adaptation in ODE45
-figure;
-z0Ref = [q0; w0];
-options = odeset('AbsTol', tol);
-[timeSol, zC] = ode45(odeFunc, [0 T], z0Ref, options);
-[err, times, sol] = variableStepComparison(vecField, action, z0, T, tol) ;
-zC = zC';
-zC = reorder(zC);
-plot(TT(1 : end - 1), diff(TT), 'k--', 'linewidth', 2);
-hold on;
-plot(timeSol(1 : end - 1), diff(timeSol), 'b:', 'linewidth', 2);
-hold on;
-plot(timeSol(1 : end - 1), 0 * timeSol(1 : end - 1) + dt, 'r-', 'linewidth', 2);
+%% TIME EVOLUTION OF THE SOLUTION
 
-legend('RKMK(5, 4)', 'ODE45', 'RKMK5', 'FontSize', 30, 'Location', 'northwest');
-xlim([0 T])
-xlabel("Time", 'fontsize', 30);
-ylabel("Stepsize", 'fontsize', 30);
-ax = gca;
-ax.XAxis.FontSize = 30;
-ax.YAxis.FontSize = 30;
-stringa = 'Comparison of stepsize variation with N = '+string(P)+' pendulums';
+prompt = 'Do you want to see the Time Evolution of the solution? Write 1 for yes, 0 for no\n\n';
+C1 = input(prompt);
+
+zC = zeros(6*P,N);
+if C1==1
+    zC(:,1) = z0;
+    for i = 1:N-1
+        zC(:,i+1) = FreeRK4SE3N(f,action,dt,zC(:,i));         
+%         zC(:,i+1) = solveRK4(FuncW,time,z0);
+
+        qC(:,i+1) = extractq(zC(:,i+1));
+        pC(:,i+1) = Mat*qC(:,i+1);
+    end
+
+    figure('Units','normalized','Position',[0 0 1 1])
+    t = 0;
+    for i = 1:2:N
+        t = dt*i;
+        plot3([0,pC(1,i)],[0,pC(2,i)],[0,pC(3,i)],'r-*',...
+            [pC(3*(1:P-1)-2,i),pC(3*(1:P-1)+1,i)],[pC(3*(1:P-1)-1,i),pC(3*(1:P-1)+2,i)],...
+                [pC(3*(1:P-1),i),pC(3*(1:P-1)+3,i)],'k-o','Markersize',5, 'linewidth',3);
+        xlabel("x")
+        ylabel("y")
+        zlabel("z")
+        str = "Time evolution of the pendulums, T="+num2str(t);
+        axis([-sum(L) sum(L) -sum(L) sum(L) -sum(L) sum(L)]);
+        title(str)
+        pause(0.00000000000001);
+        
+    end
+end
+
+    %% PRESERVATION OF THE GEOMETRY
+
+if P==2
+    prompt = 'Do you want to see the Time Evolution of norms of the solution? Write 1 for yes, 0 for no\n\n';
+    C2 = input(prompt);
+
+    if C2==1
+
+        [nn,NN] = compareNorms(f,action,vecField,z0,L,m);
+        times = linspace(0,5,NN);
+        
+         subplot(4, 2, 1)
+         plot(times, 1-nn(:,:,1).^2,'-','linewidth',2);
+%          yticks(1)
+         xlim([0 5])
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('ODE45','fontsize',14);
+         
+         subplot(4, 2, 2)
+         plot(times, 1-nn(:,:,2).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RK4','fontsize',14);
+         
+         subplot(4, 2, 3)
+         plot(times, 1-nn(:,:,3).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Lie Euler','fontsize',14);
+         
+         subplot(4, 2, 4)
+         plot(times, 1-nn(:,:,4).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Lie Euler Heun','fontsize',14);
+         
+         subplot(4, 2, 5)
+         plot(times, 1-nn(:,:,5).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Comm. Free RKMK 4','fontsize',14);
+         
+         subplot(4, 2, 6)
+         plot(times, 1-nn(:,:,6).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 4','fontsize',14);
+         
+         subplot(4, 2, 7)
+         plot(times, 1-nn(:,:,7).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 4 with 2 commutators','fontsize',14);
+
+         subplot(4, 2, 8)
+         plot(times, 1-nn(:,:,8).^2,'-','linewidth',2);
+         xlim([0 5])
+%          yticks(1)
+         legend('$q_1$','$q_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Norm",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 3','fontsize',14);
+         
+        
+         
+%          h = sgtitle("$1-q_i(t)^Tq_i(t)$",'interpreter','latex');
+        sgtitle("1-q_i(t)^Tq_i(t)","FontSize",25);
+    end
+
+
+
+
+    prompt = 'Do you want to see the Time Evolution of the scalar products w'' * q? Write 1 for yes, 0 for no\n\n';
+    C3 = input(prompt);
+
+    if C3==1
+
+        [nn,NN] = tangentBehaviour(f,action,vecField,z0,L,m);
+        times = linspace(0,5,NN);
+        
+        n1 = nn(:,:,1);
+        n2 = nn(:,:,2);
+        n3 = nn(:,:,3);
+        n4 = nn(:,:,4);
+        n5 = nn(:,:,5);
+        n6 = nn(:,:,6);
+        n7 = nn(:,:,7);
+        n8 = nn(:,:,8);
+        
+        figure;
+         subplot(4, 2, 1)
+         plot(times, nn(:,:,1),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('ODE45','fontsize',14);
+         
+         subplot(4, 2, 2)
+         plot(times, nn(:,:,2),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Classical RK4','fontsize',14);
+         
+         subplot(4, 2, 3)
+         plot(times, nn(:,:,3),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Lie Euler','fontsize',14);
+         
+         subplot(4, 2, 4)
+         plot(times, nn(:,:,4),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Lie Euler Heun','fontsize',14);
+         
+         subplot(4, 2, 5)
+         plot(times, nn(:,:,5),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('Commutator Free RKMK 4','fontsize',14);
+         
+         subplot(4, 2, 6)
+         plot(times, nn(:,:,6),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 4','fontsize',14);
+         
+         subplot(4, 2, 7)
+         plot(times, nn(:,:,7),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 4 with 2 commutators','fontsize',14);
+         
+         subplot(4, 2, 8)
+         plot(times, nn(:,:,8),'-','linewidth',2);
+         xlim([0 5])
+         legend('$q_1^T\omega_1$','$q_2^T \omega_2$','interpreter','latex','FontSize',14,'Location', 'southwest');
+         xlabel("Time",'fontsize',14);
+         ylabel("Product",'fontsize',14);
+         ax = gca;
+         ax.XAxis.FontSize = 15;
+         ax.YAxis.FontSize = 15;
+         title('RKMK 3','fontsize',14);
+         
+%          h = sgtitle("$q_i(t)^T\omega_i(t)$",'interpreter','latex');
+         sgtitle("q_i(t)^T\omega_i(t)","FontSize",25);
+    end
+end
