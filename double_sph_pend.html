@@ -37,7 +37,7 @@
             
   <section id="the-double-spherical-pendulum">
 <span id="double-sph-pend"></span><h1>The double spherical pendulum<a class="headerlink" href="#the-double-spherical-pendulum" title="Permalink to this heading">¶</a></h1>
-<p>In the paper <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we discuss in detail the N-fold 3D pendulum.
+<p>In the paper <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we discuss in detail the N-fold spherical pendulum.
 We consider here the special case of the double spherical pendulum,  <span class="math notranslate nohighlight">\(N = 2\)</span>.
 We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold <span class="math notranslate nohighlight">\(S^2\)</span> and the configuration space <span class="math notranslate nohighlight">\(T_{q_{i}(t)}S^2\)</span>.</p>
 <p>The Lagrangian we consider is a function from <span class="math notranslate nohighlight">\((TS^2)^2\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. Instead of the coordinates <span class="math notranslate nohighlight">\((q_1, q_2,\dot{q}_1, \dot{q}_2)\)</span>, where <span class="math notranslate nohighlight">\(\dot{q}_i\in T_{q_i}S^2\)</span>, we choose to work with the angular velocities.
@@ -76,7 +76,7 @@ The action we consider is based on the identification between <span class="math 
 <span id="equation-eq"></span><span class="eqno">(6)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \textrm{Orb}(m)=TS_{|q|}^2.
 \end{align}\]</div>
-<p>In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
+<p>In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\Psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
 <div class="math notranslate nohighlight" id="id7">
 <span id="equation-eq"></span><span class="eqno">(7)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi : SE(3)\times TS^2 \rightarrow TS^2
@@ -90,8 +90,8 @@ The action we consider is based on the identification between <span class="math 
 <span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*((u,v))\|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
 \end{align}\]</div>
-<p>We can extend this construction to the case <span class="math notranslate nohighlight">\(N&gt;1\)</span> in a natural way, i.e. through the action of a Lie group obtained from cartesian products of <span class="math notranslate nohighlight">\(SE(3)\)</span> and equipped with the direct product structure.
-Here we limit ourselves to the case <span class="math notranslate nohighlight">\(N=2\)</span> for which we also show numerical experiments.
+<p>We can extend this construction to the case <span class="math notranslate nohighlight">\(N&gt;1\)</span> in a natural way, i.e. through the action of a Lie group obtained from cartesian products of <span class="math notranslate nohighlight">\(SE(3)\)</span> and equipped with the direct product structure.</p>
+<p>Here we limit ourselves to the case <span class="math notranslate nohighlight">\(N=2\)</span> for which we also show numerical experiments.
 More precisely, we consider the group <span class="math notranslate nohighlight">\(G=(SE(3))^2\)</span> and by direct product structure we mean that for any pair of elements</p>
 <div class="math notranslate nohighlight" id="id10">
 <span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[\begin{align}
@@ -140,7 +140,7 @@ The configuration manifold of the system is <span class="math notranslate nohigh
 <span id="equation-eq"></span><span class="eqno">(17)<a class="headerlink" href="#id17" title="Permalink to this equation">¶</a></span>\[\begin{align}
     M_{ij} =\Big(\sum_{k=\textrm{max}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
 \end{align}\]</div>
-<p>is the inertia matrix of the systemRE{, <span class="math notranslate nohighlight">\(I_3\)</span> is the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix,} and <span class="math notranslate nohighlight">\(e_3 = [0,0,1]^T\)</span>. Noticing that when <span class="math notranslate nohighlight">\(i=j\)</span> we get</p>
+<p>is the inertia matrix of the system, <span class="math notranslate nohighlight">\(I_3\)</span> is the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix, and <span class="math notranslate nohighlight">\(e_3 = [0,0,1]^T\)</span>. Noticing that when <span class="math notranslate nohighlight">\(i=j\)</span> we get</p>
 <div class="math notranslate nohighlight" id="id18">
 <span id="equation-eq"></span><span class="eqno">(18)<a class="headerlink" href="#id18" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \omega_i^T\hat{q}_i^T\hat{q}_i\omega_i = \omega_i^T(I_3-q_iq_i^T)\omega_i = \omega_i^T\omega_i,

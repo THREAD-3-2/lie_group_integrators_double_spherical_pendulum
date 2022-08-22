@@ -4,7 +4,7 @@
 The double spherical pendulum
 =============================
 
-In the paper `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we discuss in detail the N-fold 3D pendulum. 
+In the paper `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we discuss in detail the N-fold spherical pendulum. 
 We consider here the special case of the double spherical pendulum,  :math:`N = 2`. 
 We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold :math:`S^2` and the configuration space :math:`T_{q_{i}(t)}S^2`.
 
@@ -72,7 +72,7 @@ into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments, it i
         \textrm{Orb}(m)=TS_{|q|}^2.
     \end{align}
 
-In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
+In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\Psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
 
 .. math::
     :name: eq: 
@@ -98,6 +98,7 @@ To conclude the description of the action, we report here its infinitesimal gene
     \end{align}
 
 We can extend this construction to the case :math:`N>1` in a natural way, i.e. through the action of a Lie group obtained from cartesian products of :math:`SE(3)` and equipped with the direct product structure. 
+
 Here we limit ourselves to the case :math:`N=2` for which we also show numerical experiments. 
 More precisely, we consider the group :math:`G=(SE(3))^2` and by direct product structure we mean that for any pair of elements 
 
@@ -180,7 +181,7 @@ where
         M_{ij} =\Big(\sum_{k=\textrm{max}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
     \end{align}
 
-is the inertia matrix of the system\RE{, :math:`I_3` is the :math:`3\times 3` identity matrix,} and :math:`e_3 = [0,0,1]^T`. Noticing that when :math:`i=j` we get
+is the inertia matrix of the system, :math:`I_3` is the :math:`3\times 3` identity matrix, and :math:`e_3 = [0,0,1]^T`. Noticing that when :math:`i=j` we get
 
 .. math::
     :name: eq: 
