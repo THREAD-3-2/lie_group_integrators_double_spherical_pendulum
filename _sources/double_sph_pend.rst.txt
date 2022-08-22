@@ -8,19 +8,19 @@ In the paper `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International 
 We consider here the special case of the double spherical pendulum,  :math:`N = 2`. 
 We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold :math:`S^2` and the configuration space :math:`T_{q_{i}(t)}S^2`.
 
-The Lagrangian we consider is a function from :math:`(TS^2)^N` to :math:`\mathbb{R}`. Instead of the coordinates :math:`(q_1,...,q_N,\dot{q}_1,...,\dot{q}_N)`, where :math:`\dot{q}_i\in T_{q_i}S^2`, we choose to work with the angular velocities. 
+The Lagrangian we consider is a function from :math:`(TS^2)^2` to :math:`\mathbb{R}`. Instead of the coordinates :math:`(q_1, q_2,\dot{q}_1, \dot{q}_2)`, where :math:`\dot{q}_i\in T_{q_i}S^2`, we choose to work with the angular velocities. 
 Precisely, 
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        T_{q_i}S^2 = \{v\in\mathbb{R}^3:\;v^Tq_i=0\} = \langle q_i\rangle ^{\perp} \subset \mathbb{R}^3,
+        T_{q_i}S^2 = \{v\in\mathbb{R}^3:\;v^Tq_i=0\} = \langle q_i\rangle ^{\perp} \subset \mathbb{R}^3, \quad i = 1,2
     \end{align}
 
 and hence for any :math:`\dot{q}_i\in T_{q_i}S^2` there exist :math:`\omega_i\in\mathbb{R}^3` such that :math:`\dot{q}_i=\omega_i\times q_i`, which can be interpreted as the angular velocity of :math:`q_i`. 
-So we can assume without loss of generality that :math:`\omega_i^Tq_i=0` (i.e. :math:`\omega_i\in T_{q_i}S^2`) and pass to the coordinates :math:`(q_1,\omega_1,q_2,\omega_2,...,q_N,\omega_N)\in (TS^2)^N` to describe the dynamics.  
-We denote with :math:`m_1,...,m_N` the masses of the pendulums and with :math:`L_1,..., L_N` their lengths.
+So we can assume without loss of generality that :math:`\omega_i^Tq_i=0` (i.e. :math:`\omega_i\in T_{q_i}S^2`) and pass to the coordinates :math:`(q_1,\omega_1,q_2,\omega_2)\in (TS^2)^2` to describe the dynamics.  
+We denote with :math:`m_1, m_2` the masses of the pendulums and with :math:`L_1, L_N` their lengths.
 
 
 .. _trans_action:
