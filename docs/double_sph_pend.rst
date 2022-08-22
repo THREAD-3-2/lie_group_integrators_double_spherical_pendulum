@@ -20,7 +20,7 @@ Precisely,
 
 and hence for any :math:`\dot{q}_i\in T_{q_i}S^2` there exist :math:`\omega_i\in\mathbb{R}^3` such that :math:`\dot{q}_i=\omega_i\times q_i`, which can be interpreted as the angular velocity of :math:`q_i`. 
 So we can assume without loss of generality that :math:`\omega_i^Tq_i=0` (i.e. :math:`\omega_i\in T_{q_i}S^2`) and pass to the coordinates :math:`(q_1,\omega_1,q_2,\omega_2)\in (TS^2)^2` to describe the dynamics.  
-We denote with :math:`m_1, m_2` the masses of the pendulums and with :math:`L_1, L_N` their lengths.
+We denote with :math:`m_1, m_2` the masses of the pendulums and with :math:`L_1, L_2` their lengths.
 
 
 .. _trans_action:
@@ -28,20 +28,21 @@ We denote with :math:`m_1, m_2` the masses of the pendulums and with :math:`L_1,
 Transitive group action on (TS^2)^2
 -----------------------------------
 
-We characterize a transitive action for :math:`(TS^2)^N`, starting with the case :math:`N=1` and generalizing it to :math:`N>1` . The action we consider is based on the identification between :math:`\mathfrak{se}(3)`, the Lie algebra of :math:`SE(3)`, and :math:`\mathbb{R}^6`. We start from the Ad-action of :math:`SE(3)` on :math:`\mathfrak{se}(3)` (see \cite{Holm}), which writes
+In `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we characterize a transitive action for :math:`(TS^2)^N`, starting with the case :math:`N=1` and generalizing it to :math:`N>1` . 
+The action we consider is based on the identification between :math:`\mathfrak{se}(3)`, the Lie algebra of :math:`SE(3)`, and :math:`\mathbb{R}^6`. We start from the Ad-action of :math:`SE(3)` on :math:`\mathfrak{se}(3)`, which writes
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \Ad : SE(3)\times \mathfrak{se}(3) \rightarrow \mathfrak{se}(3),
+        \textrm{Ad} : SE(3)\times \mathfrak{se}(3) \rightarrow \mathfrak{se}(3),
     \end{align}
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \Ad((R,r),(u,v)) = (Ru,Rv+\hat{r}Ru).
+        \textrm{Ad}((R,r),(u,v)) = (Ru,Rv+\hat{r}Ru).
     \end{align}
 
 Since :math:`\mathfrak{se}(3)\simeq \mathbb{R}^6`, the Ad-action allows us to define the following Lie group action on :math:`\mathbb{R}^6`
@@ -50,10 +51,10 @@ Since :math:`\mathfrak{se}(3)\simeq \mathbb{R}^6`, the Ad-action allows us to de
     :name: eq: 
     
     \begin{align}
-        \psi: SE(3)\times\mathbb{R}^6\rightarrow \mathbb{R}^6,\;\;\psi((R,r),(u,v)) = (Ru,Rv+\hat{r}Ru).
+        \Psi: SE(3)\times\mathbb{R}^6\rightarrow \mathbb{R}^6,\;\;\Psi((R,r),(u,v)) = (Ru,Rv+\hat{r}Ru).
     \end{align}
 
-We can think of :math:`\psi` as a Lie group action on :math:`TS^2` since, for any :math:`q\in\mathbb{R}^3`, it maps points of
+We can think of :math:`\Psi` as a Lie group action on :math:`TS^2` since, for any :math:`q\in\mathbb{R}^3`, it maps points of
 
 .. math::
     :name: eq: 
@@ -62,7 +63,7 @@ We can think of :math:`\psi` as a Lie group action on :math:`TS^2` since, for an
         TS_{|q|}^2:=\{(\Tilde{q},\Tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \Tilde{\omega}^T\Tilde{q}=0,\;|\Tilde{q}|=|q|\}\subset \mathbb{R}^6
     \end{align}
 
-into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments (see \cite{olver2000applications}), it is possible to prove that the orbit of a generic point :math:`m=(q,\omega)\in\mathbb{R}^6` with :math:`\omega^Tq=0` coincides with
+into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments, it is possible to prove that the orbit of a generic point :math:`m=(q,\omega)\in\mathbb{R}^6` with :math:`\omega^Tq=0` coincides with
 
 .. math::
     :name: eq: 
@@ -77,14 +78,14 @@ In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in 
     :name: eq: 
     
     \begin{align}
-        \psi : SE(3)\times TS^2 \rightarrow TS^2
+        \Psi : SE(3)\times TS^2 \rightarrow TS^2
     \end{align}
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \psi((A,a),(q,\omega)) := \psi_{(A,a)}(q,\omega) =  (Aq,A\omega + \hat{a}Aq)=(\bar{q},\bar{\omega}).
+        \Psi((A,a),(q,\omega)) := \Psi_{(A,a)}(q,\omega) =  (Aq,A\omega + \hat{a}Aq)=(\bar{q},\bar{\omega}).
     \end{align}
 
 To conclude the description of the action, we report here its infinitesimal generator which is fundamental in the Lie group integrators setting
@@ -93,16 +94,18 @@ To conclude the description of the action, we report here its infinitesimal gene
     :name: eq: 
     
     \begin{align}
-        \psi_*((u,v))\right|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
+        \Psi_*((u,v))\right|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
     \end{align}
 
-We can extend this construction to the case :math:`N>1` in a natural way, i.e. through the action of a Lie group obtained from cartesian products of :math:`SE(3)` and equipped with the direct product structure. More precisely, we consider the group :math:`G=(SE(3))^N` and by direct product structure we mean that for any pair of elements 
+We can extend this construction to the case :math:`N>1` in a natural way, i.e. through the action of a Lie group obtained from cartesian products of :math:`SE(3)` and equipped with the direct product structure. 
+Here we limit ourselves to the case :math:`N=2` for which we also show numerical experiments. 
+More precisely, we consider the group :math:`G=(SE(3))^2` and by direct product structure we mean that for any pair of elements 
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \delta^{(1)}=(\delta^{(1)}_1,...,\delta^{(1)}_N),\quad \delta^{(2)}=(\delta^{(2)}_1,...,\delta^{(2)}_N)\in G,
+        \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2),\quad \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
     \end{align}
     
     denoted with :math:`*` the semidirect product of :math:`SE(3)`, we define the product :math:`\circ` on :math:`G` as
@@ -111,16 +114,16 @@ We can extend this construction to the case :math:`N>1` in a natural way, i.e. t
     :name: eq: 
     
     \begin{align}
-        \delta^{(1)}\circ \delta^{(2)} := (\delta^{(1)}_1 * \delta^{(2)}_1,...,\delta^{(1)}_N * \delta^{(2)}_N)\in G.
+        \delta^{(1)}\circ \delta^{(2)} := (\delta^{(1)}_1 * \delta^{(2)}_1, \delta^{(1)}_2 * \delta^{(2)}_2)\in G.
     \end{align}
 
-With this group structure defined, we can generalize the action introduced for :math:`N=1` to larger :math:`N`s as follows
+With this group structure defined, we can write the action follows
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \psi : (SE(3))^N\times (TS^2)^N \rightarrow (TS^2)^N,
+        \Psi : (SE(3))^2\times (TS^2)^2 \rightarrow (TS^2)^2,
     \end{align}
 
 .. math::
@@ -128,7 +131,7 @@ With this group structure defined, we can generalize the action introduced for :
     
     \begin{align}
         \begin{split}
-        \psi&((A_1,a_1,...,A_N,a_n),(q_1,\omega_1,...,q_N,\omega_N)) =\\ &=(A_1q_1,A_1\omega_1+\hat{a}_1A_1q_1,...,A_Nq_N,A_N\omega_N+\hat{a}_NA_Nq_N),
+        \Psi&((A_1,a_1, A_2,a_2),(q_1,\omega_1, q_2,\omega_2)) =\\ &=(A_1q_1,A_1\omega_1+\hat{a}_1A_1q_1, A_2q_2,A_2\omega_2+\hat{a}_2A_2q_2),
         \end{split}
     \end{align}
 
@@ -138,31 +141,34 @@ whose infinitesimal generator writes
     :name: eq: 
     
     \begin{align}
-        \infgen(\xi)\vert_m =(\hat{u}_1q_1,\hat{u}_1\omega_1+\hat{v}_1q_1,...,\hat{u}_Nq_N,\hat{u}_N\omega_N+\hat{v}_Nq_N),
+        \Psi_*(\xi)\vert_m =(\hat{u}_1q_1,\hat{u}_1\omega_1+\hat{v}_1q_1, \hat{u}_2q_2,\hat{u}_2\omega_2+\hat{v}_2q_2),
     \end{align}
 
-where :math:`\xi=[u_1,v_1,...,u_N,v_N]\in\mathfrak{se}(3)^N` and :math:`m=(q_1,\omega_1,...,q_N,\omega_N)\in (TS^2)^N`.
-We have now the only group action we need to deal with the :math:`N-`fold spherical pendulum. In the following part of this section we work on the vector field describing the dynamics and adapt it to the Lie group integrators setting.
+where :math:`\xi=[u_1,v_1, u_2,v_2]\in\mathfrak{se}(3)^2` and :math:`m=(q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2`.
+We have now the only group action we need to deal with the double spherical pendulum. In the following part of this section we work on the vector field describing the dynamics and adapt it to the Lie group integrators setting.
 
-\subsection{Full chain}
-We consider the vector field :math:`F\in\mathfrak{X}((TS^2)^N)`, describing the dynamics of the :math:`N`-fold 3D pendulum, and we express it in terms of the infinitesimal generator of the action defined above. More precisely, we find a function :math:`F:(TS^2)^N\rightarrow \mathfrak{se}(3)^N` such that
+
+The equations of motion and the vector field
+--------------------------------------------
+
+We consider the vector field :math:`F\in\mathfrak{X}((TS^2)^2)`, describing the dynamics of the double spherical pendulum, and we express it in terms of the infinitesimal generator of the action defined above. 
+More precisely, we find a function :math:`F:(TS^2)^2\rightarrow \mathfrak{se}(3)^2` such that
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        \infgen(f(m))\vert_m = F\vert_m,\;\;\forall m\in (TS^2)^N.
+        \Psi_*(f(m))\vert_m = F\vert_m,\;\;\forall m\in (TS^2)^2.
     \end{align}
 
-We omit the derivation of :math:`F` starting from the Lagrangian of the system, which can be found in the section devoted to mechanical systems on :math:`(S^2)^N` of \cite{lee18gfo}. 
-%\colorbox{BurntOrange}{Davide: What if we write down the Lagrangian only, then}
-The configuration manifold of the system is :math:`(S^2)^N`, while the Lagrangian, expressed in terms of the variables :math:`(q_1,\omega_1,...,q_N,\omega_N)\in (TS^2)^N`, writes
+The derivation of :math:`F` starting from the Lagrangian of the system can be found in the section devoted to mechanical systems on :math:`(S^2)^2` of `(Lee, Leok and McClamroch, (2018)) <https://doi.org/10.1007/978-3-319-56953-6>`_. 
+The configuration manifold of the system is :math:`(S^2)^2`, while the Lagrangian, expressed in terms of the variables :math:`(q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2`, writes
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        L(q,\omega) = T(q,\omega)-U(q) =\frac{1}{2}\sum_{i,j=1}^N\Big(M_{ij}\omega_i^T\hat{q}_i^T\hat{q}_j\omega_j\Big) - \sum_{i=1}^N\Big(\sum_{j=i}^N m_j\Big)gL_ie_3^Tq_i,
+        L(q,\omega) = T(q,\omega)-U(q) =\frac{1}{2}\sum_{i,j=1}^2\Big(M_{ij}\omega_i^T\hat{q}_i^T\hat{q}_j\omega_j\Big) - \sum_{i=1}^2\Big(\sum_{j=i}^2 m_j\Big)gL_ie_3^Tq_i,
     \end{align}
 
 where
@@ -171,7 +177,7 @@ where
     :name: eq: 
     
     \begin{align}
-        M_{ij} =\Big(\sum_{k=\RE{\text{max}}\{i,j\}}^N m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
+        M_{ij} =\Big(\sum_{k=\RE{\text{max}}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
     \end{align}
 
 is the inertia matrix of the system\RE{, :math:`I_3` is the :math:`3\times 3` identity matrix,} and :math:`e_3 = [0,0,1]^T`. Noticing that when :math:`i=j` we get
@@ -189,16 +195,16 @@ we simplify the notation writing
     :name: eq: 
     
     \begin{align}
-        T(q,\omega) = \frac{1}{2}\sum_{i,j=1}^N\Big(\omega_i^TR(q)_{ij}\omega_j\Big)
+        T(q,\omega) = \frac{1}{2}\sum_{i,j=1}^2\Big(\omega_i^TR(q)_{ij}\omega_j\Big)
     \end{align}
 
-where :math:`R(q)\in\mathbb{R}^{3N\times 3N}` is a symmetric block matrix defined as
+where :math:`R(q)\in\mathbb{R}^{6\times 6}` is a symmetric block matrix defined as
 
 .. math::
     :name: eq: 
     
     \begin{align}
-        R(q)_{ii} = \Big(\sum_{j=i}^Nm_j\Big)L_i^2I_3\in\mathbb{R}^{3\times 3},
+        R(q)_{ii} = \Big(\sum_{j=i}^2m_j\Big)L_i^2I_3\in\mathbb{R}^{3\times 3},
     \end{align}
 
 
@@ -206,16 +212,11 @@ where :math:`R(q)\in\mathbb{R}^{3N\times 3N}` is a symmetric block matrix define
     :name: eq: 
     
     \begin{align}
-        R(q)_{ij} = \Big(\sum_{k=j}^N m_k\Big)L_iL_j\hat{q}_i^T\hat{q}_j\in\mathbb{R}^{3\times 3} = R(q)_{ji}^T,\; i<j.
+        R(q)_{ij} = \Big(\sum_{k=j}^2 m_k\Big)L_iL_j\hat{q}_i^T\hat{q}_j\in\mathbb{R}^{3\times 3} = R(q)_{ji}^T,\; i<j.
     \end{align}
 
 
-.. _eom_vec_field:
-
-The equations of motion and the vector field
---------------------------------------------
-
-The equations of motion write:
+Precisely, the equations of motion write:
 
 .. math::
     :name: eq: 
