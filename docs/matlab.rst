@@ -21,9 +21,21 @@ src
 src/integrators
 ===============
 
-.. mat:autofunction:: src.integrators.RKMK5
+.. mat:autofunction:: src.integrators. 
 
-.. mat:autofunction:: src.integrators.RKMK45
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
+
+.. mat:autofunction:: src.integrators. 
 
 
 src/Lie_group_functions
@@ -62,3 +74,19 @@ src/Lie_group_functions
 .. mat:autofunction:: src.Lie_group_functions.hat
 
 .. mat:autofunction:: src.Lie_group_functions.initializeStat
+
+.. mat:autofunction:: src.Lie_group_functions.initializeSE3N
+
+.. mat:autofunction:: src.Lie_group_functions.checkConvergenceRate
+
+.. mat:autofunction:: src.Lie_group_functions.checkTangency
+
+.. mat:autofunction:: src.Lie_group_functions.tangentBehaviour
+
+.. mat:autofunction:: src.Lie_group_functions.compareNorms
+
+.. mat:autofunction:: src.Lie_group_functions.getNorms
+
+.. mat:autofunction:: src.Lie_group_functions.potential
+
+.. mat:autofunction:: src.Lie_group_functions.reorder
