@@ -4,7 +4,7 @@
 Two classes of Lie group integrators
 ====================================
 
-We briefly consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. For a more detailed discussion, the reader can see `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_) and the references therein.
+We briefly consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. For a more detailed discussion, the reader can see `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ and the references therein.
 
 .. _RKMK:
 
