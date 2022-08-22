@@ -40,7 +40,7 @@
 <p>We consider here two classes of methods known as Runge–Kutta–Munthe–Kaas (RKMK) methods and Commutator-free Lie group methods.</p>
 <section id="runge-kutta-munthe-kaas-rkmk-methods">
 <span id="rkmk"></span><h2>Runge-Kutta-Munthe-Kaas (RKMK) methods<a class="headerlink" href="#runge-kutta-munthe-kaas-rkmk-methods" title="Permalink to this heading">¶</a></h2>
-<p>For RKMK methods the underlying idea is to transform the problem from the manifold <span class="math notranslate nohighlight">\(\M\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\g\)</span>, take a time step, and map the result back to <span class="math notranslate nohighlight">\(\M\)</span>. The transformation we use is</p>
+<p>For RKMK methods the underlying idea is to transform the problem from the manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{g}\)</span>, take a time step, and map the result back to <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. The transformation we use is</p>
 <div class="math notranslate nohighlight" id="eq-1">
 <span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{align}
     y(t) = \exp(\sigma(t))\cdot y_0,\quad\sigma(0)=0.
@@ -48,22 +48,22 @@
 <p>The transformed differential equation for <span class="math notranslate nohighlight">\(\sigma(t)\)</span> makes use of the derivative of the exponential mapping, the reader should consult
 cite{munthe-kaas99hor} for details about the derivation, we give the final result
 begin{equation}label{dexpinveq}
-dot{sigma}(t) = dexp_{sigma(t)}^{-1} (f(exp(sigma(t))cdot y_0))
+dot{sigma}(t) = textrm{dexp}_{sigma(t)}^{-1} (f(exp(sigma(t))cdot y_0))
 end{equation}
-The map <span class="math notranslate nohighlight">\(v\mapsto\dexp_u(v)\)</span> is linear and invertible when <span class="math notranslate nohighlight">\(u\)</span> belongs to some sufficiently small neighborhood of <span class="math notranslate nohighlight">\(0\in\g\)</span>.
-It has an expansion in nested Lie brackets cite{hausdorff06dse}. Using the operator <span class="math notranslate nohighlight">\(\ad_u(v)=[u,v]\)</span> and its powers
-<span class="math notranslate nohighlight">\(\ad_u^2 v=[u,[u,v]]\)</span> etc, one can write</p>
+The map <span class="math notranslate nohighlight">\(v\mapsto\textrm{dexp}_u(v)\)</span> is linear and invertible when <span class="math notranslate nohighlight">\(u\)</span> belongs to some sufficiently small neighborhood of <span class="math notranslate nohighlight">\(0\in\mathfrak{g}\)</span>.
+It has an expansion in nested Lie brackets cite{hausdorff06dse}. Using the operator <span class="math notranslate nohighlight">\(\textrm{ad}_u(v)=[u,v]\)</span> and its powers
+<span class="math notranslate nohighlight">\(\textrm{ad}_u^2 v=[u,[u,v]]\)</span> etc, one can write</p>
 <div class="math notranslate nohighlight" id="id1">
 <span id="equation-eq-1"></span><span class="eqno">(2)<a class="headerlink" href="#id1" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \dexp_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\ad_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
+    \textrm{dexp}_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\textrm{ad}_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
 \end{align}\]</div>
 <p>and the inverse is</p>
 <div class="math notranslate nohighlight" id="id2">
 <span id="equation-eq-1"></span><span class="eqno">(3)<a class="headerlink" href="#id2" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \dexp_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\ad_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
+    \textrm{dexp}_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\textrm{ad}_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
 \end{align}\]</div>
-<p>The RKMK methods are now obtained simply by applying some standard Runge–Kutta method to the transformed equation eqref{dexpinveq} with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\g\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving eqref{dexpinveq} one needs to evaluate <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series eqref{dexpinvseries} since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\dexp_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\ad_u^k=\mathcal{O}(h^k)\)</span>.
-For a given Runge–Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\dexp_u^{-1}v\)</span>, see cite{casas03cel, munthe-kaas99cia}. We give here one concrete example of an RKMK method proposed in cite{casas03cel}</p>
+<p>The RKMK methods are now obtained simply by applying some standard Runge–Kutta method to the transformed equation eqref{dexpinveq} with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\mathfrak{g}\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving eqref{dexpinveq} one needs to evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series eqref{dexpinvseries} since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\textrm{ad}_u^k=\mathcal{O}(h^k)\)</span>.
+For a given Runge–Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}v\)</span>, see cite{casas03cel, munthe-kaas99cia}. We give here one concrete example of an RKMK method proposed in cite{casas03cel}</p>
 <p>%colorbox{BurntOrange}{Include method of order 4 here}</p>
 <div class="math notranslate nohighlight" id="id3">
 <span id="equation-eq-1"></span><span class="eqno">(4)<a class="headerlink" href="#id3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
@@ -73,12 +73,12 @@ For a given Runge–Kutta method, there are some clever tricks that can be done 
    f_{n,4} &amp;= h f(\exp(f_{n,3})\cdot y_n), &amp;  \\
    y_{n+1} &amp;= \exp(\tfrac{1}{6}(f_{n,1}+2f_{n,2}+2f_{n,3}+f_{n,4}-\tfrac12[f_{n,1},f_{n,4}]))\cdot y_n.
 \end{align}\end{split}\]</div>
-<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> for the particular Lie algebra we use. For instance, it was shown in cite{celledoni03lgm} that for the Lie algebra <span class="math notranslate nohighlight">\(\so(3)\)</span> one has</p>
+<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the particular Lie algebra we use. For instance, it was shown in cite{celledoni03lgm} that for the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{so}(3)\)</span> one has</p>
 <div class="math notranslate nohighlight" id="id4">
 <span id="equation-eq-1"></span><span class="eqno">(5)<a class="headerlink" href="#id4" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \dexp_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
+    \textrm{dexp}_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
 \end{align}\]</div>
-<p>We will present the corresponding formula for <span class="math notranslate nohighlight">\(\se(3)\)</span> in Section~ref{dexpinvse3}.</p>
+<p>We will present the corresponding formula for <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> in Section~ref{dexpinvse3}.</p>
 </section>
 <section id="commutator-free-methods">
 <span id="cfmethods"></span><h2>Commutator-free methods<a class="headerlink" href="#commutator-free-methods" title="Permalink to this heading">¶</a></h2>
