@@ -69,12 +69,12 @@ The action we consider is based on the identification between <span class="math 
 <p>We can think of <span class="math notranslate nohighlight">\(\Psi\)</span> as a Lie group action on <span class="math notranslate nohighlight">\(TS^2\)</span> since, for any <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span>, it maps points of</p>
 <div class="math notranslate nohighlight" id="id5">
 <span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    TS_{|q|}^2:=\{(\Tilde{q},\Tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \Tilde{\omega}^T\Tilde{q}=0,\;|\Tilde{q}|=|q|\}\subset \mathbb{R}^6
+    TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
 \end{align}\]</div>
 <p>into other points of <span class="math notranslate nohighlight">\(TS_{|q|}^2\)</span>. Moreover, with standard arguments, it is possible to prove that the orbit of a generic point <span class="math notranslate nohighlight">\(m=(q,\omega)\in\mathbb{R}^6\)</span> with <span class="math notranslate nohighlight">\(\omega^Tq=0\)</span> coincides with</p>
 <div class="math notranslate nohighlight" id="id6">
 <span id="equation-eq"></span><span class="eqno">(6)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \RE{\text{Orb}}(m)=TS_{|q|}^2.
+    \textrm{Orb}(m)=TS_{|q|}^2.
 \end{align}\]</div>
 <p>In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
 <div class="math notranslate nohighlight" id="id7">
@@ -88,14 +88,14 @@ The action we consider is based on the identification between <span class="math 
 <p>To conclude the description of the action, we report here its infinitesimal generator which is fundamental in the Lie group integrators setting</p>
 <div class="math notranslate nohighlight" id="id9">
 <span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \Psi_*((u,v))\right|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
+    \Psi_*((u,v))\|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
 \end{align}\]</div>
 <p>We can extend this construction to the case <span class="math notranslate nohighlight">\(N&gt;1\)</span> in a natural way, i.e. through the action of a Lie group obtained from cartesian products of <span class="math notranslate nohighlight">\(SE(3)\)</span> and equipped with the direct product structure.
 Here we limit ourselves to the case <span class="math notranslate nohighlight">\(N=2\)</span> for which we also show numerical experiments.
 More precisely, we consider the group <span class="math notranslate nohighlight">\(G=(SE(3))^2\)</span> and by direct product structure we mean that for any pair of elements</p>
 <div class="math notranslate nohighlight" id="id10">
 <span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[ \begin{align}\begin{aligned}\begin{align}
-    \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2),\quad \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
+    \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2), \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
 \end{align}\\denoted with :math:`*` the semidirect product of :math:`SE(3)`, we define the product :math:`\circ` on :math:`G` as\end{aligned}\end{align} \]</div>
 <div class="math notranslate nohighlight" id="id11">
 <span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id11" title="Permalink to this equation">¶</a></span>\[\begin{align}
@@ -137,7 +137,7 @@ The configuration manifold of the system is <span class="math notranslate nohigh
 <p>where</p>
 <div class="math notranslate nohighlight" id="id17">
 <span id="equation-eq"></span><span class="eqno">(17)<a class="headerlink" href="#id17" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    M_{ij} =\Big(\sum_{k=\RE{\text{max}}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
+    M_{ij} =\Big(\sum_{k=\textrm{max}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
 \end{align}\]</div>
 <p>is the inertia matrix of the systemRE{, <span class="math notranslate nohighlight">\(I_3\)</span> is the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix,} and <span class="math notranslate nohighlight">\(e_3 = [0,0,1]^T\)</span>. Noticing that when <span class="math notranslate nohighlight">\(i=j\)</span> we get</p>
 <div class="math notranslate nohighlight" id="id18">

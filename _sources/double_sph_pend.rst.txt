@@ -60,7 +60,7 @@ We can think of :math:`\Psi` as a Lie group action on :math:`TS^2` since, for an
     :name: eq: 
     
     \begin{align}
-        TS_{|q|}^2:=\{(\Tilde{q},\Tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \Tilde{\omega}^T\Tilde{q}=0,\;|\Tilde{q}|=|q|\}\subset \mathbb{R}^6
+        TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
     \end{align}
 
 into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments, it is possible to prove that the orbit of a generic point :math:`m=(q,\omega)\in\mathbb{R}^6` with :math:`\omega^Tq=0` coincides with
@@ -69,7 +69,7 @@ into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments, it i
     :name: eq: 
     
     \begin{align}
-        \RE{\text{Orb}}(m)=TS_{|q|}^2.
+        \textrm{Orb}(m)=TS_{|q|}^2.
     \end{align}
 
 In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
@@ -94,7 +94,7 @@ To conclude the description of the action, we report here its infinitesimal gene
     :name: eq: 
     
     \begin{align}
-        \Psi_*((u,v))\right|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
+        \Psi_*((u,v))\|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
     \end{align}
 
 We can extend this construction to the case :math:`N>1` in a natural way, i.e. through the action of a Lie group obtained from cartesian products of :math:`SE(3)` and equipped with the direct product structure. 
@@ -105,7 +105,7 @@ More precisely, we consider the group :math:`G=(SE(3))^2` and by direct product 
     :name: eq: 
     
     \begin{align}
-        \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2),\quad \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
+        \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2), \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
     \end{align}
     
     denoted with :math:`*` the semidirect product of :math:`SE(3)`, we define the product :math:`\circ` on :math:`G` as
@@ -177,7 +177,7 @@ where
     :name: eq: 
     
     \begin{align}
-        M_{ij} =\Big(\sum_{k=\RE{\text{max}}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
+        M_{ij} =\Big(\sum_{k=\textrm{max}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
     \end{align}
 
 is the inertia matrix of the system\RE{, :math:`I_3` is the :math:`3\times 3` identity matrix,} and :math:`e_3 = [0,0,1]^T`. Noticing that when :math:`i=j` we get
