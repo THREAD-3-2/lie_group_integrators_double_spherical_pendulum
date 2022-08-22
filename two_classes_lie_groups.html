@@ -37,7 +37,7 @@
             
   <section id="two-classes-of-lie-group-integrators">
 <span id="two-classes-lie-groups"></span><h1>Two classes of Lie group integrators<a class="headerlink" href="#two-classes-of-lie-group-integrators" title="Permalink to this heading">¶</a></h1>
-<p>We consider here two classes of methods known as Runge–Kutta–Munthe–Kaas (RKMK) methods and Commutator-free Lie group methods.</p>
+<p>We briefly consider here two classes of methods known as Runge–Kutta–Munthe–Kaas (RKMK) methods and Commutator-free Lie group methods. For a more detailed discussion, the reader can see <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a>) and the references therein.</p>
 <section id="runge-kutta-munthe-kaas-rkmk-methods">
 <span id="rkmk"></span><h2>Runge-Kutta-Munthe-Kaas (RKMK) methods<a class="headerlink" href="#runge-kutta-munthe-kaas-rkmk-methods" title="Permalink to this heading">¶</a></h2>
 <p>For RKMK methods the underlying idea is to transform the problem from the manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{g}\)</span>, take a time step, and map the result back to <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. The transformation we use is</p>
@@ -53,17 +53,17 @@
 <p>The map <span class="math notranslate nohighlight">\(v\mapsto\textrm{dexp}_u(v)\)</span> is linear and invertible when <span class="math notranslate nohighlight">\(u\)</span> belongs to some sufficiently small neighborhood of <span class="math notranslate nohighlight">\(0\in\mathfrak{g}\)</span>.
 It has an expansion in nested Lie brackets. Using the operator <span class="math notranslate nohighlight">\(\textrm{ad}_u(v)=[u,v]\)</span> and its powers
 <span class="math notranslate nohighlight">\(\textrm{ad}_u^2 v=[u,[u,v]]\)</span> etc, one can write</p>
-<div class="math notranslate nohighlight" id="eq">
-<span id="equation-eq"></span><span class="eqno">(2)<a class="headerlink" href="#eq" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="eq-2">
+<span id="equation-eq-2"></span><span class="eqno">(2)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \textrm{dexp}_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\textrm{ad}_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
 \end{align}\]</div>
 <p>and the inverse is</p>
-<div class="math notranslate nohighlight" id="eq-2">
-<span id="equation-eq-2"></span><span class="eqno">(3)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="eq-3">
+<span id="equation-eq-3"></span><span class="eqno">(3)<a class="headerlink" href="#eq-3" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \textrm{dexp}_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\textrm{ad}_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
 \end{align}\]</div>
-<p>The RKMK methods are now obtained simply by applying some standard Runge–Kutta method to the transformed equation <a class="reference internal" href="#eq-1"><span class="std std-ref">(1)</span></a> with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\mathfrak{g}\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving <a class="reference internal" href="#eq-1"><span class="std std-ref">(1)</span></a> one needs to evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series <a class="reference internal" href="#eq-2"><span class="std std-ref">(2)</span></a> since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\textrm{ad}_u^k=\mathcal{O}(h^k)\)</span>.
-For a given Runge–Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}v\)</span>. Aconcrete example of an RKMK method is:</p>
+<p>The RKMK methods are now obtained simply by applying some standard Runge–Kutta method to the transformed equation <a class="reference internal" href="#eq-1"><span class="std std-ref">(1)</span></a> with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\mathfrak{g}\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving <a class="reference internal" href="#eq-1"><span class="std std-ref">(1)</span></a> one needs to evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series <a class="reference internal" href="#eq-3"><span class="std std-ref">(3)</span></a> since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\textrm{ad}_u^k=\mathcal{O}(h^k)\)</span>.
+For a given Runge–Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}v\)</span>. A concrete example of an RKMK method is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
    f_{n,1} &amp;= h f(y_n),\\
@@ -78,11 +78,11 @@ For a given Runge–Kutta method, there are some clever tricks that can be done 
     \textrm{dexp}_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
 \end{align}\]</div>
 </section>
-<section id="an-exact-expression-for-dexp-u-1-v-in-mathfrak-se-3">
-<span id="dexpinvse3"></span><h2>An exact expression for <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span><a class="headerlink" href="#an-exact-expression-for-dexp-u-1-v-in-mathfrak-se-3" title="Permalink to this heading">¶</a></h2>
-<p>As an alternative to using a truncated version of the infinite series for <span class="math notranslate nohighlight">\(\dexp_u^{-1}\)</span> eqref{dexpinvseries}, one can consider exact expressions obtained for certain Lie algebras. Since <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> is particularly important in applications to mechanics, we give here its exact expression. For this, we represent elements of <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> as a
+<section id="an-exact-expression-for-textrm-dexp-u-1-v-in-mathfrak-se-3">
+<span id="dexpinvse3"></span><h2>An exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span><a class="headerlink" href="#an-exact-expression-for-textrm-dexp-u-1-v-in-mathfrak-se-3" title="Permalink to this heading">¶</a></h2>
+<p>As an alternative to using a truncated version of the infinite series for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> <a class="reference internal" href="#eq-3"><span class="std std-ref">(3)</span></a>, one can consider exact expressions obtained for certain Lie algebras. Since <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> is particularly important in applications to mechanics, we give here its exact expression. For this, we represent elements of <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> as a
 pair <span class="math notranslate nohighlight">\((A,a)\in\mathbb{R}^3\times\mathbb{R}^3\cong\mathbb{R}^6\)</span>, the first component corresponding to a skew-symmetric matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>
-via eqref{hatmap} and <span class="math notranslate nohighlight">\(a\)</span> is the translational part. Now, let <span class="math notranslate nohighlight">\(\varphi(z)\)</span> be a real analytic function at <span class="math notranslate nohighlight">\(z=0\)</span>. We define</p>
+via the hat map and <span class="math notranslate nohighlight">\(a\)</span> is the translational part. Now, let <span class="math notranslate nohighlight">\(\varphi(z)\)</span> be a real analytic function at <span class="math notranslate nohighlight">\(z=0\)</span>. We define</p>
 <div class="math notranslate nohighlight">
 \[\begin{align}
     \varphi_+(z) = \frac{\varphi(iz)+\varphi(-iz)}{2},\qquad \varphi_-(z) = \frac{\varphi(iz)-\varphi(-iz)}{2i}
@@ -96,7 +96,7 @@ via eqref{hatmap} and <span class="math notranslate nohighlight">\(a\)</span> is
 <p>and the two scalars <span class="math notranslate nohighlight">\(\rho=A^Ta\)</span>, <span class="math notranslate nohighlight">\(\alpha=\|A\|_2\)</span>. One can show that for any <span class="math notranslate nohighlight">\((A,a)\)</span> and <span class="math notranslate nohighlight">\((B,b)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, it holds that</p>
 <div class="math notranslate nohighlight">
 \[\begin{align}
-    \varphi(\ad_{(A,a)})(B,b) = (C,c)
+    \varphi(\textrm{ad}_{(A,a)})(B,b) = (C,c)
 \end{align}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
@@ -106,27 +106,24 @@ via eqref{hatmap} and <span class="math notranslate nohighlight">\(a\)</span> is
     +\rho\tilde{g}_1(\alpha)\,A\times B  + \rho\tilde{g}_2(\alpha)\, A\times (A\times B)\\
     &amp;+ g_2(\alpha)\, (a\times (A\times B)+A\times (a\times B) + A\times (A\times b))
 \end{align}\end{split}\]</div>
-<p>Considering for instance eqref{dexpinvseries}, we may now use <span class="math notranslate nohighlight">\(\varphi(z)=\frac{z}{e^z-1}\)</span> to calculate</p>
+<p>Considering for instance <a class="reference internal" href="#eq-3"><span class="std std-ref">(3)</span></a>, we may now use <span class="math notranslate nohighlight">\(\varphi(z)=\frac{z}{e^z-1}\)</span> to calculate</p>
 <div class="math notranslate nohighlight">
 \[\begin{align}
     g_1(z) = -\frac12,\ \tilde{g}_1(z)=0,\ g_2(z) = \frac{1-\tfrac{z}{2}\cot\tfrac{z}{2}}{z^2},\
     \tilde{g}_2(z)=\frac1z\frac{d}{dz}g_2(z),\ \varphi(0)=1.
 \end{align}\]</div>
-<p>and thereby obtain an expression for <span class="math notranslate nohighlight">\(\dexp_{(A,a)}^{-1}(B,b)\)</span> with the formula above.</p>
-<p>Similar types of formulas are known for computing the matrix exponential as well as functions of the <span class="math notranslate nohighlight">\(\ad\)</span> -operator for several other Lie groups of small and medium dimension. For instance in cite{mueller17cmf} a variety of coordinate mappings for rigid body motions are discussed.
-For Lie algebras of larger dimension, both the exponential mapping and
-<span class="math notranslate nohighlight">\(\dexp_u^{-1}\)</span> may become computationally infeasible. For these cases, one may benefit from replacing the exponential by some other coordinate map for the Lie group <span class="math notranslate nohighlight">\(\phi:\g\rightarrow G\)</span>. One option is to use canonical coordinates of the second kind cite{owren00imb}. Then for some Lie groups such as the orthogonal, unitary and symplectic groups, there exist other maps that can be used and which are computationally less expensive. A popular choice is the Cayley transformation cite{diele98tct}.</p>
+<p>and thereby obtain an expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_{(A,a)}^{-1}(B,b)\)</span> with the formula above.</p>
 </section>
 <section id="commutator-free-methods">
 <span id="cfmethods"></span><h2>Commutator-free methods<a class="headerlink" href="#commutator-free-methods" title="Permalink to this heading">¶</a></h2>
-<p>The second class of Lie group integrators to be considered here are the commutator-free methods, named this way in cite{celledoni03cfl} to emphasize the contrast to RKMK schemes which usually include commutators in the method format. These schemes include the Crouch-Grossman methods cite{crouch93nio} and they have the format</p>
+<p>The second class of Lie group integrators to be considered here are the commutator-free methods. As the name suggests, in contrast to RKMK schemes which usually include commutators in the method format, this class of methods does not. These schemes include the Crouch-Grossman methods and they have the format</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
     Y_{n,r} &amp;= \exp\left(h\sum_{k}\alpha_{r,J}^k f_{n,k}\right)\cdots \exp\left(h\sum_{k}\alpha_{r,1}^k f_{n,k}\right)\cdot y_n \\
     f_{n,r} &amp;= f(Y_{n,r}) \\[1mm]
     y_{n+1} &amp;= \exp\left(h\sum_k \beta_J^k f_{n,k}\right)\cdots \exp\left(h\sum_k \beta_1^k f_{n,k}\right)\cdot y_n
 \end{align}\end{split}\]</div>
-<p>Here the Runge–Kutta coefficients <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are related to a classical Runge–Kutta scheme with coefficients <span class="math notranslate nohighlight">\(a_r^k\)</span>, <span class="math notranslate nohighlight">\(b_r\)</span> in that <span class="math notranslate nohighlight">\(a_r^k=\sum_j \alpha_{r,j}^k\)</span> and <span class="math notranslate nohighlight">\(b_r=\sum_j \beta_{j}^r\)</span>. The <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials <span class="math notranslate nohighlight">\(J\)</span> in each stage as low as possible, and possibly also the number of stages <span class="math notranslate nohighlight">\(s\)</span>. A trick proposed in cite{celledoni03cfl} was to select coefficients RE{that make it possible to reuse exponentials} from one stage to another. This is perhaps best illustrated through the following example from cite{celledoni03cfl}, a generalisation of the classical 4th order Runge–Kutta method.</p>
+<p>Here the Runge–Kutta coefficients <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are related to a classical Runge–Kutta scheme with coefficients <span class="math notranslate nohighlight">\(a_r^k\)</span>, <span class="math notranslate nohighlight">\(b_r\)</span> in that <span class="math notranslate nohighlight">\(a_r^k=\sum_j \alpha_{r,j}^k\)</span> and <span class="math notranslate nohighlight">\(b_r=\sum_j \beta_{j}^r\)</span>. The <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials <span class="math notranslate nohighlight">\(J\)</span> in each stage as low as possible, and possibly also the number of stages <span class="math notranslate nohighlight">\(s\)</span>. A trick is to select coefficients that make it possible to reuse exponentials from one stage to another. This is perhaps best illustrated through the following example, a generalisation of the classical 4th order Runge–Kutta method.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
     \begin{split} \label{cf4}
@@ -163,7 +160,7 @@ For Lie algebras of larger dimension, both the exponential mapping and
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Two classes of Lie group integrators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#runge-kutta-munthe-kaas-rkmk-methods">Runge-Kutta-Munthe-Kaas (RKMK) methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#an-exact-expression-for-dexp-u-1-v-in-mathfrak-se-3">An exact expression for <span class="math notranslate nohighlight">\(\dexp_u^{-1}(v)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#an-exact-expression-for-textrm-dexp-u-1-v-in-mathfrak-se-3">An exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commutator-free-methods">Commutator-free methods</a></li>
 </ul>
 </li>
