@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MATLAB code &#8212; variable_stepsize_lie_group_integrator 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="The N-fold 3D pendulum" href="tredpend.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="matlab-code">
+<span id="matlab"></span><h1>MATLAB code<a class="headerlink" href="#matlab-code" title="Permalink to this heading">¶</a></h1>
+<p>This MATLAB code is documented with Sphinx
+using the <a class="reference external" href="https://github.com/sphinx-contrib/matlabdomain/blob/master/README.rst">matlabdomain extension</a>.</p>
+<section id="module-src">
+<span id="src"></span><h2>src<a class="headerlink" href="#module-src" title="Permalink to this heading">¶</a></h2>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">src</span></code> module contains the following source code files:</p>
+<dl class="mat script">
+<dt class="sig sig-object mat" id="src.main">
+<span class="sig-prename descclassname"><span class="pre">src.</span></span><span class="sig-name descname"><span class="pre">main</span></span><a class="headerlink" href="#src.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>main function</p>
+<p>This code contains the numerical experiments with the step adaptive RKMK method based on Dormand-Prince pair (5,4)</p>
+<blockquote>
+<div><p>Ref.: E. Celledoni, E. Çokaj, A. Leone, D. Murari, B. Owren.
+“Dynamics of the N-fold Pendulum in the framework of Lie Group Integrators”, arXiv.</p>
+<p>Ref.: E. Celledoni, E. Çokaj, A. Leone, D. Murari, B. Owren.
+“Lie group integrators for mechanical systems”,
+International Journal of Computer Mathematics, 99:1, 58-88.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="src-integrators">
+<h2>src/integrators<a class="headerlink" href="#src-integrators" title="Permalink to this heading">¶</a></h2>
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.RKMK5">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">exponentialSE3N</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">sigma0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 5</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>exponentialSE3N</strong> – exponential map from se(3)^N to SE(3)^N</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+<li><p><strong>sigma0</strong> – initial value of the curve sigma on se(3)^N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.RKMK45">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK45</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">exponentialSE3N</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">sigma0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK45" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas pair (5,4) based on the Dormand-Prince method DOPRI5(4)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>exponentialSE3N</strong> – exponential map from se(3)^N to SE(3)^N</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+<li><p><strong>sigma0</strong> – initial value of the curve sigma on se(3)^N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1) and local error</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="src-lie-group-functions">
+<h2>src/Lie_group_functions<a class="headerlink" href="#src-lie-group-functions" title="Permalink to this heading">¶</a></h2>
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.expRodrigues">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">expRodrigues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.expRodrigues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponential map on SO(3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> – element of the Lie algebra so(3), represented as a vector in R3</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of the group SO(3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.expSE3">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">expSE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.expSE3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponential map on SE(3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> – element of the Lie algebra se(3) represented as [hat(u),v],
+with u and v 3x1 column vectors</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of the group SE(3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.exponentialSE3N">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">exponentialSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">sigma</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.exponentialSE3N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponential map on SE(3)^N</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sigma</strong> – element of se(3)^N</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of SE(3)^N</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.actionSE3">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">actionSE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">B</span></em>, <em class="sig-param"><span class="pre">input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.actionSE3" title="Permalink to this definition">¶</a></dt>
+<dd><p>action on the SE(3) group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B</strong> – element of the Lie group SE(3)</p></li>
+<li><p><strong>input</strong> – element of the Lie algebra se(3)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of the Lie algebra se(3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.actionSE3N">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">actionSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">B</span></em>, <em class="sig-param"><span class="pre">input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.actionSE3N" title="Permalink to this definition">¶</a></dt>
+<dd><p>action on SE(3)^N</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B</strong> – element of SE(3)^N</p></li>
+<li><p><strong>input</strong> – element of se(3)^N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of se(3)^N</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.dexpinvSE3">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">dexpinvSE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">sigma</span></em>, <em class="sig-param"><span class="pre">input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.dexpinvSE3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the derivative of the exponential map on SE(3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> – element in the Lie algebra se(3), represented as a 6x1 vector</p></li>
+<li><p><strong>input</strong> – element in the Lie algebra se(3), represented as a 6x1 vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>inverse of dexp_sigma(input) as 6x1 vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.dexpinvSE3N">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">dexpinvSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">sigma</span></em>, <em class="sig-param"><span class="pre">input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.dexpinvSE3N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the derivative of the exponential map on SE(3)^N</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> – element of se(3)^N</p></li>
+<li><p><strong>input</strong> – element of se(3)^N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>inverse of dexp_sigma(input)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.fManiToAlgebra">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">fManiToAlgebra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">w</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.fManiToAlgebra" title="Permalink to this definition">¶</a></dt>
+<dd><p>RHS of the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
+<li><p><strong>w</strong> – angular velocities vector [w1, …, wN] in T_{qi}S^2</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector field of the system</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.assembleF">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">w</span></em>, <em class="sig-param"><span class="pre">m</span></em>, <em class="sig-param"><span class="pre">L</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleF" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function defines the right hand side, precisely we need it to define the equations for the angular velocities, which now becomes R(q)w’ = F, and here we assemble this F vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
+<li><p><strong>w</strong> – angular velocities vector [w1, …, wN] in T_{qi}S^2</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>equations for the angular velocities of the form R(q)w’ = F</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.assembleM">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleM" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>inertia mass matrix of the system</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.assembleR">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleR" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>symmetric block matrix used in the equations for the angular velocities</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.FuncQ">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to integrate with ODE45</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z</strong> – is of the form z = [q1, q2, …, qP, w1, w2, …, wP]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the part of the vector field for the dot{q}_i, so hat(w_i)*q_i</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.FuncW">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncW" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to integrate with ODE45</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> – is of the form z = [q1, q2, …, qP, w1, w2, …, wP]</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the part of the vector field for the dot{w}_i, so R(q)^{-1}*RHS of the ODE, defined by assembleF</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.extractq">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractq" title="Permalink to this definition">¶</a></dt>
+<dd><p>extracts the q components from [q, w]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – input vector v = [q1, w1, q2, w2, …, qN, wN]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the q components of v, q = [q1,q2,…,qN]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.extractw">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractw" title="Permalink to this definition">¶</a></dt>
+<dd><p>extracts the w components from [q, w]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – input vector v = [q1, w1, q2, w2, …, qN, wN]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the w components of v, w = [w1, w2, …, wN]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.hat">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">hat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.hat" title="Permalink to this definition">¶</a></dt>
+<dd><p>It returns the skew symmetric matrix A associated to the vector v</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – vector with 3 components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>element of the Lie algebra so(3) (skew symmetric 3x3 matrix)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.initializeStat">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeStat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">N</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeStat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialization of the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> – number of connected pendulums</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>initial positions for q and w of the N-fold pendulum</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">variable_stepsize_lie_group_integrator</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RKMK_var_step.html">Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tredpend.html">The N-fold 3D pendulum</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MATLAB code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-src">src</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src-integrators">src/integrators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src-lie-group-functions">src/Lie_group_functions</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tredpend.html" title="previous chapter">The N-fold 3D pendulum</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Ergys Çokaj, Andrea Leone, Davide Murari.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/matlab.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size &#8212; variable_stepsize_lie_group_integrator 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The N-fold 3D pendulum" href="tredpend.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="runge-kutta-munthe-kaas-rkmk-methods-with-variable-step-size">
+<span id="rkmk-var-step"></span><h1>Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size<a class="headerlink" href="#runge-kutta-munthe-kaas-rkmk-methods-with-variable-step-size" title="Permalink to this heading">¶</a></h1>
+<p>The underlying idea of RKMK methods is to express a vector field <span class="math notranslate nohighlight">\(F\in\mathfrak{X}(\mathcal{M})\)</span> as <span class="math notranslate nohighlight">\(F\vert_m = \Psi_*(f(m))\vert_m\)</span> , where <span class="math notranslate nohighlight">\(\Psi_*\)</span> is the infinitesimal generator of <span class="math notranslate nohighlight">\(\Psi\)</span>, a transitive action on <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and <span class="math notranslate nohighlight">\(f:\mathcal{M}\rightarrow\mathfrak{g}\)</span>. This allows us to transform the problem from the manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{g}\)</span>, on which we can perform a time step integration. We then map the result back to <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and repeat this up to the final integration time.  More explicitly, let <span class="math notranslate nohighlight">\(h_n\)</span> be the size of the <span class="math notranslate nohighlight">\(n-th\)</span> time step, we then update <span class="math notranslate nohighlight">\(y_n\in\mathcal{M}\)</span> to <span class="math notranslate nohighlight">\(y_{n+1}\)</span> by</p>
+<div class="math notranslate nohighlight" id="eq-1">
+<span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{cases}
+    \sigma(0) = 0\in\mathfrak{g},\\
+    \dot{\sigma}(t) = \textrm{dexp}_{\sigma(t)}^{-1}\circ f\circ \Psi (\exp(\sigma(t)),y_n)\in T_{\sigma(t)}\mathfrak{g}, \\
+    y_{n+1} = \Psi(\exp(\sigma_1),y_n)\in \mathcal{M},
+    \end{cases}
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_1\approx \sigma(h_n)\in\mathfrak{g}\)</span> is computed with a Runge-Kutta method.</p>
+<p>One approach for varying the step size is based on embedded Runge–Kutta pairs for vector spaces. This approach consists of a principal method of order <span class="math notranslate nohighlight">\(p\)</span>, used to propagate the numerical solution, together with some auxiliary method, of order <span class="math notranslate nohighlight">\(\tilde{p}&lt;p\)</span>, that is only used to obtain an estimate of the local error. This local error estimate is in turn used to derive a step size adjustment formula that attempts to keep the local error estimate approximately equal to some user-defined tolerance <span class="math notranslate nohighlight">\(\textrm{tol}\)</span> in every step.
+Both methods are applied to solve the ODE for <span class="math notranslate nohighlight">\(\sigma(t)\)</span> in <a class="reference internal" href="tredpend.html#eq-1"><span class="std std-ref">(1)</span></a>, yielding two approximations <span class="math notranslate nohighlight">\(\sigma_1\)</span> and <span class="math notranslate nohighlight">\(\tilde{\sigma}_1\)</span> respectively, using the same step size <span class="math notranslate nohighlight">\(h_n\)</span>. Now, some distance measure between <span class="math notranslate nohighlight">\(\sigma_1\)</span> and  <span class="math notranslate nohighlight">\(\tilde{\sigma}_1\)</span> provides an estimate <span class="math notranslate nohighlight">\(e_{n+1}\)</span> for the size of the local truncation error. Thus,
+<span class="math notranslate nohighlight">\(e_{n+1}=C
+h_{n+1}^{\tilde{p}+1}+\mathcal{O}(h^{\tilde{p}+2})\)</span>. Aiming at <span class="math notranslate nohighlight">\(e_{n+1}\approx\textrm{tol}\)</span> in every step, one may use a formula of the type</p>
+<div class="math notranslate nohighlight" id="eq-2">
+<span id="equation-eq-2"></span><span class="eqno">(2)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    h_{n+1} = \theta\left(\frac{\textrm{tol}}{e_{n+1}}\right)^{\tfrac{1}{\tilde{p}+1}}\, h_n
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is typically chosen between <span class="math notranslate nohighlight">\(0.8\)</span> and <span class="math notranslate nohighlight">\(0.9\)</span>.
+If <span class="math notranslate nohighlight">\(e_n&gt;\textrm{tol}\)</span>, the step is rejected. Hence, we can redo the step with the step size obtained by the same formula.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">variable_stepsize_lie_group_integrator</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Runge-Kutta-Munthe-Kaas (RKMK) methods with variable step size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tredpend.html">The N-fold 3D pendulum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB code</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="tredpend.html" title="next chapter">The N-fold 3D pendulum</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Ergys Çokaj, Andrea Leone, Davide Murari.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/RKMK_var_step.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
