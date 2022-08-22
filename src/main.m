@@ -2,8 +2,8 @@ clc;
 clear all;
 close all;
 
-prompt = 'How many 3D pendulums do you want to connect?\n\n';
-P = input(prompt);
+
+P = 2;
 
 L = rand(P, 1); 
 m = rand(P, 1);
