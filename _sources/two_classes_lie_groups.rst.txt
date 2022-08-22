@@ -132,7 +132,7 @@ and thereby obtain an expression for :math:`\textrm{dexp}_{(A,a)}^{-1}(B,b)` wit
 Commutator-free methods
 -----------------------
 
-The second class of Lie group integrators to be considered here are the commutator-free methods. As the name suggests, in contrast to RKMK schemes which usually include commutators in the method format, this class of methods does not. These schemes include the Crouch-Grossman methods and they have the format
+The second class of Lie group integrators we consider here are the commutator-free methods. As the name suggests, in contrast to RKMK schemes which usually include commutators in the method format, this class of methods does not. These schemes include the Crouch-Grossman methods and they have the format
 
 .. math::
 
