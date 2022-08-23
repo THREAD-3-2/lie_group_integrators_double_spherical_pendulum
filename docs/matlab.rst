@@ -21,21 +21,19 @@ src
 src/integrators
 ===============
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.RK4
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.LieEuler
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.LieEulerHeun
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.CommFreeRKMK4 
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.RKMK4 
 
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.TwoCommRKMK4 
 
-.. mat:autofunction:: src.integrators. 
-
-.. mat:autofunction:: src.integrators. 
+.. mat:autofunction:: src.integrators.RKMK3 
 
 
 src/Lie_group_functions
