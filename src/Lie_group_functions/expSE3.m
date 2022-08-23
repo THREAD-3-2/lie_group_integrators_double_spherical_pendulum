@@ -10,7 +10,7 @@ function A = expSE3(input)
     v = input(4:6);
     theta = norm(u,2);
     
-    tol = 1e - 16;  
+    tol = 1e-16;  
     
     if theta > tol
         A = sin(theta) / theta;
