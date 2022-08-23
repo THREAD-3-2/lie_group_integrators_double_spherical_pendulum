@@ -1,4 +1,4 @@
-function sol = LieEulerHeunSE3N(vecField, action, p, h)
+function sol = LieEulerHeun(vecField, action, p, h)
 % Runge-Kutta-Munthe-Kaas time integrator order 2, based on Heun scheme
 %
 % :param vecField: right hand side of the ODE
