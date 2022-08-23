@@ -1,4 +1,4 @@
-function sol = COMMFREERK4(f, action, h, p)
+function sol = CommFreeRK4(f, action, h, p)
 % Commutator-free time integrator of order 4
 %
 % :param f: map f from the phase space (on which the vector field is defined) to the Lie algebra
