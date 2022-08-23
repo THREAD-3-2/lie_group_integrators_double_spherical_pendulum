@@ -309,4 +309,3 @@ if C3 == 1
 
      sgtitle("q_i(t)^T\omega_i(t)", "FontSize", 25);
 end
-end
