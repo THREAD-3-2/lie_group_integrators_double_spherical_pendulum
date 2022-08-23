@@ -1,4 +1,4 @@
-function sol = LieEulerSE3N(vecField, action, p, h)
+function sol = LieEuler(vecField, action, p, h)
 % Lie-Euler time integrator (Runge-Kutta-Munthe-Kaas method of order 1)
 %
 % :param vecField: right hand side of the ODE
