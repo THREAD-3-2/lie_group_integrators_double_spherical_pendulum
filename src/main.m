@@ -68,7 +68,7 @@ zC = zeros(6 * P, N);
 if C1 == 1
     zC(:, 1) = z0;
     for i = 1 : N - 1
-        zC(:, i + 1) = CommFreeRK4(f, action, dt, zC(:, i));         
+        zC(:, i + 1) = CommFreeRKMK4(f, action, dt, zC(:, i));         
 %         zC(:, i + 1) = RK4(FuncW, time, z0);
 
         qC(:, i + 1) = extractq(zC(:, i + 1));
