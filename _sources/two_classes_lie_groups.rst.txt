@@ -62,9 +62,7 @@ For a given Runge--Kutta method, there are some clever tricks that can be done t
        f_{n,4} &= h f(\exp(f_{n,3})\cdot y_n), &  \\
        y_{n+1} &= \exp(\tfrac{1}{6}(f_{n,1}+2f_{n,2}+2f_{n,3}+f_{n,4}-\tfrac12[f_{n,1},f_{n,4}]))\cdot y_n.
     \end{align}
-
-
-https://doi.org/10.1016/S0045-7825(02)00520-0
+    
 
 The other option is to compute the exact expression for :math:`\textrm{dexp}_u^{-1}(v)` for the particular Lie algebra we use. An expression for  :math:`\textrm{dexp}_u^{-1}(v)` for the Lie algebra :math:`\mathfrak{so}(3)` was shown in `(Celledoni and Owren, (2003) Computer Methods in Applied Mechanics and Engineering) <https://doi.org/10.1016/S0045-7825(02)00520-0>`_. We provide an exact expression for :math:`\textrm{dexp}_u^{-1}(v)`in :math:`\mathfrak{se}(3)` in `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_
 
