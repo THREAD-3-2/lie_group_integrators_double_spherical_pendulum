@@ -9,7 +9,7 @@ function [ExpSO3_] = expRodrigues(x)
     
     if a == 0
         ExpSO3_ = eye(3);
-    elseif a > 1e - 20
+    elseif a > 1e-20
         alpha = sin(a)/a;
         beta = (1 - cos(a))/a^2;
         ExpSO3_ = eye(3) + alpha * hat(x) + beta * hat(x)^2;
