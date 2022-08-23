@@ -16,7 +16,7 @@ function vec = dexpinvSE3 (sigma, input)
     f0 = 1;
     mat = zeros(3);
     
-    tol = 1e - 16;
+    tol = 1e-16;
 
     if (alpha) > tol
         g2 = (1 - alpha/2 * cot(alpha/2))/(alpha^2);
