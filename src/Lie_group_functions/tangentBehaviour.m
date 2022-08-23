@@ -44,7 +44,7 @@ function [v, N] = tangentBehaviour(f, action, vecField, z0, L, m)
 
     for i = 1 : N - 1
         z1(:, i + 1) = LieEuler(vecField, action, z1(:, i), dt);
-        z2(:, i + 1) = LieEulerHeunSE3N(vecField, action, z2(:, i), dt);
+        z2(:, i + 1) = LieEulerHeun(vecField, action, z2(:, i), dt);
         z3(:, i + 1) = COMMFREERK4(f, action, dt, z3(:, i));
         z4(:, i + 1) = RKMK4(vecField, action, z4(:, i), dt);
         z5(:, i + 1) = TwoCommRKMK4(f, action, dt, z5(:, i));
