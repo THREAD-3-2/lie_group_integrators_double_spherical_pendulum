@@ -1,22 +1,19 @@
-function sol =  RKMK4(vector_field,exponential,action,p,h,sigma0,trajectory,t)
+function sol =  RKMK4(vecField, action, p, h)
 % Runge-Kutta-Munthe-Kaas time integrator order 4
 %
-% :param vector_field: right hand side of the ODE
+% :param vecField: right hand side of the ODE
 % :param action: Lie group action
-% :param expinential: exponential map from the Lie algebra to the Lie group
 % :param p: solution at time t_n
 % :param h: time step size
-% :param sigma0: initial value of the curve sigma on the Lie algebra
-% :param trajectory: desired trajectory
-% :param t: discrete time t_n
 %
 % :returns: solution at time t_(n+1)
 
-    k1 = vector_field(sigma0,p,trajectory(t));
-    k2 = vector_field(h/2*k1, p,trajectory(t+h/2));
-    k3 = vector_field(h/2 * k2 , p,trajectory(t+h/2));
-    k4 = vector_field(h * k3 , p,trajectory(t+h));
+    sigma0 = zeros(length(p), 1);
+    k1 = vecField(sigma0, p);
+    k2 = vecField(h/2 * k1, p);
+    k3 = vecField(h/2 * k2 , p);
+    k4 = vecField(h * k3 , p);
 
-    sol = action(exponential(h/6*k1 + h/3*k2 + h/3*k3 + h/6*k4),p);
+    sol = action(exponentialSE3N(h/6 * k1 + h/3 * k2 + h/3 * k3 + h/6 * k4), p);      
        
 end
