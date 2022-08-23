@@ -107,8 +107,22 @@ using the <a class="reference external" href="https://github.com/sphinx-contrib/
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.integrators.CommFreeRKMK4">
-<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">CommFreeRKMK4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.CommFreeRKMK4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">CommFreeRKMK4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.CommFreeRKMK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commutator-free time integrator of order 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – map f from the phase space (on which the vector field is defined) to the Lie algebra</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n + 1)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.integrators.RKMK4">
