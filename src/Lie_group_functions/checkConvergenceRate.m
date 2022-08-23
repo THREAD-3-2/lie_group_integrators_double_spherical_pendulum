@@ -58,7 +58,7 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
         z6 = z0;
         
         for i = 1 : N - 1
-            z1 = LieEulerSE3N(vecField, action, z1, dt);
+            z1 = LieEuler(vecField, action, z1, dt);
             z2 = LieEulerHeunSE3N(vecField, action, z2, dt);
             z3 = COMMFREERK4(f, action, dt, z3);
             z4 = RKMK4(vecField, action, z4, dt);
