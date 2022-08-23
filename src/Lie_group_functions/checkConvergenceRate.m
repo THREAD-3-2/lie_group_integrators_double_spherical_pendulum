@@ -38,7 +38,7 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
     dt = time(2) - time(1);
         
     for i = 1 : N - 1
-        zRef4 = CommFreeRK4(f, action, dt, zRef4);
+        zRef4 = CommFreeRKMK4(f, action, dt, zRef4);
     end
 
     count = 1;
@@ -60,7 +60,7 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
         for i = 1 : N - 1
             z1 = LieEuler(vecField, action, z1, dt);
             z2 = LieEulerHeun(vecField, action, z2, dt);
-            z3 = CommFreeRK4(f, action, dt, z3);
+            z3 = CommFreeRKMK4(f, action, dt, z3);
             z4 = RKMK4(vecField, action, z4, dt);
             z5 = TwoCommRKMK4(f, action, dt, z5);
             z6 = RKMK3(vecField, action, z6, dt);
