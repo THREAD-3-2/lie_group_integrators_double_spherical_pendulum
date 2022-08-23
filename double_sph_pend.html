@@ -71,51 +71,46 @@ The action we consider is based on the identification between <span class="math 
 <span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
     TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
 \end{align}\]</div>
-<p>into other points of <span class="math notranslate nohighlight">\(TS_{|q|}^2\)</span>. Moreover, with standard arguments, it is possible to prove that the orbit of a generic point <span class="math notranslate nohighlight">\(m=(q,\omega)\in\mathbb{R}^6\)</span> with <span class="math notranslate nohighlight">\(\omega^Tq=0\)</span> coincides with</p>
+<p>into other points of <span class="math notranslate nohighlight">\(TS_{|q|}^2\)</span>. In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\Psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
 <div class="math notranslate nohighlight" id="id6">
 <span id="equation-eq"></span><span class="eqno">(6)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{align}
-    \textrm{Orb}(m)=TS_{|q|}^2.
-\end{align}\]</div>
-<p>In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\Psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
-<div class="math notranslate nohighlight" id="id7">
-<span id="equation-eq"></span><span class="eqno">(7)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi : SE(3)\times TS^2 \rightarrow TS^2
 \end{align}\]</div>
-<div class="math notranslate nohighlight" id="id8">
-<span id="equation-eq"></span><span class="eqno">(8)<a class="headerlink" href="#id8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id7">
+<span id="equation-eq"></span><span class="eqno">(7)<a class="headerlink" href="#id7" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi((A,a),(q,\omega)) := \Psi_{(A,a)}(q,\omega) =  (Aq,A\omega + \hat{a}Aq)=(\bar{q},\bar{\omega}).
 \end{align}\]</div>
 <p>To conclude the description of the action, we report here its infinitesimal generator which is fundamental in the Lie group integrators setting</p>
-<div class="math notranslate nohighlight" id="id9">
-<span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id8">
+<span id="equation-eq"></span><span class="eqno">(8)<a class="headerlink" href="#id8" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*((u,v))\|_{(q,\omega)} =(\hat{u}q,\hat{u}\omega + \hat{v}q).
 \end{align}\]</div>
 <p>We can extend this construction to the case <span class="math notranslate nohighlight">\(N&gt;1\)</span> in a natural way, i.e. through the action of a Lie group obtained from cartesian products of <span class="math notranslate nohighlight">\(SE(3)\)</span> and equipped with the direct product structure.</p>
 <p>Here we limit ourselves to the case <span class="math notranslate nohighlight">\(N=2\)</span> for which we also show numerical experiments.
 More precisely, we consider the group <span class="math notranslate nohighlight">\(G=(SE(3))^2\)</span> and by direct product structure we mean that for any pair of elements</p>
-<div class="math notranslate nohighlight" id="id10">
-<span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id9">
+<span id="equation-eq"></span><span class="eqno">(9)<a class="headerlink" href="#id9" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \delta^{(1)}=(\delta^{(1)}_1, \delta^{(1)}_2), \delta^{(2)}=(\delta^{(2)}_1, \delta^{(2)}_2)\in G,
 \end{align}\]</div>
 <p>denoted with <span class="math notranslate nohighlight">\(*\)</span> the semidirect product of <span class="math notranslate nohighlight">\(SE(3)\)</span>, we define the product <span class="math notranslate nohighlight">\(\circ\)</span> on <span class="math notranslate nohighlight">\(G\)</span> as</p>
-<div class="math notranslate nohighlight" id="id11">
-<span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id11" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id10">
+<span id="equation-eq"></span><span class="eqno">(10)<a class="headerlink" href="#id10" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \delta^{(1)}\circ \delta^{(2)} := (\delta^{(1)}_1 * \delta^{(2)}_1, \delta^{(1)}_2 * \delta^{(2)}_2)\in G.
 \end{align}\]</div>
 <p>With this group structure defined, we can write the action follows</p>
-<div class="math notranslate nohighlight" id="id12">
-<span id="equation-eq"></span><span class="eqno">(12)<a class="headerlink" href="#id12" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id11">
+<span id="equation-eq"></span><span class="eqno">(11)<a class="headerlink" href="#id11" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi : (SE(3))^2\times (TS^2)^2 \rightarrow (TS^2)^2,
 \end{align}\]</div>
-<div class="math notranslate nohighlight" id="id13">
-<span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id13" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id12">
+<span id="equation-eq"></span><span class="eqno">(12)<a class="headerlink" href="#id12" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{split}
     \Psi&amp;((A_1,a_1, A_2,a_2),(q_1,\omega_1, q_2,\omega_2)) =\\ &amp;=(A_1q_1,A_1\omega_1+\hat{a}_1A_1q_1, A_2q_2,A_2\omega_2+\hat{a}_2A_2q_2),
     \end{split}
 \end{align}\end{split}\]</div>
 <p>whose infinitesimal generator writes</p>
-<div class="math notranslate nohighlight" id="id14">
-<span id="equation-eq"></span><span class="eqno">(14)<a class="headerlink" href="#id14" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id13">
+<span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id13" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*(\xi)\vert_m =(\hat{u}_1q_1,\hat{u}_1\omega_1+\hat{v}_1q_1, \hat{u}_2q_2,\hat{u}_2\omega_2+\hat{v}_2q_2),
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\xi=[u_1,v_1, u_2,v_2]\in\mathfrak{se}(3)^2\)</span> and <span class="math notranslate nohighlight">\(m=(q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2\)</span>.
@@ -125,47 +120,47 @@ We have now the only group action we need to deal with the double spherical pend
 <h2>The equations of motion and the vector field<a class="headerlink" href="#the-equations-of-motion-and-the-vector-field" title="Permalink to this heading">¶</a></h2>
 <p>We consider the vector field <span class="math notranslate nohighlight">\(F\in\mathfrak{X}((TS^2)^2)\)</span>, describing the dynamics of the double spherical pendulum, and we express it in terms of the infinitesimal generator of the action defined above.
 More precisely, we find a function <span class="math notranslate nohighlight">\(F:(TS^2)^2\rightarrow \mathfrak{se}(3)^2\)</span> such that</p>
-<div class="math notranslate nohighlight" id="id15">
-<span id="equation-eq"></span><span class="eqno">(15)<a class="headerlink" href="#id15" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id14">
+<span id="equation-eq"></span><span class="eqno">(14)<a class="headerlink" href="#id14" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*(f(m))\vert_m = F\vert_m,\;\;\forall m\in (TS^2)^2.
 \end{align}\]</div>
 <p>The derivation of <span class="math notranslate nohighlight">\(F\)</span> starting from the Lagrangian of the system can be found in the section devoted to mechanical systems on <span class="math notranslate nohighlight">\((S^2)^2\)</span> of <a class="reference external" href="https://doi.org/10.1007/978-3-319-56953-6">(Lee, Leok and McClamroch, (2018))</a>.
 The configuration manifold of the system is <span class="math notranslate nohighlight">\((S^2)^2\)</span>, while the Lagrangian, expressed in terms of the variables <span class="math notranslate nohighlight">\((q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2\)</span>, writes</p>
-<div class="math notranslate nohighlight" id="id16">
-<span id="equation-eq"></span><span class="eqno">(16)<a class="headerlink" href="#id16" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id15">
+<span id="equation-eq"></span><span class="eqno">(15)<a class="headerlink" href="#id15" title="Permalink to this equation">¶</a></span>\[\begin{align}
     L(q,\omega) = T(q,\omega)-U(q) =\frac{1}{2}\sum_{i,j=1}^2\Big(M_{ij}\omega_i^T\hat{q}_i^T\hat{q}_j\omega_j\Big) - \sum_{i=1}^2\Big(\sum_{j=i}^2 m_j\Big)gL_ie_3^Tq_i,
 \end{align}\]</div>
 <p>where</p>
-<div class="math notranslate nohighlight" id="id17">
-<span id="equation-eq"></span><span class="eqno">(17)<a class="headerlink" href="#id17" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id16">
+<span id="equation-eq"></span><span class="eqno">(16)<a class="headerlink" href="#id16" title="Permalink to this equation">¶</a></span>\[\begin{align}
     M_{ij} =\Big(\sum_{k=\textrm{max}\{i,j\}}^2 m_k\Big)L_iL_j I_3\in\mathbb{R}^{3\times 3}
 \end{align}\]</div>
 <p>is the inertia matrix of the system, <span class="math notranslate nohighlight">\(I_3\)</span> is the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix, and <span class="math notranslate nohighlight">\(e_3 = [0,0,1]^T\)</span>. Noticing that when <span class="math notranslate nohighlight">\(i=j\)</span> we get</p>
-<div class="math notranslate nohighlight" id="id18">
-<span id="equation-eq"></span><span class="eqno">(18)<a class="headerlink" href="#id18" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id17">
+<span id="equation-eq"></span><span class="eqno">(17)<a class="headerlink" href="#id17" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \omega_i^T\hat{q}_i^T\hat{q}_i\omega_i = \omega_i^T(I_3-q_iq_i^T)\omega_i = \omega_i^T\omega_i,
 \end{align}\]</div>
 <p>we simplify the notation writing</p>
-<div class="math notranslate nohighlight" id="id19">
-<span id="equation-eq"></span><span class="eqno">(19)<a class="headerlink" href="#id19" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id18">
+<span id="equation-eq"></span><span class="eqno">(18)<a class="headerlink" href="#id18" title="Permalink to this equation">¶</a></span>\[\begin{align}
     T(q,\omega) = \frac{1}{2}\sum_{i,j=1}^2\Big(\omega_i^TR(q)_{ij}\omega_j\Big)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R(q)\in\mathbb{R}^{6\times 6}\)</span> is a symmetric block matrix defined as</p>
-<div class="math notranslate nohighlight" id="id20">
-<span id="equation-eq"></span><span class="eqno">(20)<a class="headerlink" href="#id20" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id19">
+<span id="equation-eq"></span><span class="eqno">(19)<a class="headerlink" href="#id19" title="Permalink to this equation">¶</a></span>\[\begin{align}
     R(q)_{ii} = \Big(\sum_{j=i}^2m_j\Big)L_i^2I_3\in\mathbb{R}^{3\times 3},
 \end{align}\]</div>
-<div class="math notranslate nohighlight" id="id21">
-<span id="equation-eq"></span><span class="eqno">(21)<a class="headerlink" href="#id21" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id20">
+<span id="equation-eq"></span><span class="eqno">(20)<a class="headerlink" href="#id20" title="Permalink to this equation">¶</a></span>\[\begin{align}
     R(q)_{ij} = \Big(\sum_{k=j}^2 m_k\Big)L_iL_j\hat{q}_i^T\hat{q}_j\in\mathbb{R}^{3\times 3} = R(q)_{ji}^T,\; i&lt;j.
 \end{align}\]</div>
 <p>Precisely, the equations of motion write:</p>
-<div class="math notranslate nohighlight" id="id22">
-<span id="equation-eq"></span><span class="eqno">(22)<a class="headerlink" href="#id22" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id21">
+<span id="equation-eq"></span><span class="eqno">(21)<a class="headerlink" href="#id21" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \dot{q}_1 = \hat{\omega}_1q_1,\quad \dot{q}_2 = \hat{\omega}_2q_2,
 \end{align}\]</div>
-<div class="math notranslate nohighlight" id="id23">
-<span id="equation-eq"></span><span class="eqno">(23)<a class="headerlink" href="#id23" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id22">
+<span id="equation-eq"></span><span class="eqno">(22)<a class="headerlink" href="#id22" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     R(q)\begin{bmatrix}
     \dot{\omega}_1 \\ \dot{\omega}_2
     \end{bmatrix}=
@@ -175,21 +170,21 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{bmatrix},
 \end{align}\end{split}\]</div>
 <p>where</p>
-<div class="math notranslate nohighlight" id="id24">
-<span id="equation-eq"></span><span class="eqno">(24)<a class="headerlink" href="#id24" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id23">
+<span id="equation-eq"></span><span class="eqno">(23)<a class="headerlink" href="#id23" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     R(q) = \begin{bmatrix}
     (m_1+m_2)L_1^2I_3 &amp; m_2L_1L_2\hat{q}_1^T\hat{q}_2 \\
     m_2L_1L_2\hat{q}_2^T\hat{q}_1 &amp; m_2L_2^2I_3
     \end{bmatrix}.
 \end{align}\end{split}\]</div>
 <p>As presented above, the matrix <span class="math notranslate nohighlight">\(R(q)\)</span> defines a linear invertible map of the space <span class="math notranslate nohighlight">\(T_{q_1}S^2\times T_{q_2}S^2\)</span> onto itself:</p>
-<div class="math notranslate nohighlight" id="id25">
-<span id="equation-eq"></span><span class="eqno">(25)<a class="headerlink" href="#id25" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id24">
+<span id="equation-eq"></span><span class="eqno">(24)<a class="headerlink" href="#id24" title="Permalink to this equation">¶</a></span>\[\begin{align}
     A_{(q_1,q_2)}:T_{q_1}S^2\times T_{q_2}S^2\rightarrow T_{q_1}S^2\times T_{q_2}S^2,\;[\omega_1,\omega_2]^T\rightarrow R(q)[\omega_1,\omega_2]^T.
 \end{align}\]</div>
 <p>We can easily see that it is well defined since</p>
 <div class="math notranslate nohighlight" id="eq-rq">
-<span id="equation-eq-rq"></span><span class="eqno">(26)<a class="headerlink" href="#eq-rq" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<span id="equation-eq-rq"></span><span class="eqno">(25)<a class="headerlink" href="#eq-rq" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     R(q)\begin{bmatrix}
     \omega_1 \\ \omega_2
     \end{bmatrix} = \begin{bmatrix}
@@ -202,17 +197,17 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{bmatrix}\in (TS^2)^2
 \end{align}\end{split}\]</div>
 <p>with</p>
-<div class="math notranslate nohighlight" id="id26">
-<span id="equation-eq"></span><span class="eqno">(27)<a class="headerlink" href="#id26" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id25">
+<span id="equation-eq"></span><span class="eqno">(26)<a class="headerlink" href="#id25" title="Permalink to this equation">¶</a></span>\[\begin{align}
     r_1(q,\omega):=(m_1+m_2)L_1^2v_1+m_2L_1L_2\hat{q}_2\hat{v}_2q_2,
 \end{align}\]</div>
-<div class="math notranslate nohighlight" id="id27">
-<span id="equation-eq"></span><span class="eqno">(28)<a class="headerlink" href="#id27" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id26">
+<span id="equation-eq"></span><span class="eqno">(27)<a class="headerlink" href="#id26" title="Permalink to this equation">¶</a></span>\[\begin{align}
     r_2(q,\omega):=m_2L_1L_2\hat{q}_1\hat{v}_1q_1+m_2L_2^2v_2.
 \end{align}\]</div>
-<p>This map guarantees that if we rewrite the pair of equations for the angular velocities in <span class="xref std std-ref">(23)</span> as</p>
-<div class="math notranslate nohighlight" id="id28">
-<span id="equation-eq"></span><span class="eqno">(29)<a class="headerlink" href="#id28" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<p>This map guarantees that if we rewrite the pair of equations for the angular velocities in <span class="xref std std-ref">(22)</span> as</p>
+<div class="math notranslate nohighlight" id="id27">
+<span id="equation-eq"></span><span class="eqno">(28)<a class="headerlink" href="#id27" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{split}
     \dot{\omega}&amp;= R^{-1}(q)\begin{bmatrix}
     (-m_2L_1L_2|\omega_2|^2\hat{q}_2 + (m_1+m_2)gL_1\hat{e}_3)q_1 \\
@@ -224,8 +219,8 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{split}
 \end{align}\end{split}\]</div>
 <p>then we are assured that there exists a pair of functions <span class="math notranslate nohighlight">\(a_1,a_2:TS^2\times TS^2\rightarrow\mathbb{R}^3\)</span> such that</p>
-<div class="math notranslate nohighlight" id="id29">
-<span id="equation-eq"></span><span class="eqno">(30)<a class="headerlink" href="#id29" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id28">
+<span id="equation-eq"></span><span class="eqno">(29)<a class="headerlink" href="#id28" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \dot{\omega} = \begin{bmatrix}
     a_1(q,\omega)\times q_1 \\ a_2(q,\omega)\times q_2
     \end{bmatrix} = \begin{bmatrix}
@@ -233,8 +228,8 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{bmatrix}.
 \end{align}\end{split}\]</div>
 <p>Since we want <span class="math notranslate nohighlight">\(a_i\times q_i = h_i\)</span>, we just impose <span class="math notranslate nohighlight">\(a_i=q_i\times h_i\)</span> and hence the whole vector field can be rewritten as</p>
-<div class="math notranslate nohighlight" id="id30">
-<span id="equation-eq"></span><span class="eqno">(31)<a class="headerlink" href="#id30" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id29">
+<span id="equation-eq"></span><span class="eqno">(30)<a class="headerlink" href="#id29" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{bmatrix}
     \dot{q}_1 \\ \dot{\omega}_1 \\ \dot{q}_2 \\ \dot{\omega}_2
     \end{bmatrix} = \begin{bmatrix}
@@ -242,8 +237,8 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{bmatrix} = F\vert_{(q,\omega)},
 \end{align}\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(h_i=h_i(q,\omega)\)</span> and</p>
-<div class="math notranslate nohighlight" id="id31">
-<span id="equation-eq"></span><span class="eqno">(32)<a class="headerlink" href="#id31" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+<div class="math notranslate nohighlight" id="id30">
+<span id="equation-eq"></span><span class="eqno">(31)<a class="headerlink" href="#id30" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
     \begin{bmatrix}
     h_1(q,\omega) \\ h_2(q,\omega)
     \end{bmatrix} = R^{-1}(q)\begin{bmatrix}
@@ -252,13 +247,13 @@ The configuration manifold of the system is <span class="math notranslate nohigh
     \end{bmatrix}.
 \end{align}\end{split}\]</div>
 <p>Therefore, we can express the whole vector field in terms of the infinitesimal generator of the action of <span class="math notranslate nohighlight">\(SE(3)\times SE(3)\)</span> as</p>
-<div class="math notranslate nohighlight" id="id32">
-<span id="equation-eq"></span><span class="eqno">(33)<a class="headerlink" href="#id32" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id31">
+<span id="equation-eq"></span><span class="eqno">(32)<a class="headerlink" href="#id31" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*(f(q,\omega))\vert_{(q,\omega)}=F\vert_{(q,\omega)}
 \end{align}\]</div>
 <p>through the function</p>
-<div class="math notranslate nohighlight" id="id33">
-<span id="equation-eq"></span><span class="eqno">(34)<a class="headerlink" href="#id33" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="math notranslate nohighlight" id="id32">
+<span id="equation-eq"></span><span class="eqno">(33)<a class="headerlink" href="#id32" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f : TS^2\times TS^2\rightarrow \mathfrak{se}(3)\times\mathfrak{se}(3)\simeq \mathbb{R}^{12},\;\;(q,\omega)\rightarrow (\omega_1, q_1\times h_1, \omega_2,q_2\times h_2).
 \end{align}\]</div>
 </section>

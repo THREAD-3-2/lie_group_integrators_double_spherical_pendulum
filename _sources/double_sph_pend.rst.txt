@@ -63,16 +63,7 @@ We can think of :math:`\Psi` as a Lie group action on :math:`TS^2` since, for an
         TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
     \end{align}
 
-into other points of :math:`TS_{|q|}^2`. Moreover, with standard arguments, it is possible to prove that the orbit of a generic point :math:`m=(q,\omega)\in\mathbb{R}^6` with :math:`\omega^Tq=0` coincides with
-
-.. math::
-    :name: eq: 
-    
-    \begin{align}
-        \textrm{Orb}(m)=TS_{|q|}^2.
-    \end{align}
-
-In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\Psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
+into other points of :math:`TS_{|q|}^2`. In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\Psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
 
 .. math::
     :name: eq: 
@@ -294,7 +285,7 @@ with
         r_2(q,\omega):=m_2L_1L_2\hat{q}_1\hat{v}_1q_1+m_2L_2^2v_2. 
     \end{align}
 
-This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(23) <eq:rq>` as
+This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(22) <eq:rq>` as
 
 .. math::
     :name: eq: 
