@@ -49,6 +49,124 @@ using the <a class="reference external" href="https://github.com/sphinx-contrib/
 </section>
 <section id="src-integrators">
 <h2>src/integrators<a class="headerlink" href="#src-integrators" title="Permalink to this heading">¶</a></h2>
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.RK4">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RK4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">time</span></em>, <em class="sig-param"><span class="pre">z0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classical implementation of Runge-Kutta of order 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – right hand side of the ODE</p></li>
+<li><p><strong>time</strong> – time</p></li>
+<li><p><strong>z0</strong> – initial value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.LieEuler">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">LieEuler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.LieEuler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lie-Euler time integrator (Runge-Kutta-Munthe-Kaas method of order 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1) order 1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.LieEulerHeun">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">LieEulerHeun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.LieEulerHeun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 2, based on Heun scheme</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.CommFreeRKMK4">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">CommFreeRKMK4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.CommFreeRKMK4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.RKMK4">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.TwoCommRKMK4">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">TwoCommRKMK4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">h</span></em>, <em class="sig-param"><span class="pre">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.TwoCommRKMK4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 4 with two commutators</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – right hand side of the ODE</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.integrators.RKMK3">
+<span class="sig-prename descclassname"><span class="pre">src.integrators.</span></span><span class="sig-name descname"><span class="pre">RKMK3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">p</span></em>, <em class="sig-param"><span class="pre">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrators.RKMK3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runge-Kutta-Munthe-Kaas time integrator order 3</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>p</strong> – solution at time t_n</p></li>
+<li><p><strong>h</strong> – time step size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>solution at time t_(n + 1)</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="src-lie-group-functions">
 <h2>src/Lie_group_functions<a class="headerlink" href="#src-lie-group-functions" title="Permalink to this heading">¶</a></h2>
