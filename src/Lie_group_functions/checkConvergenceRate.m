@@ -63,7 +63,7 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
             z3 = COMMFREERK4(f, action, dt, z3);
             z4 = RKMK4(vecField, action, z4, dt);
             z5 = TwoCommRKMK4(f, action, dt, z5);
-            z6 = LieRK3_SE3N(vecField, action, z6, dt);
+            z6 = RKMK3(vecField, action, z6, dt);
         end
 
         %% Comparison with ODE45

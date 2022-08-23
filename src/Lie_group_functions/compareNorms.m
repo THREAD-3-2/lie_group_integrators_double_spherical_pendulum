@@ -48,7 +48,7 @@ function [v, N] = compareNorms(f, action, vecField, z0, L, m)
         z3(:, i + 1) = COMMFREERK4(f, action, dt, z3(:, i));
         z4(:, i + 1) = RKMK4(vecField, action, z4(:, i), dt);
         z5(:, i + 1) = TwoCommRKMK4(f, action, dt, z5(:, i));
-        z6(:, i + 1) = LieRK3_SE3N(vecField, action, z6(:, i), dt);
+        z6(:, i + 1) = RKMK3(vecField, action, z6(:, i), dt);
     end
     
     v(:, :, 3) = getNorms(z1);
