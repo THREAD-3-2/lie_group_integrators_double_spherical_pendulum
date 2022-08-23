@@ -72,47 +72,8 @@ For a given Runge–Kutta method, there are some clever tricks that can be done 
    f_{n,4} &amp;= h f(\exp(f_{n,3})\cdot y_n), &amp;  \\
    y_{n+1} &amp;= \exp(\tfrac{1}{6}(f_{n,1}+2f_{n,2}+2f_{n,3}+f_{n,4}-\tfrac12[f_{n,1},f_{n,4}]))\cdot y_n.
 \end{align}\end{split}\]</div>
-<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the particular Lie algebra we use. For instance, for the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{so}(3)\)</span> one has</p>
-<div class="math notranslate nohighlight">
-\[\begin{align}
-    \textrm{dexp}_u^{-1}(v)=v - \frac12 u\times v + \alpha^{-2}(1-\tfrac{\alpha}{2}\cot\tfrac{\alpha}{2})\; u\times (u\times v)
-\end{align}\]</div>
-</section>
-<section id="an-exact-expression-for-dexpinv-in-se-3">
-<span id="dexpinvse3"></span><h2>An exact expression for dexpinv in se(3)<a class="headerlink" href="#an-exact-expression-for-dexpinv-in-se-3" title="Permalink to this heading">¶</a></h2>
-<p>As an alternative to using a truncated version of the infinite series for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> <a class="reference internal" href="#eq-3"><span class="std std-ref">(3)</span></a>, one can consider exact expressions obtained for certain Lie algebras. Since <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> is particularly important in applications to mechanics, we give here its exact expression. For this, we represent elements of <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> as a
-pair <span class="math notranslate nohighlight">\((A,a)\in\mathbb{R}^3\times\mathbb{R}^3\cong\mathbb{R}^6\)</span>, the first component corresponding to a skew-symmetric matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>
-via the hat map and <span class="math notranslate nohighlight">\(a\)</span> is the translational part. Now, let <span class="math notranslate nohighlight">\(\varphi(z)\)</span> be a real analytic function at <span class="math notranslate nohighlight">\(z=0\)</span>. We define</p>
-<div class="math notranslate nohighlight">
-\[\begin{align}
-    \varphi_+(z) = \frac{\varphi(iz)+\varphi(-iz)}{2},\qquad \varphi_-(z) = \frac{\varphi(iz)-\varphi(-iz)}{2i}
-\end{align}\]</div>
-<p>We next define the four functions</p>
-<div class="math notranslate nohighlight">
-\[\begin{align}
-    g_1(z) = \frac{\varphi_-(z)}{z},\ \tilde{g}_1(z) = \frac{g_1'(z)}{z},\quad
-    g_2(z) = \frac{\varphi(0)-\varphi_+(z)}{z^2},\ \tilde{g}_2(z)=\frac{g_2'(z)}{z}
-\end{align}\]</div>
-<p>and the two scalars <span class="math notranslate nohighlight">\(\rho=A^Ta\)</span>, <span class="math notranslate nohighlight">\(\alpha=\|A\|_2\)</span>. One can show that for any <span class="math notranslate nohighlight">\((A,a)\)</span> and <span class="math notranslate nohighlight">\((B,b)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, it holds that</p>
-<div class="math notranslate nohighlight">
-\[\begin{align}
-    \varphi(\textrm{ad}_{(A,a)})(B,b) = (C,c)
-\end{align}\]</div>
-<p>where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}
-    C&amp;=\varphi(0)B + g_1(\alpha) A\times B + g_2(\alpha)\, A\times (A\times B)\\
-    c&amp;=\varphi(0)b + g_1(\alpha)\, (a\times B+A\times b)
-    +\rho\tilde{g}_1(\alpha)\,A\times B  + \rho\tilde{g}_2(\alpha)\, A\times (A\times B)\\
-    &amp;+ g_2(\alpha)\, (a\times (A\times B)+A\times (a\times B) + A\times (A\times b))
-\end{align}\end{split}\]</div>
-<p>Considering for instance <a class="reference internal" href="#eq-3"><span class="std std-ref">(3)</span></a>, we may now use <span class="math notranslate nohighlight">\(\varphi(z)=\frac{z}{e^z-1}\)</span> to calculate</p>
-<div class="math notranslate nohighlight">
-\[\begin{align}
-    g_1(z) = -\frac12,\ \tilde{g}_1(z)=0,\ g_2(z) = \frac{1-\tfrac{z}{2}\cot\tfrac{z}{2}}{z^2},\
-    \tilde{g}_2(z)=\frac1z\frac{d}{dz}g_2(z),\ \varphi(0)=1.
-\end{align}\]</div>
-<p>and thereby obtain an expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_{(A,a)}^{-1}(B,b)\)</span> with the formula above.</p>
+<p><a class="reference external" href="https://doi.org/10.1016/S0045-7825(02)00520-0">https://doi.org/10.1016/S0045-7825(02)00520-0</a></p>
+<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the particular Lie algebra we use. An expression for  <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{so}(3)\)</span> was shown in <a class="reference external" href="https://doi.org/10.1016/S0045-7825(02)00520-0">(Celledoni and Owren, (2003) Computer Methods in Applied Mechanics and Engineering)</a>. We provide an exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)`in :math:\)</span>mathfrak{se}(3)` in <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a></p>
 </section>
 <section id="commutator-free-methods">
 <span id="cfmethods"></span><h2>Commutator-free methods<a class="headerlink" href="#commutator-free-methods" title="Permalink to this heading">¶</a></h2>
@@ -160,7 +121,6 @@ via the hat map and <span class="math notranslate nohighlight">\(a\)</span> is t
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Two classes of Lie group integrators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#runge-kutta-munthe-kaas-rkmk-methods">Runge-Kutta-Munthe-Kaas (RKMK) methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#an-exact-expression-for-dexpinv-in-se-3">An exact expression for dexpinv in se(3)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commutator-free-methods">Commutator-free methods</a></li>
 </ul>
 </li>
