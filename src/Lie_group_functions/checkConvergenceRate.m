@@ -24,7 +24,7 @@ function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
     
     z0Ref = [q0; w0]; %We reorder the initial condition to make ode45 work withour reordering the equations i.e. we pass from [q_1,w_1,...,q_N,w_N] to [q_1,q_2,...,q_N,w_1,w_2,...,w_N]
     odeFunc = @(t, z) [FuncQ(z); FuncW(z, L, m)]; %FuncQ,FuncW just assemble the first N and last N equations
-    options = odeset('AbsTol', 1e - 12, 'RelTol', 1e - 12);
+    options = odeset('AbsTol', 1e-12, 'RelTol', 1e-12);
     [timeSol,zSol] = ode45(odeFunc, [0 T], z0Ref, options);
     zSol = zSol';
     zSol = reorder(zSol); %we pass from [q_1,q_2,...,q_N,w_1,w_2,...,w_N] to [q_1,w_1,...,q_N,w_N] so that we can compare it easily with the
