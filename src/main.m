@@ -69,7 +69,7 @@ if C1 == 1
     zC(:, 1) = z0;
     for i = 1 : N - 1
         zC(:, i + 1) = FreeRK4SE3N(f, action, dt, zC(:, i));         
-%         zC(:, i + 1) = solveRK4(FuncW, time, z0);
+%         zC(:, i + 1) = RK4(FuncW, time, z0);
 
         qC(:, i + 1) = extractq(zC(:, i + 1));
         pC(:, i + 1) = Mat * qC(:, i + 1);

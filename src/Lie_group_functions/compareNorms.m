@@ -22,7 +22,7 @@ function [v, N] = compareNorms(f, action, vecField, z0, L, m)
     zSolODE45 = zSol';
     zSolODE45 = reorder(zSolODE45);
 
-    zSol = solveRK4(odeFunc, time, z0Ref); %Solve it with Runge Kutta 4
+    zSol = RK4(odeFunc, time, z0Ref); %Solve it with Runge Kutta 4
     zSol = reorder(zSol);
     
     v = zeros(M, N, 8); %Tensor where we store the norms
