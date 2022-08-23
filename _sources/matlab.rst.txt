@@ -75,6 +75,10 @@ src/Lie_group_functions
 
 .. mat:autofunction:: src.Lie_group_functions.initializeSE3N
 
+.. mat:autofunction:: src.Lie_group_functions.commutatorSE3
+
+.. mat:autofunction:: src.Lie_group_functions.commutatorSE3N
+
 .. mat:autofunction:: src.Lie_group_functions.checkConvergenceRate
 
 .. mat:autofunction:: src.Lie_group_functions.checkTangency

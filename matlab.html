@@ -462,6 +462,40 @@ with u and v 3x1 column vectors</p>
 </dd></dl>
 
 <dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.commutatorSE3">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">commutatorSE3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">u</span></em>, <em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.commutatorSE3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the commutator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element in the Lie algebra se(3), represented as a 6x1 vector</p></li>
+<li><p><strong>v</strong> – element in the Lie algebra se(3), represented as a 6x1 vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>commutator [u,v] = [(u1,u2),(v1,v2)] = (u1 x v1, u1 x v2 - v1 x u2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="src.Lie_group_functions.commutatorSE3N">
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">commutatorSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">u</span></em>, <em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.commutatorSE3N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the commutator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element of se(3)^N</p></li>
+<li><p><strong>v</strong> – element of se(3)^N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>commutator [u, v]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.checkConvergenceRate">
 <span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkConvergenceRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkConvergenceRate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
