@@ -44,7 +44,7 @@ function [v, N] = compareNorms(f, action, vecField, z0, L, m)
 
     for i = 1 : N - 1
         z1(:, i + 1) = LieEulerSE3N(vecField, action, z1(:,i), dt);
-        z2(: ,i + 1) = EulerHeunSE3N(vecField, action, z2(:, i), dt);
+        z2(: ,i + 1) = LieEulerHeunSE3N(vecField, action, z2(:, i), dt);
         z3(:, i + 1) = FreeRK4SE3N(f, action, dt, z3(:, i));
         z4(:, i + 1) = LieRK4_SE3N(vecField, action, z4(:, i), dt);
         z5(:, i + 1) = TwoCommRK4SE3N(f, action, dt, z5(:, i));
