@@ -89,6 +89,10 @@ src/Lie_group_functions
 
 .. mat:autofunction:: src.Lie_group_functions.getNorms
 
+.. mat:autofunction:: src.Lie_group_functions.getVec
+
+.. mat:autofunction:: src.Lie_group_functions.getBlock
+
 .. mat:autofunction:: src.Lie_group_functions.potential
 
 .. mat:autofunction:: src.Lie_group_functions.reorder
