@@ -23,15 +23,21 @@ src/integrators
 
 .. mat:autofunction:: src.integrators.RK4
 
+
 .. mat:autofunction:: src.integrators.LieEuler
+
 
 .. mat:autofunction:: src.integrators.LieEulerHeun
 
+
 .. mat:autofunction:: src.integrators.CommFreeRKMK4 
+
 
 .. mat:autofunction:: src.integrators.RKMK4 
 
+
 .. mat:autofunction:: src.integrators.TwoCommRKMK4 
+
 
 .. mat:autofunction:: src.integrators.RKMK3 
 
@@ -41,58 +47,86 @@ src/Lie_group_functions
 
 .. mat:autofunction:: src.Lie_group_functions.expRodrigues
 
+
 .. mat:autofunction:: src.Lie_group_functions.expSE3
+
 
 .. mat:autofunction:: src.Lie_group_functions.exponentialSE3N
 
+
 .. mat:autofunction:: src.Lie_group_functions.actionSE3
+
 
 .. mat:autofunction:: src.Lie_group_functions.actionSE3N
 
+
 .. mat:autofunction:: src.Lie_group_functions.dexpinvSE3
+
 
 .. mat:autofunction:: src.Lie_group_functions.dexpinvSE3N
 
+
 .. mat:autofunction:: src.Lie_group_functions.fManiToAlgebra
+
 
 .. mat:autofunction:: src.Lie_group_functions.assembleF
 
+
 .. mat:autofunction:: src.Lie_group_functions.assembleM
+
 
 .. mat:autofunction:: src.Lie_group_functions.assembleR
 
+
 .. mat:autofunction:: src.Lie_group_functions.FuncQ
+
 
 .. mat:autofunction:: src.Lie_group_functions.FuncW
 
+
 .. mat:autofunction:: src.Lie_group_functions.extractq
+
 
 .. mat:autofunction:: src.Lie_group_functions.extractw
 
+
 .. mat:autofunction:: src.Lie_group_functions.hat
+
 
 .. mat:autofunction:: src.Lie_group_functions.initializeStat
 
+
 .. mat:autofunction:: src.Lie_group_functions.initializeSE3N
+
 
 .. mat:autofunction:: src.Lie_group_functions.commutatorSE3
 
+
 .. mat:autofunction:: src.Lie_group_functions.commutatorSE3N
+
 
 .. mat:autofunction:: src.Lie_group_functions.checkConvergenceRate
 
+
 .. mat:autofunction:: src.Lie_group_functions.checkTangency
+
 
 .. mat:autofunction:: src.Lie_group_functions.tangentBehaviour
 
+
 .. mat:autofunction:: src.Lie_group_functions.compareNorms
+
 
 .. mat:autofunction:: src.Lie_group_functions.getNorms
 
+
 .. mat:autofunction:: src.Lie_group_functions.getVec
+
 
 .. mat:autofunction:: src.Lie_group_functions.getBlock
 
+
 .. mat:autofunction:: src.Lie_group_functions.potential
+
 
 .. mat:autofunction:: src.Lie_group_functions.reorder
