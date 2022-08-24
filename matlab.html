@@ -303,177 +303,58 @@ with u and v 3x1 column vectors</p>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.fManiToAlgebra">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">fManiToAlgebra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">w</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.fManiToAlgebra" title="Permalink to this definition">¶</a></dt>
-<dd><p>RHS of the system</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
-<li><p><strong>w</strong> – angular velocities vector [w1, …, wN] in T_{qi}S^2</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>vector field of the system</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">fManiToAlgebra</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.fManiToAlgebra" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.assembleF">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">w</span></em>, <em class="sig-param"><span class="pre">m</span></em>, <em class="sig-param"><span class="pre">L</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleF" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function defines the right hand side, precisely we need it to define the equations for the angular velocities, which now becomes R(q)w’ = F, and here we assemble this F vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
-<li><p><strong>w</strong> – angular velocities vector [w1, …, wN] in T_{qi}S^2</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>equations for the angular velocities of the form R(q)w’ = F</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleF</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.assembleM">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleM" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>inertia mass matrix of the system</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.assembleR">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleR" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>symmetric block matrix used in the equations for the angular velocities</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">assembleR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.assembleR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.FuncQ">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncQ" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is used to integrate with ODE45</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>z</strong> – is of the form z = [q1, q2, …, qP, w1, w2, …, wP]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the part of the vector field for the dot{q}_i, so hat(w_i)*q_i</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.FuncW">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncW" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is used to integrate with ODE45</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>z</strong> – is of the form z = [q1, q2, …, qP, w1, w2, …, wP]</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the part of the vector field for the dot{w}_i, so R(q)^{-1}*RHS of the ODE, defined by assembleF</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">FuncW</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.FuncW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.extractq">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractq" title="Permalink to this definition">¶</a></dt>
-<dd><p>extracts the q components from [q, w]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>v</strong> – input vector v = [q1, w1, q2, w2, …, qN, wN]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the q components of v, q = [q1,q2,…,qN]</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractq</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.extractw">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractw" title="Permalink to this definition">¶</a></dt>
-<dd><p>extracts the w components from [q, w]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>v</strong> – input vector v = [q1, w1, q2, w2, …, qN, wN]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the w components of v, w = [w1, w2, …, wN]</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">extractw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.extractw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.hat">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">hat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.hat" title="Permalink to this definition">¶</a></dt>
-<dd><p>It returns the skew symmetric matrix A associated to the vector v</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>v</strong> – vector with 3 components</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>element of the Lie algebra so(3) (skew symmetric 3x3 matrix)</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">hat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.hat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.initializeStat">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeStat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">N</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeStat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialization of the system</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>N</strong> – number of connected pendula</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>initial positions for q and w of the N-fold pendulum</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeStat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeStat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.initializeSE3N">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeSE3N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">N</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeSE3N" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method randomly picks a point in (TS^2)^N</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>N</strong> – number of the connected pendula</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>randomly picked point in (TS^2)^N</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">initializeSE3N</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.initializeSE3N" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.commutatorSE3">
@@ -511,155 +392,48 @@ with u and v 3x1 column vectors</p>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.checkConvergenceRate">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkConvergenceRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkConvergenceRate" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> – map f from the phase space (on which the vector field is defined) to the Lie algebra</p></li>
-<li><p><strong>action</strong> – Lie group action</p></li>
-<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
-<li><p><strong>z0</strong> – initial value</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>plots with the convergence rates of the tested methods</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkConvergenceRate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkConvergenceRate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.checkTangency">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkTangency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkTangency" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>z</strong> – [q1,q2,..,qN,w1,w2,…,wN]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>matrix with the solutions, each column is a set [q1,w1,…,qN,wN] at a specific time t_j, where j is the column of v where this solution is stored</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">checkTangency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.checkTangency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.tangentBehaviour">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">tangentBehaviour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.tangentBehaviour" title="Permalink to this definition">¶</a></dt>
-<dd><p>In this method we solve the equation and compute the tangentiality conditions for the solutions obtained with the various schemes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> – map f from the phase space (on which the vector field is defined) to the Lie algebra</p></li>
-<li><p><strong>action</strong> – Lie group action</p></li>
-<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
-<li><p><strong>z0</strong> – initial value</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>N - the number of time instants considered and v - the tangentiality contidion at time tj for the i-th pendulum</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">tangentBehaviour</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.tangentBehaviour" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.compareNorms">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">compareNorms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.compareNorms" title="Permalink to this definition">¶</a></dt>
-<dd><p>It solves the ODE in time with various numerical schemes and then computes the 2-norms of the qis, which are extracted and stored in v.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> – map f from the phase space (on which the vector field is defined) to the Lie algebra</p></li>
-<li><p><strong>action</strong> – Lie group action</p></li>
-<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
-<li><p><strong>z0</strong> – initial value</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>v - thevector where the 2-norms of the qis are stored and N - the number of time instants considered</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">compareNorms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.compareNorms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.getNorms">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getNorms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getNorms" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>z</strong> – [q1,q2,..,qN,w1,w2,…,wN]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>norms of the q components</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getNorms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getNorms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.getVec">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getVec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vec</span></em>, <em class="sig-param"><span class="pre">i</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getVec" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vec</strong> – vector</p></li>
-<li><p><strong>i</strong> – index</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>i-th term of the input vector</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getVec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.getBlock">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">Mat</span></em>, <em class="sig-param"><span class="pre">i</span></em>, <em class="sig-param"><span class="pre">j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getBlock" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Mat</strong> – a matrix</p></li>
-<li><p><strong>i</strong> – index</p></li>
-<li><p><strong>j</strong> – index</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>3x3 block in position i-j of a matrix Mat</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">getBlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.getBlock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.potential">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.potential" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> – position vector [q1, …, qN] in S^2</p></li>
-<li><p><strong>L</strong> – length of the pendulum</p></li>
-<li><p><strong>m</strong> – mass of the pendulum</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>potential energy of the system</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">potential</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.potential" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.reorder">
-<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">reorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.reorder" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function reorders z to the format used in the Lie group integrators setting</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>z</strong> – [q1,q2,..,qN,w1,w2,…,wN]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>[q1,w1,q2,w2,…,qN,wN]</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">reorder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.reorder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </section>
 </section>
