@@ -1,4 +1,13 @@
-function [] = checkConvergenceRate(f,action,vecField,z0,L,m)
+function [] = checkConvergenceRate(f, action, vecField, z0, L, m)
+%
+% :param f: map f from the phase space (on which the vector field is defined) to the Lie algebra
+% :param action: Lie group action
+% :param vecField: right hand side of the ODE
+% :param z0: initial value
+% :param L: length of the pendulum
+% :param m: mass of the pendulum
+%
+% :returns: plots with the convergence rates of the tested methods
 
     T = 0.1;
     
