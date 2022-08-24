@@ -4,7 +4,7 @@
 The double spherical pendulum
 =============================
 
-In the paper `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we discuss in detail the N-fold spherical pendulum, which is an example of the initial value problem discussed in the first `section <https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/lie_group_integrators.html`_. 
+In the paper `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we discuss in detail the N-fold spherical pendulum, which is an example of the initial value problem discussed in the first `section <https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/lie_group_integrators.html>`_. 
 We consider here the special case of the double spherical pendulum,  :math:`N = 2`. 
 We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold :math:`S^2` and the phase space :math:`T_{q_{i}(t)}S^2`.
 
