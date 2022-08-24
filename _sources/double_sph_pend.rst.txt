@@ -29,7 +29,7 @@ Transitive group action on :math:`(TS^2)^2`
 -------------------------------------------
 
 In `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we characterize a transitive action for :math:`(TS^2)^N`, starting with the case :math:`N=1` and generalizing it to :math:`N>1` . 
-The action we consider is based on the identification between :math:`\mathfrak{se}(3)`, the Lie algebra of :math:`SE(3)`, and :math:`\mathbb{R}^6`. We start from the Ad-action of :math:`SE(3)` on :math:`\mathfrak{se}(3)`, which writes
+The action we consider is based on the identification between :math:`\mathfrak{se}(3)`, the Lie algebra of :math:`SE(3)`, and :math:`\mathbb{R}^6`. We start from the Ad-action of :math:`SE(3)` on :math:`\mathfrak{se}(3)`, which is
 
 .. math::
     :name: eq: 
@@ -63,7 +63,7 @@ We can think of :math:`\Psi` as a Lie group action on :math:`TS^2` since, for an
         TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
     \end{align}
 
-into other points of :math:`TS_{|q|}^2`. In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\Psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which writes
+into other points of :math:`TS_{|q|}^2`. In particular, when :math:`q\in\mathbb{R}^3` is a unit vector (i.e. :math:`q\in S^2`), :math:`\Psi` allows us to define a transitive Lie group action on :math:`TS^2=TS_{|q|=1}^2` which is
 
 .. math::
     :name: eq: 
@@ -127,7 +127,7 @@ With this group structure defined, we can write the action follows
         \end{split}
     \end{align}
 
-whose infinitesimal generator writes
+whose infinitesimal generator is
 
 .. math::
     :name: eq: 
@@ -154,7 +154,7 @@ More precisely, we find a function :math:`F:(TS^2)^2\rightarrow \mathfrak{se}(3)
     \end{align}
 
 The derivation of :math:`F` starting from the Lagrangian of the system can be found in the section devoted to mechanical systems on :math:`(S^2)^2` of `(Lee, Leok and McClamroch, (2018)) <https://doi.org/10.1007/978-3-319-56953-6>`_. 
-The configuration manifold of the system is :math:`(S^2)^2`, while the Lagrangian, expressed in terms of the variables :math:`(q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2`, writes
+The configuration manifold of the system is :math:`(S^2)^2`, while the Lagrangian, expressed in terms of the variables :math:`(q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2`, is
 
 .. math::
     :name: eq: 

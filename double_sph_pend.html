@@ -52,7 +52,7 @@ We denote with <span class="math notranslate nohighlight">\(m_1, m_2\)</span> th
 <section id="transitive-group-action-on-ts-2-2">
 <span id="trans-action"></span><h2>Transitive group action on <span class="math notranslate nohighlight">\((TS^2)^2\)</span><a class="headerlink" href="#transitive-group-action-on-ts-2-2" title="Permalink to this heading">¶</a></h2>
 <p>In <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we characterize a transitive action for <span class="math notranslate nohighlight">\((TS^2)^N\)</span>, starting with the case <span class="math notranslate nohighlight">\(N=1\)</span> and generalizing it to <span class="math notranslate nohighlight">\(N&gt;1\)</span> .
-The action we consider is based on the identification between <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, the Lie algebra of <span class="math notranslate nohighlight">\(SE(3)\)</span>, and <span class="math notranslate nohighlight">\(\mathbb{R}^6\)</span>. We start from the Ad-action of <span class="math notranslate nohighlight">\(SE(3)\)</span> on <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, which writes</p>
+The action we consider is based on the identification between <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, the Lie algebra of <span class="math notranslate nohighlight">\(SE(3)\)</span>, and <span class="math notranslate nohighlight">\(\mathbb{R}^6\)</span>. We start from the Ad-action of <span class="math notranslate nohighlight">\(SE(3)\)</span> on <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, which is</p>
 <div class="math notranslate nohighlight" id="id2">
 <span id="equation-eq"></span><span class="eqno">(2)<a class="headerlink" href="#id2" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \textrm{Ad} : SE(3)\times \mathfrak{se}(3) \rightarrow \mathfrak{se}(3),
@@ -71,7 +71,7 @@ The action we consider is based on the identification between <span class="math 
 <span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
     TS_{|q|}^2:=\{(\tilde{q},\tilde{\omega})\in \mathbb{R}^3\times\mathbb{R}^3:\; \tilde{\omega}^T\tilde{q}=0,\;|\tilde{q}|=|q|\}\subset \mathbb{R}^6
 \end{align}\]</div>
-<p>into other points of <span class="math notranslate nohighlight">\(TS_{|q|}^2\)</span>. In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\Psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which writes</p>
+<p>into other points of <span class="math notranslate nohighlight">\(TS_{|q|}^2\)</span>. In particular, when <span class="math notranslate nohighlight">\(q\in\mathbb{R}^3\)</span> is a unit vector (i.e. <span class="math notranslate nohighlight">\(q\in S^2\)</span>), <span class="math notranslate nohighlight">\(\Psi\)</span> allows us to define a transitive Lie group action on <span class="math notranslate nohighlight">\(TS^2=TS_{|q|=1}^2\)</span> which is</p>
 <div class="math notranslate nohighlight" id="id6">
 <span id="equation-eq"></span><span class="eqno">(6)<a class="headerlink" href="#id6" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi : SE(3)\times TS^2 \rightarrow TS^2
@@ -108,7 +108,7 @@ More precisely, we consider the group <span class="math notranslate nohighlight"
     \Psi&amp;((A_1,a_1, A_2,a_2),(q_1,\omega_1, q_2,\omega_2)) =\\ &amp;=(A_1q_1,A_1\omega_1+\hat{a}_1A_1q_1, A_2q_2,A_2\omega_2+\hat{a}_2A_2q_2),
     \end{split}
 \end{align}\end{split}\]</div>
-<p>whose infinitesimal generator writes</p>
+<p>whose infinitesimal generator is</p>
 <div class="math notranslate nohighlight" id="id13">
 <span id="equation-eq"></span><span class="eqno">(13)<a class="headerlink" href="#id13" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \Psi_*(\xi)\vert_m =(\hat{u}_1q_1,\hat{u}_1\omega_1+\hat{v}_1q_1, \hat{u}_2q_2,\hat{u}_2\omega_2+\hat{v}_2q_2),
@@ -125,7 +125,7 @@ More precisely, we find a function <span class="math notranslate nohighlight">\(
     \Psi_*(f(m))\vert_m = F\vert_m,\;\;\forall m\in (TS^2)^2.
 \end{align}\]</div>
 <p>The derivation of <span class="math notranslate nohighlight">\(F\)</span> starting from the Lagrangian of the system can be found in the section devoted to mechanical systems on <span class="math notranslate nohighlight">\((S^2)^2\)</span> of <a class="reference external" href="https://doi.org/10.1007/978-3-319-56953-6">(Lee, Leok and McClamroch, (2018))</a>.
-The configuration manifold of the system is <span class="math notranslate nohighlight">\((S^2)^2\)</span>, while the Lagrangian, expressed in terms of the variables <span class="math notranslate nohighlight">\((q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2\)</span>, writes</p>
+The configuration manifold of the system is <span class="math notranslate nohighlight">\((S^2)^2\)</span>, while the Lagrangian, expressed in terms of the variables <span class="math notranslate nohighlight">\((q_1,\omega_1, q_2,\omega_2)\in (TS^2)^2\)</span>, is</p>
 <div class="math notranslate nohighlight" id="id15">
 <span id="equation-eq"></span><span class="eqno">(15)<a class="headerlink" href="#id15" title="Permalink to this equation">¶</a></span>\[\begin{align}
     L(q,\omega) = T(q,\omega)-U(q) =\frac{1}{2}\sum_{i,j=1}^2\Big(M_{ij}\omega_i^T\hat{q}_i^T\hat{q}_j\omega_j\Big) - \sum_{i=1}^2\Big(\sum_{j=i}^2 m_j\Big)gL_ie_3^Tq_i,
