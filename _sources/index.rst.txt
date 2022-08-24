@@ -10,7 +10,7 @@ Contents
 ========
 
 .. toctree::
-   installation
+   lie_group_integrators
    two_classes_lie_groups
    double_sph_pend
    matlab
