@@ -37,7 +37,7 @@ We define  :math:`\Psi_*:\mathfrak{g}\rightarrow\mathcal{X}(\mathcal{M})` to be 
 
 The transitivity of the action now ensures that :math:`\left.\Psi_*(\mathfrak{g})\right|_m=T_m\mathcal{M}` for any :math:`m\in\mathcal{M}`, such that any tangent vector :math:`v_m\in T_m\mathcal{M}` can be represented as :math:`v_m=\left.\Psi_*(\xi_v)\right|_m` for some :math:`\xi_v\in\mathfrak{g}` (:math:`\xi_v` may not be unique). 
 Consequently, for any vector field :math:`F\in\mathcal{X}(\mathcal{M})` there exists a map :math:`f:\mathcal{M}\rightarrow\mathfrak{g}`
-}} such that
+} such that
 
 .. math::
     :name: eq:
