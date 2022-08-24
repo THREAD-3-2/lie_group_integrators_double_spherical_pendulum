@@ -11,16 +11,18 @@ clc;
 clear all;
 close all;
 
-P = 2;   %number of the connected pendulums
 
+% add paths
+addpath('Lie_group_functions'); addpath('integrators');
+
+
+P = 2;   %number of the connected pendulums
 L = rand(P, 1); 
 m = rand(P, 1);
-
 L = 0 * L + 1;  %lengths of the links
 m = 10 * m + 1; %mass of the pendulums
 
 [q0, w0, z0] = initializeSE3N(P);  %point randomly picked in (TS^2)^2
-
 
 Energy = @(q, w) 0.5 * w' * assembleR(q, L, m) * w + potential(q, L, m);   %energy of the system
 
@@ -38,7 +40,6 @@ getw = @(v) extractw(v);
 f = @(v) fManiToAlgebra(getq(v), getw(v), L, m); 
 action = @(B, input) actionSE3N(B, input); 
 vecField = @(sigma, p) dexpinvSE3N(sigma, f(action(exponentialSE3N(sigma), p)));
-
 
 z = z0;
 qC = zeros(3 * P, N);
