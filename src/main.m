@@ -14,6 +14,8 @@ close all;
 
 % add paths
 addpath('Lie_group_functions'); addpath('integrators');
+addpath('equations_of_motion'); addpath('experiments');
+addpath('helpful_functions');
 
 
 P = 2;   %number of the connected pendulums
