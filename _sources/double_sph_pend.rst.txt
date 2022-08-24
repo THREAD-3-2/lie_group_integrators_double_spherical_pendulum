@@ -25,8 +25,8 @@ We denote with :math:`m_1, m_2` the masses of the pendulums and with :math:`L_1,
 
 .. _trans_action:
 
-Transitive group action on (TS^2)^2
------------------------------------
+Transitive group action on :math:`(TS^2)^2`
+-------------------------------------------
 
 In `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ we characterize a transitive action for :math:`(TS^2)^N`, starting with the case :math:`N=1` and generalizing it to :math:`N>1` . 
 The action we consider is based on the identification between :math:`\mathfrak{se}(3)`, the Lie algebra of :math:`SE(3)`, and :math:`\mathbb{R}^6`. We start from the Ad-action of :math:`SE(3)` on :math:`\mathfrak{se}(3)`, which writes
