@@ -1,4 +1,8 @@
 function v = getNorms(z)
+%
+% :param z: [q1,q2,..,qN,w1,w2,...,wN]
+%
+% :returns: norms of the q components
 
     %It just computes the norms of the qs, so the output is going to be a
     %matrix v where in each row we have the norm, at any time instant, of a
