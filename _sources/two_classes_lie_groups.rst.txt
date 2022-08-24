@@ -8,6 +8,7 @@ The simplest numerical integrator for linear spaces is the explicit Euler method
 Given an initial value problem :math:`\dot{y}=F(y)`, :math:`y(0)=y_0` the method is defined as :math:`y_{n+1}=y_n + hF(y_n)` for some stepsize :math:`h`. 
 In the spirit of the previous section, one could think of
 the Euler method as the :math:`h` -flow of the constant vector field :math:`F_{y_n}(y)=F(y_n)`, that is
+
 .. math::
     
     \begin{align}

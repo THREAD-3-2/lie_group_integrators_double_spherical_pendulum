@@ -40,13 +40,11 @@
 <p>The simplest numerical integrator for linear spaces is the explicit Euler method.
 Given an initial value problem <span class="math notranslate nohighlight">\(\dot{y}=F(y)\)</span>, <span class="math notranslate nohighlight">\(y(0)=y_0\)</span> the method is defined as <span class="math notranslate nohighlight">\(y_{n+1}=y_n + hF(y_n)\)</span> for some stepsize <span class="math notranslate nohighlight">\(h\)</span>.
 In the spirit of the previous section, one could think of
-the Euler method as the <span class="math notranslate nohighlight">\(h\)</span> -flow of the constant vector field <span class="math notranslate nohighlight">\(F_{y_n}(y)=F(y_n)\)</span>, that is
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">align</span><span class="p">}</span>
-    <span class="n">y_</span><span class="p">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="o">=</span> \<span class="n">exp</span><span class="p">(</span><span class="n">hF_</span><span class="p">{</span><span class="n">y_n</span><span class="p">})</span>\<span class="p">,</span><span class="n">y_n</span>
-\<span class="n">end</span><span class="p">{</span><span class="n">align</span><span class="p">}</span>
-</pre></div>
-</div>
+the Euler method as the <span class="math notranslate nohighlight">\(h\)</span> -flow of the constant vector field <span class="math notranslate nohighlight">\(F_{y_n}(y)=F(y_n)\)</span>, that is</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+    y_{n+1} = \exp(hF_{y_n})\,y_n
+\end{align}\]</div>
 <p>This definition of the Euler method makes sense also when <span class="math notranslate nohighlight">\(F\)</span> is replaced by a vector field on some manifold.
 In this general situation it is known as the Lie–Euler method.</p>
 <p>We briefly consider here two classes of methods known as Runge–Kutta–Munthe–Kaas (RKMK) methods and Commutator-free Lie group methods.
