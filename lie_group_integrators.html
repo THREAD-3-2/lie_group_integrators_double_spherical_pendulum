@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>&lt;no title&gt; &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
+    <title>Lie group integrators &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Two classes of Lie group integrators" href="two_classes_lie_groups.html" />
@@ -34,7 +35,70 @@
 
           <div class="body" role="main">
             
-  
+  <section id="lie-group-integrators">
+<span id="id1"></span><h1>Lie group integrators<a class="headerlink" href="#lie-group-integrators" title="Permalink to this heading">¶</a></h1>
+<section id="the-formulation-of-differential-equations-on-manifolds">
+<span id="diff-eqs-in-manifolds"></span><h2>The formulation of differential equations on manifolds<a class="headerlink" href="#the-formulation-of-differential-equations-on-manifolds" title="Permalink to this heading">¶</a></h2>
+<p>Lie group integrators solve differential equations whose solution evolve on a manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. For ease of notation we restrict the discussion to the case of autonomous vector fields, although allowing for explicit <span class="math notranslate nohighlight">\(t\)</span>-dependence could easily have been included.
+This means that we seek a curve <span class="math notranslate nohighlight">\(y(t)\in\mathcal{M}\)</span> whose tangent at any point coincides with a vector field <span class="math notranslate nohighlight">\(F\in\mathcal{X}(\mathcal{M})\)</span> and passing through a designated initial value
+<span class="math notranslate nohighlight">\(y_0\)</span> at <span class="math notranslate nohighlight">\(t=t_0\)</span></p>
+<div class="math notranslate nohighlight" id="eq-11">
+<span id="equation-eq-11"></span><span class="eqno">(1)<a class="headerlink" href="#eq-11" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dot{y}(t) = F|_{y(t)},\qquad y(t_0)=y_0.
+\end{align}\]</div>
+<p>Before addressing numerical methods for solving <span class="xref std std-ref">&lt;eq:11&gt;</span> it is necessary to introduce a convenient way of representing the vector field <span class="math notranslate nohighlight">\(F\)</span>. There are different ways of doing this.
+%One is to furnish <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> with a transitive action by some Lie group <span class="math notranslate nohighlight">\(G\)</span> of dimension <span class="math notranslate nohighlight">\(d\geq\dim \mathcal{M}\)</span>.
+One is to furnish <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> with a transitive action <span class="math notranslate nohighlight">\(\Psi: G \times \mathcal{M} \rightarrow \mathcal{M}\)</span> by some Lie group <span class="math notranslate nohighlight">\(G\)</span> of dimension <span class="math notranslate nohighlight">\(d\geq\dim \mathcal{M}\)</span>. We denote the action of <span class="math notranslate nohighlight">\(g\)</span> on <span class="math notranslate nohighlight">\(m\)</span> as <span class="math notranslate nohighlight">\(g\cdot m\)</span>, i.e. <span class="math notranslate nohighlight">\(g\cdot m=\Psi(g,m)\)</span>.
+Let <span class="math notranslate nohighlight">\(\g\)</span> be the Lie algebra of <span class="math notranslate nohighlight">\(G\)</span>, and denote by <span class="math notranslate nohighlight">\(\exp: \g\rightarrow G\)</span> the exponential map. We define  <span class="math notranslate nohighlight">\(\Psi_*:\g\rightarrow\mathcal{X}(\mathcal{M})\)</span> to be the infinitesimal generator of the action, i.e.</p>
+<div class="math notranslate nohighlight" id="eq">
+<span id="equation-eq"></span><span class="eqno">(2)<a class="headerlink" href="#eq" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \left.F_\xi\right|_m=  \left.\Psi_*(\xi)\right|_m = \left.\frac{d}{dt}\right|_{t=0} \Psi(\exp(t\xi), m)
+\end{align}\]</div>
+<p>The transitivity of the action now ensures that <span class="math notranslate nohighlight">\(\left.\Psi_*(\g)\right|_m=T_m\mathcal{M}\)</span> for any <span class="math notranslate nohighlight">\(m\in\mathcal{M}\)</span>, such that any tangent vector <span class="math notranslate nohighlight">\(v_m\in T_m\mathcal{M}\)</span> can be represented as <span class="math notranslate nohighlight">\(v_m=\left.\Psi_*(\xi_v)\right|_m\)</span> for some <span class="math notranslate nohighlight">\(\xi_v\in\g\)</span> (<span class="math notranslate nohighlight">\(\xi_v\)</span> may not be unique). Consequently, for any vector field <span class="math notranslate nohighlight">\(F\in\mathcal{X}(\mathcal{M})\)</span> there exists a map <span class="math notranslate nohighlight">\(f:\mathcal{M}\rightarrow\g\)</span>footnote{RE{If the Lie group action is smooth, a map <span class="math notranslate nohighlight">\(f\)</span> of the same regularity as <span class="math notranslate nohighlight">\(F\)</span> can be found cite{warner83fod}
+}} such that</p>
+<div class="math notranslate nohighlight" id="id2">
+<span id="equation-eq"></span><span class="eqno">(3)<a class="headerlink" href="#id2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    F|_m = \left.\Psi_*(f(m))\right|_m,\quad\text{for all}\; m\in \mathcal{M}
+\end{align}\]</div>
+<p>This is the original tool cite{munthe-kaas99hor} for representing a vector field on a manifold with a group action.
+Another approach was used in cite{crouch93nio} where a set of {em frame vector fields} <span class="math notranslate nohighlight">\(E_1,\ldots, E_d\)</span> in <span class="math notranslate nohighlight">\(\mathcal{X}(\mathcal{M})\)</span> was introduced
+assuming that for every <span class="math notranslate nohighlight">\(m\in \mathcal{M}\)</span>,</p>
+<div class="math notranslate nohighlight" id="id3">
+<span id="equation-eq"></span><span class="eqno">(4)<a class="headerlink" href="#id3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \text{span}\{\left.E_1\right|_m,\ldots,\left.E_d\right|_m\}= T_m \mathcal{M}.
+\end{align}\]</div>
+<p>Then, for any vector field <span class="math notranslate nohighlight">\(F\in\mathcal{X}(\mathcal{M})\)</span> there are, in general non-unique, functions <span class="math notranslate nohighlight">\(f_i:\mathcal{M}\rightarrow \mathbb{R}\)</span>,
+RE{which can be chosen with the same regularity as <span class="math notranslate nohighlight">\(F\)</span>,} such that</p>
+<div class="math notranslate nohighlight" id="id4">
+<span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    F|_m = \sum_{i=1}^d f_i(m) \left.E_i\right|_m.
+\end{align}\]</div>
+<p>A fixed vector <span class="math notranslate nohighlight">\(\xi\in\mathbb{R}^d\)</span> will define a vector field <span class="math notranslate nohighlight">\(F_\xi\)</span> on <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> similar to eqref{frozenaction}</p>
+<div class="math notranslate nohighlight" id="eq-1">
+<span id="equation-eq-1"></span><span class="eqno">(6)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \left.F_{\xi}\right|_m = \sum_{i=1}^d \xi_i E_i|_m
+\end{align}\]</div>
+<p>If <span class="math notranslate nohighlight">\(\xi_i=f_i(p)\)</span> for some <span class="math notranslate nohighlight">\(p\in\M\)</span>, the corresponding <span class="math notranslate nohighlight">\(F_\xi\)</span> will be a vector field in the linear span of the frame which coincides with <span class="math notranslate nohighlight">\(F\)</span> at the point <span class="math notranslate nohighlight">\(p\)</span>. Such a vector field was named by cite{crouch93nio} as a emph{the vector field frozen at <span class="math notranslate nohighlight">\(p\)</span>}.</p>
+<p>The two formulations just presented are in many cases connected, and can then be used in an equivalent manner.
+Suppose that <span class="math notranslate nohighlight">\(e_1,\ldots,e_d\)</span> is a basis of the Lie algebra <span class="math notranslate nohighlight">\(\g\)</span>, then we can simply define frame vector fields as
+<span class="math notranslate nohighlight">\(E_i = \Psi_*(e_i)\)</span> and the vector field we aim to describe is,</p>
+<div class="math notranslate nohighlight" id="id5">
+<span id="equation-eq-1"></span><span class="eqno">(7)<a class="headerlink" href="#id5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    F|_m=\left.\Psi_*(f(m))\right|_m= \left.\Psi_*(\sum_i f_i(m)e_i)\right|_m=\sum_i f_i \left.E_i\right|_m.
+\end{align}\]</div>
+<p>As mentioned above there is a non-uniqueness issue when defining a vector field by means of a group action or a frame.
+A more fundamental description can be obtained using the machinery of connections. The assumption is that the simply connected manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> is equipped with a connection which is flat and has constant torsion.
+Then <span class="math notranslate nohighlight">\(F_p\)</span>, the frozen vector field of <span class="math notranslate nohighlight">\(F\)</span> at <span class="math notranslate nohighlight">\(p\)</span> defined above, can be defined as the unique element <span class="math notranslate nohighlight">\(F_p\in\mathcal{X}(\mathcal{M})\)</span> satisfying
+begin{enumerate}
+item <span class="math notranslate nohighlight">\(F_p|_p=F|_p\)</span>
+item <span class="math notranslate nohighlight">\(\nabla_X F_p=0\)</span> for any <span class="math notranslate nohighlight">\(X\in\mathcal{X}(\mathca{M})\)</span>.
+end{enumerate}
+So <span class="math notranslate nohighlight">\(F_p\)</span> is the vector field that coincides with <span class="math notranslate nohighlight">\(F\)</span> at <span class="math notranslate nohighlight">\(p\)</span> and is parallel transported to any other point on <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> by the connection <span class="math notranslate nohighlight">\(\nabla\)</span>. Since the connection is flat, the parallel transport from the point <span class="math notranslate nohighlight">\(p\)</span> to another point <span class="math notranslate nohighlight">\(m\in\mathcal{M}\)</span> does not depend on the chosen path between the two points.
+For further details, see e.g.
+cite{lundervold15oas}.</p>
+</section>
+</section>
+
 
           </div>
           
@@ -52,7 +116,11 @@
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lie group integrators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-formulation-of-differential-equations-on-manifolds">The formulation of differential equations on manifolds</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="two_classes_lie_groups.html">Two classes of Lie group integrators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="double_sph_pend.html">The double spherical pendulum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB code</a></li>
