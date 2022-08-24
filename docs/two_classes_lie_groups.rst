@@ -4,7 +4,21 @@
 Two classes of Lie group integrators
 ====================================
 
-We briefly consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. For a more detailed discussion, the reader can see `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ and the references therein.
+The simplest numerical integrator for linear spaces is the explicit Euler method. 
+Given an initial value problem :math:`\dot{y}=F(y)`, :math:`y(0)=y_0` the method is defined as :math:`y_{n+1}=y_n + hF(y_n)` for some stepsize :math:`h`. 
+In the spirit of the previous section, one could think of
+the Euler method as the :math:`h` -flow of the constant vector field :math:`F_{y_n}(y)=F(y_n)`, that is
+.. math::
+    
+    \begin{align}
+        y_{n+1} = \exp(hF_{y_n})\,y_n
+    \end{align}
+
+This definition of the Euler method makes sense also when :math:`F` is replaced by a vector field on some manifold. 
+In this general situation it is known as the Lie--Euler method.
+
+We briefly consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. 
+For a more detailed discussion, the reader can see `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ and the references therein.
 
 .. _RKMK:
 
