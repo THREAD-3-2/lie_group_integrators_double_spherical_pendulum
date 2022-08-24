@@ -1,6 +1,10 @@
-function v = getVec(vec,i)
-
-    %From an input vector vec, it simply gived out the i-th tern.
-    v = vec(3*i-2:3*i);
+function v = getVec(vec, i)
+%
+% :param vec: vector
+% :param i: index
+%
+% :returns: i-th term of the input vector
+    
+    v = vec(3 * i - 2 : 3 * i);
 
 end
