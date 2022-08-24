@@ -1,9 +1,14 @@
 function [v, N] = tangentBehaviour(f, action, vecField, z0, L, m)
-
-
-    %In this method we solve the equation and compute the tangentiality
-    %conditions for the solutions obtained with the various schemes. The
-    %output value N is just the number of time instants considered.
+% In this method we solve the equation and compute the tangentiality conditions for the solutions obtained with the various schemes.
+%
+% :param f: map f from the phase space (on which the vector field is defined) to the Lie algebra
+% :param action: Lie group action
+% :param vecField: right hand side of the ODE
+% :param z0: initial value
+% :param L: length of the pendulum
+% :param m: mass of the pendulum
+%
+% :returns: N - the number of time instants considered and v - the tangentiality contidion at time tj for the i-th pendulum
 
     T = 5; %Final time
     
