@@ -112,3 +112,12 @@ Here the Runge--Kutta coefficients :math:`\alpha_{r,j}^k`, :math:`\beta_{j}^r` a
     \end{align}
 
 where :math:`f_{n,i}=f(Y_{n,i})`. Here, we see that one exponential is saved in computing :math:`Y_{n,4}` by making use of :math:`Y_{n,2}`.
+
+In our `code <https://github.com/THREAD-3-2/lie_group_integrators_double_spherical_pendulum/tree/main/src>`_ we have tested both types of methods discussed here. 
+We have performed our numerical experiments on the example of `the double spherical pendulum <https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/double_sph_pend.html>`_.
+Experiments show that Lie group integrators allow to keep the evolution of the solution in the correct manifold.
+We show the convergence rate of all the Lie group integrators tested on this model and we check how they behave in terms of preserving the configuration manifold and the phase space.
+The analysis is completed with a comparison with the classical Runge--Kutta 4 and with ODE45 of MATLAB. 
+The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge--Kutta--Munthe--Kaas methods of order four and one of order three.
+Unlike classical numerical integrators like the one implemented in ODE45 or the Runge--Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy. 
+ 
