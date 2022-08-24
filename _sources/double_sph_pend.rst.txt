@@ -254,7 +254,7 @@ As presented above, the matrix :math:`R(q)` defines a linear invertible map of t
 We can easily see that it is well defined since
 
 .. math::
-    :name: eq: rq
+    :name: eq:22
     
     \begin{align}
         R(q)\begin{bmatrix}
@@ -285,7 +285,7 @@ with
         r_2(q,\omega):=m_2L_1L_2\hat{q}_1\hat{v}_1q_1+m_2L_2^2v_2. 
     \end{align}
 
-This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(22) <eq:rq>` as
+This map guarantees that if we rewrite the pair of equations for the angular velocities in :ref:`(22) <eq:22>` as
 
 .. math::
     :name: eq: 
