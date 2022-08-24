@@ -1,8 +1,8 @@
 function v = checkTangency(z)
-
-    %As an input z we get the matrix with the solutions, each column is a
-    %set [q1,w1,...,qN,wN] at a specific time t_j, where j is the column of
-    %v where this solution is stored.
+%
+% :param z:  [q1,q2,..,qN,w1,w2,...,wN]
+%
+% :returns: matrix with the solutions, each column is a set [q1,w1,...,qN,wN] at a specific time t_j, where j is the column of v where this solution is stored
 
     N = length(z(:, 1))/6; %Number of connected pendulums
     l = length(z(1, :)); %Number of time steps
