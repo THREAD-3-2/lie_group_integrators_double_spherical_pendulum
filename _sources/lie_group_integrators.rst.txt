@@ -25,7 +25,7 @@ This means that we seek a curve :math:`y(t)\in\mathcal{M}` whose tangent at any 
 Before addressing numerical methods for solving :ref:`<eq:11>` it is necessary to introduce a convenient way of representing the vector field :math:`F`. There are different ways of doing this. 
 %One is to furnish :math:`\mathcal{M}` with a transitive action by some Lie group :math:`G` of dimension :math:`d\geq\dim \mathcal{M}`.
 One is to furnish :math:`\mathcal{M}` with a transitive action :math:`\Psi: G \times \mathcal{M} \rightarrow \mathcal{M}` by some Lie group :math:`G` of dimension :math:`d\geq\dim \mathcal{M}`. We denote the action of :math:`g` on :math:`m` as :math:`g\cdot m`, i.e. :math:`g\cdot m=\Psi(g,m)`.
-Let :math:`\g` be the Lie algebra of :math:`G`, and denote by :math:`\exp: \g\rightarrow G` the exponential map. We define  :math:`\Psi_*:\g\rightarrow\mathcal{X}(\mathcal{M})` to be the infinitesimal generator of the action, i.e.
+Let :math:`\mathfrak{g}` be the Lie algebra of :math:`G`, and denote by :math:`\exp: \mathfrak{g}\rightarrow G` the exponential map. We define  :math:`\Psi_*:\mathfrak{g}\rightarrow\mathcal{X}(\mathcal{M})` to be the infinitesimal generator of the action, i.e.
 
 .. math::
     :name: eq:
@@ -34,7 +34,7 @@ Let :math:`\g` be the Lie algebra of :math:`G`, and denote by :math:`\exp: \g\ri
         \left.F_\xi\right|_m=  \left.\Psi_*(\xi)\right|_m = \left.\frac{d}{dt}\right|_{t=0} \Psi(\exp(t\xi), m)
     \end{align}
 
-The transitivity of the action now ensures that :math:`\left.\Psi_*(\g)\right|_m=T_m\mathcal{M}` for any :math:`m\in\mathcal{M}`, such that any tangent vector :math:`v_m\in T_m\mathcal{M}` can be represented as :math:`v_m=\left.\Psi_*(\xi_v)\right|_m` for some :math:`\xi_v\in\g` (:math:`\xi_v` may not be unique). Consequently, for any vector field :math:`F\in\mathcal{X}(\mathcal{M})` there exists a map :math:`f:\mathcal{M}\rightarrow\g`\footnote{\RE{If the Lie group action is smooth, a map :math:`f` of the same regularity as :math:`F` can be found \cite{warner83fod}
+The transitivity of the action now ensures that :math:`\left.\Psi_*(\mathfrak{g})\right|_m=T_m\mathcal{M}` for any :math:`m\in\mathcal{M}`, such that any tangent vector :math:`v_m\in T_m\mathcal{M}` can be represented as :math:`v_m=\left.\Psi_*(\xi_v)\right|_m` for some :math:`\xi_v\in\mathfrak{g}` (:math:`\xi_v` may not be unique). Consequently, for any vector field :math:`F\in\mathcal{X}(\mathcal{M})` there exists a map :math:`f:\mathcal{M}\rightarrow\mathfrak{g}`
 }} such that
 
 .. math::
@@ -75,10 +75,10 @@ A fixed vector :math:`\xi\in\mathbb{R}^d` will define a vector field :math:`F_\x
         \left.F_{\xi}\right|_m = \sum_{i=1}^d \xi_i E_i|_m
     \end{align}
 
-If :math:`\xi_i=f_i(p)` for some :math:`p\in\M`, the corresponding :math:`F_\xi` will be a vector field in the linear span of the frame which coincides with :math:`F` at the point :math:`p`. Such a vector field was named by \cite{crouch93nio} as a \emph{the vector field frozen at :math:`p`}.
+If :math:`\xi_i=f_i(p)` for some :math:`p\in\mathcal{M}`, the corresponding :math:`F_\xi` will be a vector field in the linear span of the frame which coincides with :math:`F` at the point :math:`p`. Such a vector field was named by \cite{crouch93nio} as a \emph{the vector field frozen at :math:`p`}.
 
 The two formulations just presented are in many cases connected, and can then be used in an equivalent manner.
-Suppose that :math:`e_1,\ldots,e_d` is a basis of the Lie algebra :math:`\g`, then we can simply define frame vector fields as
+Suppose that :math:`e_1,\ldots,e_d` is a basis of the Lie algebra :math:`\mathfrak{g}`, then we can simply define frame vector fields as
 :math:`E_i = \Psi_*(e_i)` and the vector field we aim to describe is, 
 
 .. math::
@@ -93,7 +93,7 @@ A more fundamental description can be obtained using the machinery of connection
 Then :math:`F_p`, the frozen vector field of :math:`F` at :math:`p` defined above, can be defined as the unique element :math:`F_p\in\mathcal{X}(\mathcal{M})` satisfying
 \begin{enumerate}
 \item :math:`F_p|_p=F|_p`
-\item :math:`\nabla_X F_p=0` for any :math:`X\in\mathcal{X}(\mathca{M})`.
+\item :math:`\nabla_X F_p=0` for any :math:`X\in\mathcal{X}(\mathcal{M})`.
 \end{enumerate}
 So :math:`F_p` is the vector field that coincides with :math:`F` at :math:`p` and is parallel transported to any other point on :math:`\mathcal{M}` by the connection :math:`\nabla`. Since the connection is flat, the parallel transport from the point :math:`p` to another point :math:`m\in\mathcal{M}` does not depend on the chosen path between the two points.
 For further details, see e.g.
