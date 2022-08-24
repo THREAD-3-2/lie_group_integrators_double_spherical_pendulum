@@ -1,6 +1,9 @@
 function [q0, w0, z0] = initializeSE3N(N)
-
-    %This method randomly picks a point in (TS^2)^N.
+% This method randomly picks a point in (TS^2)^N
+%
+% :param N: number of the connected pendula
+%
+% :returns: randomly picked point in (TS^2)^N
 
     w0 = rand(3 * N, 1);
     q0 = w0;
