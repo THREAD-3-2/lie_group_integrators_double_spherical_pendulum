@@ -545,9 +545,22 @@ with u and v 3x1 column vectors</p>
 <dl class="mat function">
 <dt class="sig sig-object mat" id="src.Lie_group_functions.tangentBehaviour">
 <span class="sig-prename descclassname"><span class="pre">src.Lie_group_functions.</span></span><span class="sig-name descname"><span class="pre">tangentBehaviour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em>, <em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">vecField</span></em>, <em class="sig-param"><span class="pre">z0</span></em>, <em class="sig-param"><span class="pre">L</span></em>, <em class="sig-param"><span class="pre">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Lie_group_functions.tangentBehaviour" title="Permalink to this definition">¶</a></dt>
-<dd><p>In this method we solve the equation and compute the tangentiality
-conditions for the solutions obtained with the various schemes. The
-output value N is just the number of time instants considered.</p>
+<dd><p>In this method we solve the equation and compute the tangentiality conditions for the solutions obtained with the various schemes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – map f from the phase space (on which the vector field is defined) to the Lie algebra</p></li>
+<li><p><strong>action</strong> – Lie group action</p></li>
+<li><p><strong>vecField</strong> – right hand side of the ODE</p></li>
+<li><p><strong>z0</strong> – initial value</p></li>
+<li><p><strong>L</strong> – length of the pendulum</p></li>
+<li><p><strong>m</strong> – mass of the pendulum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>N - the number of time instants considered and v - the tangentiality contidion at time tj for the i-th pendulum</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="mat function">
