@@ -1,9 +1,14 @@
 function [v, N] = compareNorms(f, action, vecField, z0, L, m)
-
-
-    %It solves the ODE in time with various numerical schemes and then
-    %computes the 2-norms of the qis, which are extracted and stored in v. The
-    %output value N is just the number of time instants considered.
+% It solves the ODE in time with various numerical schemes and then computes the 2-norms of the qis, which are extracted and stored in v.
+% 
+% :param f: map f from the phase space (on which the vector field is defined) to the Lie algebra
+% :param action: Lie group action
+% :param vecField: right hand side of the ODE
+% :param z0: initial value
+% :param L: length of the pendulum
+% :param m: mass of the pendulum
+%
+% :returns: v - thevector where the 2-norms of the qis are stored and N - the number of time instants considered
 
     T = 5; %Final time
     
