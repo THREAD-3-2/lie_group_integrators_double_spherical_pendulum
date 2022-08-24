@@ -1,8 +1,9 @@
 function vec = reorder(z)
-
-    %This method turns the vector z = [q1,q2,..,qN,w1,w2,...,wN] into
-    % vec = [q1,w1,q2,w2,...,qN,wN] which is the format used in the Lie
-    % group integrators setting.
+% This function reorders z to the format used in the Lie group integrators setting
+%
+% :param z: [q1,q2,..,qN,w1,w2,...,wN]
+%
+% :returns: [q1,w1,q2,w2,...,qN,wN]
 
     N = length(z(:, 1))/6; %Number of connected pendulums
     q = z(1 : length(z(:, 1))/2, :);
