@@ -1,7 +1,7 @@
 function [q0, w0, z0] = initializeStat(N)
 % Initialization of the system
 %
-% :param N: number of connected pendulums
+% :param N: number of connected pendula
 %
 % :returns: initial positions for q and w of the N-fold pendulum
 
