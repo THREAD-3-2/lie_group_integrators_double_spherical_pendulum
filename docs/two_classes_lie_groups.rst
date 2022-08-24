@@ -118,6 +118,7 @@ We have performed our numerical experiments on the example of `the double spheri
 Experiments show that Lie group integrators allow to keep the evolution of the solution in the correct manifold.
 We show the convergence rate of all the Lie group integrators tested on this model and we check how they behave in terms of preserving the configuration manifold and the phase space.
 The analysis is completed with a comparison with the classical Runge--Kutta 4 and with ODE45 of MATLAB. 
-The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge--Kutta--Munthe--Kaas methods of order four and one of order three.
+The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge--Kutta--Munthe--Kaas methods of order four and one of order three. 
+Their implementation can be found `here <https://github.com/THREAD-3-2/lie_group_integrators_double_spherical_pendulum/tree/main/src/integrators>`_.
 Unlike classical numerical integrators like the one implemented in ODE45 or the Runge--Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy. 
  
