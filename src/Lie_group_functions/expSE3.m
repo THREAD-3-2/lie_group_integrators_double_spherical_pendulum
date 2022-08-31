@@ -1,7 +1,7 @@
 function A = expSE3(input)
 % Exponential map on SE(3)
 %
-% :param input: element of the lie algebra se(3) represented as 6-component vector,
+% :param input: element of the Lie algebra se(3) represented as 6-component vector,
 %               i.e. as a pair (u,v) with with the 3-component vector u corresponding 
 %               to a skew symmetric matrix hat(u) and the 3-component vector v
 %               corresponding to the translational part.
