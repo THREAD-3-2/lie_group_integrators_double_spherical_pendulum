@@ -246,11 +246,14 @@ International Journal of Computer Mathematics, 99:1, 58-88.</p>
 <dd><p>Exponential map on SE(3)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>input</strong> – element of the Lie algebra se(3) represented as [hat(u),v],
-with u and v 3x1 column vectors</p>
+<dd class="field-odd"><p><strong>input</strong> – element of the lie algebra se(3) represented as 6-component vector,
+i.e. as a pair (u,v) with with the 3-component vector u corresponding
+to a skew symmetric matrix hat(u) and the 3-component vector v
+corresponding to the translational part.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>element of the group SE(3)</p>
+<dd class="field-even"><p>element of the group SE(3), represented as a 3x4 matrix [A, b],
+with A 3x3 rotation matrix and b 3-component translation vector.</p>
 </dd>
 </dl>
 </dd></dl>
