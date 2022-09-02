@@ -16,9 +16,9 @@ the Euler method as the :math:`h` -flow of the constant vector field :math:`F_{y
     \end{align}
 
 This definition of the Euler method makes sense also when :math:`F` is replaced by a vector field on some manifold. 
-In this general situation it is known as the Lie--Euler method.
+In this general situation it is known as the Lie-Euler method.
 
-We briefly consider here two classes of methods known as Runge--Kutta--Munthe--Kaas (RKMK) methods and Commutator-free Lie group methods. 
+We briefly consider here two classes of methods known as Runge-Kutta-Munthe-Kaas (RKMK) methods and Commutator-free Lie group methods. 
 For a more detailed discussion, the reader can see `(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics) <https://doi.org/10.1080/00207160.2021.1966772>`_ and the references therein.
 
 .. _RKMK:
@@ -63,8 +63,8 @@ and the inverse is
         \textrm{dexp}_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\textrm{ad}_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
     \end{align}
 
-The RKMK methods are now obtained simply by applying some standard Runge--Kutta method to the transformed equation :ref:`(1) <eq:1>` with a time step :math:`h`, using initial value :math:`\sigma(0)=0`. This leads to an output :math:`\sigma_1\in\mathfrak{g}` and one simply sets :math:`y_1=\exp(\sigma_1)\cdot y_0`. Then one repeats the procedure replacing :math:`y_0` by :math:`y_1` in the next step etc. While solving :ref:`(1) <eq:1>` one needs to evaluate :math:`\textrm{dexp}_u^{-1}(v)` as a part of the process. This can be done by truncating the series :ref:`(3) <eq:3>` since :math:`\sigma(0)=0` implies that we always evaluate :math:`\textrm{dexp}_u^{-1}` with :math:`u=\mathcal{O}(h)`, and thus, the :math:`k-th` iterated commutator :math:`\textrm{ad}_u^k=\mathcal{O}(h^k)`.
-For a given Runge--Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\textrm{dexp}_u^{-1}v`. A concrete example of an RKMK method is:
+The RKMK methods are now obtained simply by applying some standard Runge-Kutta method to the transformed equation :ref:`(1) <eq:1>` with a time step :math:`h`, using initial value :math:`\sigma(0)=0`. This leads to an output :math:`\sigma_1\in\mathfrak{g}` and one simply sets :math:`y_1=\exp(\sigma_1)\cdot y_0`. Then one repeats the procedure replacing :math:`y_0` by :math:`y_1` in the next step etc. While solving :ref:`(1) <eq:1>` one needs to evaluate :math:`\textrm{dexp}_u^{-1}(v)` as a part of the process. This can be done by truncating the series :ref:`(3) <eq:3>` since :math:`\sigma(0)=0` implies that we always evaluate :math:`\textrm{dexp}_u^{-1}` with :math:`u=\mathcal{O}(h)`, and thus, the :math:`k-th` iterated commutator :math:`\textrm{ad}_u^k=\mathcal{O}(h^k)`.
+For a given Runge-Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of :math:`\textrm{dexp}_u^{-1}v`. A concrete example of an RKMK method is:
 
 
 
@@ -96,7 +96,7 @@ The second class of Lie group integrators we consider here are the commutator-fr
         y_{n+1} &= \exp\left(h\sum_k \beta_J^k f_{n,k}\right)\cdots \exp\left(h\sum_k \beta_1^k f_{n,k}\right)\cdot y_n
     \end{align}
     
-Here the Runge--Kutta coefficients :math:`\alpha_{r,j}^k`, :math:`\beta_{j}^r` are related to a classical Runge--Kutta scheme with coefficients :math:`a_r^k`, :math:`b_r` in that :math:`a_r^k=\sum_j \alpha_{r,j}^k` and :math:`b_r=\sum_j \beta_{j}^r`. The :math:`\alpha_{r,j}^k`, :math:`\beta_{j}^r` are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials :math:`J` in each stage as low as possible, and possibly also the number of stages :math:`s`. A trick is to select coefficients that make it possible to reuse exponentials from one stage to another. This is perhaps best illustrated through the following example, a generalisation of the classical 4th order Runge--Kutta method.
+Here the Runge-Kutta coefficients :math:`\alpha_{r,j}^k`, :math:`\beta_{j}^r` are related to a classical Runge-Kutta scheme with coefficients :math:`a_r^k`, :math:`b_r` in that :math:`a_r^k=\sum_j \alpha_{r,j}^k` and :math:`b_r=\sum_j \beta_{j}^r`. The :math:`\alpha_{r,j}^k`, :math:`\beta_{j}^r` are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials :math:`J` in each stage as low as possible, and possibly also the number of stages :math:`s`. A trick is to select coefficients that make it possible to reuse exponentials from one stage to another. This is perhaps best illustrated through the following example, a generalisation of the classical 4th order Runge-Kutta method.
 
 .. math::
     
@@ -117,8 +117,8 @@ In our `code <https://github.com/THREAD-3-2/lie_group_integrators_double_spheric
 We have performed our numerical experiments on the example of `the double spherical pendulum <https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/double_sph_pend.html>`_.
 Experiments show that Lie group integrators allow to keep the evolution of the solution in the correct manifold.
 We show the convergence rate of all the Lie group integrators tested on this model and we check how they behave in terms of preserving the configuration manifold and the phase space.
-The analysis is completed with a comparison with the classical Runge--Kutta 4 and with ODE45 of MATLAB. 
-The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge--Kutta--Munthe--Kaas methods of order four and one of order three. 
+The analysis is completed with a comparison with the classical Runge-Kutta 4 and with ODE45 of MATLAB. 
+The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge-Kutta-Munthe-Kaas methods of order four and one of order three. 
 Their implementation can be found `here <https://github.com/THREAD-3-2/lie_group_integrators_double_spherical_pendulum/tree/main/src/integrators>`_.
-Unlike classical numerical integrators like the one implemented in ODE45 or the Runge--Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy. 
+Unlike classical numerical integrators like the one implemented in ODE45 or the Runge-Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy. 
  
