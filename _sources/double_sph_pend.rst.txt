@@ -315,7 +315,7 @@ then we are assured that there exists a pair of functions :math:`a_1,a_2:TS^2\ti
         \end{bmatrix}.
     \end{align}
 
-Since we want :math:`a_i\times q_i = h_i`, we just impose :math:`a_i=q_i\times h_i` and hence the whole vector field can be rewritten as
+Since we want :math:`a_i\times q_i = h_i`, :math:`i = 1,2`, we just impose :math:`a_i=q_i\times h_i`, :math:`i = 1,2`, and hence the whole vector field can be rewritten as
 
 .. math::
     :name: eq: 
@@ -328,7 +328,7 @@ Since we want :math:`a_i\times q_i = h_i`, we just impose :math:`a_i=q_i\times h
         \end{bmatrix} = F\vert_{(q,\omega)},
     \end{align}
 
-with :math:`h_i=h_i(q,\omega)` and
+with :math:`h_i=h_i(q,\omega)`, :math:`i = 1,2`, and
 
 .. math::
     :name: eq: 
