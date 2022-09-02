@@ -1,7 +1,7 @@
 function vec = FuncW(z,L,m)
 % This function is used to integrate with ODE45
 %
-% :param z: is of the form z = [q1, q2, ..., qP, w1, w2, ..., wP]
+% :param z: is of the form z = [q1, q2, ..., qN, w1, w2, ..., wN]
 % :param L: length of the pendulum
 % :param m: mass of the pendulum
 %
