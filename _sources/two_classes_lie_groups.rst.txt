@@ -10,6 +10,7 @@ In the spirit of the previous section, one could think of
 the Euler method as the :math:`h` -flow of the constant vector field :math:`F_{y_n}(y)=F(y_n)`, that is
 
 .. math::
+    :name: eq:
     
     \begin{align}
         y_{n+1} = \exp(hF_{y_n})\,y_n
@@ -29,6 +30,7 @@ Runge-Kutta-Munthe-Kaas (RKMK) methods
 For RKMK methods the underlying idea is to transform the problem from the manifold :math:`\mathcal{M}` to the Lie algebra :math:`\mathfrak{g}`, take a time step, and map the result back to :math:`\mathcal{M}`. The transformation we use is
 
 .. math::
+    :name: eq:
     
     \begin{align}
         y(t) = \exp(\sigma(t))\cdot y_0,\quad\sigma(0)=0.
