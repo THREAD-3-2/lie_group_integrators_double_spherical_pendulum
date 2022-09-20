@@ -1,5 +1,5 @@
 ==================================================================
- Documentation of `lie_group_integrator_double_spherical_pendulum`
+Lie Group Integrator Double Spherical Pendulum Documentation 
 ==================================================================
 
 `lie_group_integrator_double_spherical_pendulum <https://github.com/THREAD-3-2/lie_group_integrator_double_spherical_pendulum>`_
@@ -10,9 +10,11 @@ Contents
 ========
 
 .. toctree::
+   installation
+   double_sph_pend
    lie_group_integrators
    two_classes_lie_groups
-   double_sph_pend
+   
    matlab
    :maxdepth: 2
 
