@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>The double spherical pendulum &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
+    <title>Example &#8212; lie_group_integrator_double_spherical_pendulum 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,8 +35,10 @@
 
           <div class="body" role="main">
             
-  <section id="the-double-spherical-pendulum">
-<span id="double-sph-pend"></span><h1>The double spherical pendulum<a class="headerlink" href="#the-double-spherical-pendulum" title="Permalink to this heading">¶</a></h1>
+  <section id="example">
+<span id="double-sph-pend"></span><h1>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h1>
+<section id="the-double-spherical-pendulum">
+<h2>The double spherical pendulum<a class="headerlink" href="#the-double-spherical-pendulum" title="Permalink to this heading">¶</a></h2>
 <p>In the paper <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we discuss in detail the N-fold spherical pendulum, which is an example of the initial value problem discussed in the first <a class="reference external" href="https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/lie_group_integrators.html">section</a>.
 We consider here the special case of the double spherical pendulum,  <span class="math notranslate nohighlight">\(N = 2\)</span>.
 We then test our Lie group integrators on this particular case, showing the rate of convergence, the preservation of the geometry of the manifold <span class="math notranslate nohighlight">\(S^2\)</span> and the phase space <span class="math notranslate nohighlight">\(T_{q_{i}(t)}S^2\)</span>.</p>
@@ -50,7 +52,7 @@ Precisely,</p>
 So we can assume without loss of generality that <span class="math notranslate nohighlight">\(\omega_i^Tq_i=0\)</span> (i.e. <span class="math notranslate nohighlight">\(\omega_i\in T_{q_i}S^2\)</span>) and pass to the coordinates <span class="math notranslate nohighlight">\((q_1,\omega_1,q_2,\omega_2)\in (TS^2)^2\)</span> to describe the dynamics.
 We denote with <span class="math notranslate nohighlight">\(m_1, m_2\)</span> the masses of the pendulums and with <span class="math notranslate nohighlight">\(L_1, L_2\)</span> their lengths.</p>
 <section id="transitive-group-action-on-ts-2-2">
-<span id="trans-action"></span><h2>Transitive group action on <span class="math notranslate nohighlight">\((TS^2)^2\)</span><a class="headerlink" href="#transitive-group-action-on-ts-2-2" title="Permalink to this heading">¶</a></h2>
+<span id="trans-action"></span><h3>Transitive group action on <span class="math notranslate nohighlight">\((TS^2)^2\)</span><a class="headerlink" href="#transitive-group-action-on-ts-2-2" title="Permalink to this heading">¶</a></h3>
 <p>In <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> we characterize a transitive action for <span class="math notranslate nohighlight">\((TS^2)^N\)</span>, starting with the case <span class="math notranslate nohighlight">\(N=1\)</span> and generalizing it to <span class="math notranslate nohighlight">\(N&gt;1\)</span> .
 The action we consider is based on the identification between <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, the Lie algebra of <span class="math notranslate nohighlight">\(SE(3)\)</span>, and <span class="math notranslate nohighlight">\(\mathbb{R}^6\)</span>. We start from the Ad-action of <span class="math notranslate nohighlight">\(SE(3)\)</span> on <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span>, which is</p>
 <div class="math notranslate nohighlight" id="id2">
@@ -117,7 +119,7 @@ More precisely, we consider the group <span class="math notranslate nohighlight"
 We have now the only group action we need to deal with the double spherical pendulum. In the following part of this section we work on the vector field describing the dynamics and adapt it to the Lie group integrators setting.</p>
 </section>
 <section id="the-equations-of-motion-and-the-vector-field">
-<h2>The equations of motion and the vector field<a class="headerlink" href="#the-equations-of-motion-and-the-vector-field" title="Permalink to this heading">¶</a></h2>
+<h3>The equations of motion and the vector field<a class="headerlink" href="#the-equations-of-motion-and-the-vector-field" title="Permalink to this heading">¶</a></h3>
 <p>We consider the vector field <span class="math notranslate nohighlight">\(F\in\mathfrak{X}((TS^2)^2)\)</span>, describing the dynamics of the double spherical pendulum, and we express it in terms of the infinitesimal generator of the action defined above.
 More precisely, we find a function <span class="math notranslate nohighlight">\(F:(TS^2)^2\rightarrow \mathfrak{se}(3)^2\)</span> such that</p>
 <div class="math notranslate nohighlight" id="id14">
@@ -258,6 +260,7 @@ The configuration manifold of the system is <span class="math notranslate nohigh
 \end{align}\]</div>
 </section>
 </section>
+</section>
 
 
           </div>
@@ -277,9 +280,12 @@ The configuration manifold of the system is <span class="math notranslate nohigh
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The double spherical pendulum</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#transitive-group-action-on-ts-2-2">Transitive group action on <span class="math notranslate nohighlight">\((TS^2)^2\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-equations-of-motion-and-the-vector-field">The equations of motion and the vector field</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-double-spherical-pendulum">The double spherical pendulum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#transitive-group-action-on-ts-2-2">Transitive group action on <span class="math notranslate nohighlight">\((TS^2)^2\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-equations-of-motion-and-the-vector-field">The equations of motion and the vector field</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lie_group_integrators.html">Lie group integrators</a></li>
