@@ -13,7 +13,7 @@ Contents
    installation
    double_sph_pend
    lie_group_integrators
-   two_classes_lie_groups
+ 
    
    matlab
    :maxdepth: 2
