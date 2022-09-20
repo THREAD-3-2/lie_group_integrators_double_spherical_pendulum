@@ -6,7 +6,7 @@ Integration methods
 =====================
 
 Lie group integrators
-=============================
+=====================
 .. _diff_eqs_in_manifolds:
 
 The formulation of differential equations on manifolds
@@ -50,3 +50,4 @@ Consequently, for any vector field :math:`F\in\mathcal{X}(\mathcal{M})` there ex
 
 This is the original tool from `(H. Munthe-Kaas, (1999) Appl. Numer. Math 29) <https://doi.org/10.1016/S0168-9274(98)00030-0>`_ for representing a vector field on a manifold with a group action.
 
+.. include:: ../lie_group_integrators_double_spherical_pendulum/docs/two_classes_lie_groups.rst
