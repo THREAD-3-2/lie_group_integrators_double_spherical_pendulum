@@ -67,6 +67,88 @@ Consequently, for any vector field <span class="math notranslate nohighlight">\(
 <p>This is the original tool from <a class="reference external" href="https://doi.org/10.1016/S0168-9274(98)00030-0">(H. Munthe-Kaas, (1999) Appl. Numer. Math 29)</a> for representing a vector field on a manifold with a group action.</p>
 </section>
 </section>
+<section id="two-classes-of-lie-group-integrators">
+<span id="two-classes-lie-groups"></span><h2>Two classes of Lie group integrators<a class="headerlink" href="#two-classes-of-lie-group-integrators" title="Permalink to this heading">¶</a></h2>
+<p>The simplest numerical integrator for linear spaces is the explicit Euler method.
+Given an initial value problem <span class="math notranslate nohighlight">\(\dot{y}=F(y)\)</span>, <span class="math notranslate nohighlight">\(y(0)=y_0\)</span> the method is defined as <span class="math notranslate nohighlight">\(y_{n+1}=y_n + hF(y_n)\)</span> for some stepsize <span class="math notranslate nohighlight">\(h\)</span>.
+In the spirit of the previous section, one could think of
+the Euler method as the <span class="math notranslate nohighlight">\(h\)</span> -flow of the constant vector field <span class="math notranslate nohighlight">\(F_{y_n}(y)=F(y_n)\)</span>, that is</p>
+<div class="math notranslate nohighlight" id="id3">
+<span id="equation-eq"></span><span class="eqno">(4)<a class="headerlink" href="#id3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    y_{n+1} = \exp(hF_{y_n})\,y_n
+\end{align}\]</div>
+<p>This definition of the Euler method makes sense also when <span class="math notranslate nohighlight">\(F\)</span> is replaced by a vector field on some manifold.
+In this general situation it is known as the Lie-Euler method.</p>
+<p>We briefly consider here two classes of methods known as Runge-Kutta-Munthe-Kaas (RKMK) methods and Commutator-free Lie group methods.
+For a more detailed discussion, the reader can see <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a> and the references therein.</p>
+<section id="runge-kutta-munthe-kaas-rkmk-methods">
+<span id="rkmk"></span><h3>Runge-Kutta-Munthe-Kaas (RKMK) methods<a class="headerlink" href="#runge-kutta-munthe-kaas-rkmk-methods" title="Permalink to this heading">¶</a></h3>
+<p>For RKMK methods the underlying idea is to transform the problem from the manifold <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> to the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{g}\)</span>, take a time step, and map the result back to <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. The transformation we use is</p>
+<div class="math notranslate nohighlight" id="id4">
+<span id="equation-eq"></span><span class="eqno">(5)<a class="headerlink" href="#id4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    y(t) = \exp(\sigma(t))\cdot y_0,\quad\sigma(0)=0.
+\end{align}\]</div>
+<p>The transformed differential equation for <span class="math notranslate nohighlight">\(\sigma(t)\)</span> makes use of the derivative of the exponential mapping,</p>
+<div class="math notranslate nohighlight" id="eq-3">
+<span id="equation-eq-3"></span><span class="eqno">(6)<a class="headerlink" href="#eq-3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \dot{\sigma}(t) = \textrm{dexp}_{\sigma(t)}^{-1} (f(\exp(\sigma(t))\cdot y_0))
+\end{align}\]</div>
+<p>The map <span class="math notranslate nohighlight">\(v\mapsto\textrm{dexp}_u(v)\)</span> is linear and invertible when <span class="math notranslate nohighlight">\(u\)</span> belongs to some sufficiently small neighborhood of <span class="math notranslate nohighlight">\(0\in\mathfrak{g}\)</span>.
+It has an expansion in nested Lie brackets. Using the operator <span class="math notranslate nohighlight">\(\textrm{ad}_u(v)=[u,v]\)</span> and its powers
+<span class="math notranslate nohighlight">\(\textrm{ad}_u^2 v=[u,[u,v]]\)</span> etc, one can write</p>
+<div class="math notranslate nohighlight" id="eq-4">
+<span id="equation-eq-4"></span><span class="eqno">(7)<a class="headerlink" href="#eq-4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \textrm{dexp}_u(v) = \left.\frac{e^z-1}{z}\right|_{z=\textrm{ad}_u}(v) = v + \frac12[u,v] + \frac16[u,[u,v]] + \cdots
+\end{align}\]</div>
+<p>and the inverse is</p>
+<div class="math notranslate nohighlight" id="eq-5">
+<span id="equation-eq-5"></span><span class="eqno">(8)<a class="headerlink" href="#eq-5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \textrm{dexp}_u^{-1}(v) =\left.\frac{z}{e^z-1}\right|_{z=\textrm{ad}_u}(v)= v -\frac12[u,v] + \frac1{12}[u,[u,v]]+\cdots
+\end{align}\]</div>
+<p>The RKMK methods are now obtained simply by applying some standard Runge-Kutta method to the transformed equation <a class="reference internal" href="two_classes_lie_groups.html#eq-3"><span class="std std-ref">(3)</span></a> with a time step <span class="math notranslate nohighlight">\(h\)</span>, using initial value <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span>. This leads to an output <span class="math notranslate nohighlight">\(\sigma_1\in\mathfrak{g}\)</span> and one simply sets <span class="math notranslate nohighlight">\(y_1=\exp(\sigma_1)\cdot y_0\)</span>. Then one repeats the procedure replacing <span class="math notranslate nohighlight">\(y_0\)</span> by <span class="math notranslate nohighlight">\(y_1\)</span> in the next step etc. While solving <a class="reference internal" href="two_classes_lie_groups.html#eq-3"><span class="std std-ref">(3)</span></a> one needs to evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> as a part of the process. This can be done by truncating the series <a class="reference internal" href="two_classes_lie_groups.html#eq-5"><span class="std std-ref">(5)</span></a> since <span class="math notranslate nohighlight">\(\sigma(0)=0\)</span> implies that we always evaluate <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}\)</span> with <span class="math notranslate nohighlight">\(u=\mathcal{O}(h)\)</span>, and thus, the <span class="math notranslate nohighlight">\(k-th\)</span> iterated commutator <span class="math notranslate nohighlight">\(\textrm{ad}_u^k=\mathcal{O}(h^k)\)</span>.
+For a given Runge-Kutta method, there are some clever tricks that can be done to minimise the total number of commutators to be included from the expansion of <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}v\)</span>. A concrete example of an RKMK method is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+   f_{n,1} &amp;= h f(y_n),\\
+   f_{n,2} &amp;= h f(\exp(\tfrac{1}{2}f_{n,1}) \cdot y_n), \\
+   f_{n,3} &amp;= h f(\exp(\tfrac{1}{2}f_{n,2}-\tfrac{1}{8}[f_{n,1},f_{n,2}])\cdot y_n), \\
+   f_{n,4} &amp;= h f(\exp(f_{n,3})\cdot y_n), &amp;  \\
+   y_{n+1} &amp;= \exp(\tfrac{1}{6}(f_{n,1}+2f_{n,2}+2f_{n,3}+f_{n,4}-\tfrac12[f_{n,1},f_{n,4}]))\cdot y_n.
+\end{align}\end{split}\]</div>
+<p>The other option is to compute the exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the particular Lie algebra we use. An expression for  <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> for the Lie algebra <span class="math notranslate nohighlight">\(\mathfrak{so}(3)\)</span> was shown in <a class="reference external" href="https://doi.org/10.1016/S0045-7825(02)00520-0">(Celledoni and Owren, (2003) Computer Methods in Applied Mechanics and Engineering)</a>. We provide an exact expression for <span class="math notranslate nohighlight">\(\textrm{dexp}_u^{-1}(v)\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{se}(3)\)</span> in <a class="reference external" href="https://doi.org/10.1080/00207160.2021.1966772">(Celledoni, Çokaj, Leone, Murari and Owren, (2021) International Journal of Computer Mathematics)</a></p>
+</section>
+<section id="commutator-free-methods">
+<span id="cfmethods"></span><h3>Commutator-free methods<a class="headerlink" href="#commutator-free-methods" title="Permalink to this heading">¶</a></h3>
+<p>The second class of Lie group integrators we consider here are the commutator-free methods. As the name suggests, in contrast to RKMK schemes which usually include commutators in the method format, this class of methods does not. These schemes include the Crouch-Grossman methods and they have the format</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    Y_{n,r} &amp;= \exp\left(h\sum_{k}\alpha_{r,J}^k f_{n,k}\right)\cdots \exp\left(h\sum_{k}\alpha_{r,1}^k f_{n,k}\right)\cdot y_n \\
+    f_{n,r} &amp;= f(Y_{n,r}) \\[1mm]
+    y_{n+1} &amp;= \exp\left(h\sum_k \beta_J^k f_{n,k}\right)\cdots \exp\left(h\sum_k \beta_1^k f_{n,k}\right)\cdot y_n
+\end{align}\end{split}\]</div>
+<p>Here the Runge-Kutta coefficients <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are related to a classical Runge-Kutta scheme with coefficients <span class="math notranslate nohighlight">\(a_r^k\)</span>, <span class="math notranslate nohighlight">\(b_r\)</span> in that <span class="math notranslate nohighlight">\(a_r^k=\sum_j \alpha_{r,j}^k\)</span> and <span class="math notranslate nohighlight">\(b_r=\sum_j \beta_{j}^r\)</span>. The <span class="math notranslate nohighlight">\(\alpha_{r,j}^k\)</span>, <span class="math notranslate nohighlight">\(\beta_{j}^r\)</span> are usually chosen to obtain computationally inexpensive schemes with the highest possible order of convergence. The computational complexity of the above schemes depends on the cost of computing an exponential as well as of evaluating the vector field. Therefore it makes sense to keep the number of exponentials <span class="math notranslate nohighlight">\(J\)</span> in each stage as low as possible, and possibly also the number of stages <span class="math notranslate nohighlight">\(s\)</span>. A trick is to select coefficients that make it possible to reuse exponentials from one stage to another. This is perhaps best illustrated through the following example, a generalisation of the classical 4th order Runge-Kutta method.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \begin{split} \label{cf4}
+    Y_{n,1} &amp;= y_n \\
+    Y_{n,2} &amp;=\exp(\tfrac12 hf_{n,1}) \cdot y_n \\
+    Y_{n,3} &amp;= \exp(\tfrac12 hf_{n,2}) \cdot y_n \\
+    Y_{n,4} &amp;= \exp(h f_{n,3}-\tfrac12 h f_{n,1}) \cdot Y_{n,2} \\
+    y_{n+\frac12} &amp;=\exp(\tfrac{1}{12}h(3f_{n,1}+2f_{n,2}+2f_{n,3}-f_{n,4})) \cdot y_n \\
+    y_{n+1} &amp;=\exp(\tfrac{1}{12}h(-f_{n,1}+2f_{n,2}+2f_{n,3}+ 3f_{n,4})) \cdot y_{n+\frac12}
+    \end{split}
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{n,i}=f(Y_{n,i})\)</span>. Here, we see that one exponential is saved in computing <span class="math notranslate nohighlight">\(Y_{n,4}\)</span> by making use of <span class="math notranslate nohighlight">\(Y_{n,2}\)</span>.</p>
+<p>In our <a class="reference external" href="https://github.com/THREAD-3-2/lie_group_integrators_double_spherical_pendulum/tree/main/src">code</a> we have tested both types of methods discussed here.
+We have performed our numerical experiments on the example of <a class="reference external" href="https://thread-3-2.github.io/lie_group_integrators_double_spherical_pendulum/double_sph_pend.html">the double spherical pendulum</a>.
+Experiments show that Lie group integrators allow to keep the evolution of the solution in the correct manifold.
+We show the convergence rate of all the Lie group integrators tested on this model and we check how they behave in terms of preserving the configuration manifold and the phase space.
+The analysis is completed with a comparison with the classical Runge-Kutta 4 and with ODE45 of MATLAB.
+The Lie group integrators used to obtain the experiments are Lie-Euler, Lie-Euler-Heun, three versions of Runge-Kutta-Munthe-Kaas methods of order four and one of order three.
+Their implementation can be found <a class="reference external" href="https://github.com/THREAD-3-2/lie_group_integrators_double_spherical_pendulum/tree/main/src/integrators">here</a>.
+Unlike classical numerical integrators like the one implemented in ODE45 or the Runge-Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy.</p>
+</section>
+</section>
 </section>
 
 
@@ -92,6 +174,11 @@ Consequently, for any vector field <span class="math notranslate nohighlight">\(
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Integration methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Lie group integrators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-formulation-of-differential-equations-on-manifolds">The formulation of differential equations on manifolds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#two-classes-of-lie-group-integrators">Two classes of Lie group integrators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#runge-kutta-munthe-kaas-rkmk-methods">Runge-Kutta-Munthe-Kaas (RKMK) methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commutator-free-methods">Commutator-free methods</a></li>
 </ul>
 </li>
 </ul>
