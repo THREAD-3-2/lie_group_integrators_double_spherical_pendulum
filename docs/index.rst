@@ -1,5 +1,5 @@
 ==================================================================
-Lie Group Integrator Double Spherical Pendulum Documentation 
+Documentation of 'lie_group_integrator_double_spherical_pendulum' 
 ==================================================================
 
 `lie_group_integrator_double_spherical_pendulum <https://github.com/THREAD-3-2/lie_group_integrator_double_spherical_pendulum>`_
