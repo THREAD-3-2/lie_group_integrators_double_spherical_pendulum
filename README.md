@@ -8,3 +8,7 @@ The point of departure is the formulation of the models as differential equation
 Lie group integrators applied to the example of the double spherical pendulum. The numerical experiments are performed on the example of the double spherical pendulum. We show the convergence rate of all the Lie group integrators tested on this model and we check how they behave in terms of preserving the configuration manifold and the phase space. The analysis is completed with a comparison with the classical Runge–Kutta 4 and with ODE45 of MATLAB. The Lie group integrators used to obtain the experiments are Lie Euler, Lie Euler Heun, three versions of Runge–Kutta–Munthe–Kaas methods of order four and one of order three. Unlike classical numerical integrators like the one implemented in ODE45 or the Runge–Kutta 4, the Lie group methods preserve the configuration manifold and the phase space to a high accuracy.
 
 Matlab code.
+
+
+![](https://github.com/THREAD-3-2/.github/blob/main/profile/thread-logo.jpg)
+![](https://github.com/THREAD-3-2/.github/blob/main/profile/flag_yellow.png)
